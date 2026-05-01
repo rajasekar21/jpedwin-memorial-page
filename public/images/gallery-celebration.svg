@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 780" role="img" aria-labelledby="title">
+  <title id="title">Celebration illustration</title>
+  <rect width="640" height="780" fill="#f6efe7"/>
+  <path d="M132 248c114 56 262 56 376 0" fill="none" stroke="#b4935a" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="174" cy="268" r="22" fill="#4f6f64"/>
+  <circle cx="260" cy="292" r="22" fill="#9a7864"/>
+  <circle cx="352" cy="292" r="22" fill="#b4935a"/>
+  <circle cx="442" cy="268" r="22" fill="#4f6f64"/>
+  <rect x="188" y="396" width="264" height="166" rx="12" fill="#fffaf3" stroke="#d9c7ad"/>
+  <path d="M320 396v166M188 470h264" stroke="#b4935a" stroke-width="8"/>
+  <text x="320" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#66584d">Celebrations</text>
+</svg>

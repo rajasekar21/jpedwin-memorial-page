@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 780" role="img" aria-labelledby="title">
+  <title id="title">Legacy archive illustration</title>
+  <rect width="640" height="780" fill="#edf1ea"/>
+  <rect x="132" y="164" width="376" height="470" rx="16" fill="#fffaf3" stroke="#d9c7ad"/>
+  <path d="M220 280h200M220 332h200M220 384h154" stroke="#9a7864" stroke-width="14" stroke-linecap="round"/>
+  <path d="M248 520c30-66 114-66 144 0" fill="none" stroke="#4f6f64" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="320" cy="470" r="34" fill="#d6bda5"/>
+  <text x="320" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#3d514b">Legacy</text>
+</svg>

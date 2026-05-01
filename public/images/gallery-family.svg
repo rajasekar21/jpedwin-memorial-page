@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 780" role="img" aria-labelledby="title">
+  <title id="title">Family memory illustration</title>
+  <rect width="640" height="780" fill="#f2eadf"/>
+  <rect x="76" y="94" width="488" height="592" rx="22" fill="#fffaf3" stroke="#d9c7ad"/>
+  <circle cx="236" cy="318" r="58" fill="#d6bda5"/>
+  <circle cx="402" cy="318" r="58" fill="#c7d9ce"/>
+  <path d="M148 590c22-118 72-178 132-178s110 60 132 178H148Z" fill="#9a7864"/>
+  <path d="M272 590c20-118 70-178 130-178s112 60 134 178H272Z" fill="#4f6f64"/>
+  <text x="320" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#66584d">Family</text>
+</svg>

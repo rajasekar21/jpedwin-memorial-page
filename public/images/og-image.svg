@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f3ed"/>
+  <path d="M0 470c190-96 382-103 576-22s401 76 624-28v210H0Z" fill="#e6ece8"/>
+  <circle cx="965" cy="160" r="108" fill="#b4935a" opacity=".25"/>
+  <text x="90" y="250" font-family="Georgia, serif" font-size="74" fill="#262421">Memorial Website</text>
+  <text x="94" y="326" font-family="Arial, sans-serif" font-size="30" fill="#6d6258">A respectful family archive for stories, photos, and tributes</text>
+  <path d="M94 386h360" stroke="#b4935a" stroke-width="8" stroke-linecap="round"/>
+</svg>
