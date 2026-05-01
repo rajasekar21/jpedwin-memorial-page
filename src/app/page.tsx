@@ -43,7 +43,9 @@ export default function Home() {
               <Feather aria-hidden className="h-4 w-4" />
               Digital memorial and family archive
             </p>
-            <h1 className="font-serif text-5xl leading-tight text-ink sm:text-7xl dark:text-paper">{memorialProfile.fullName}</h1>
+            <h1 className="whitespace-nowrap font-serif text-[clamp(2.6rem,8vw,4.7rem)] leading-tight text-ink dark:text-paper">
+              {memorialProfile.fullName}
+            </h1>
             <p className="mt-4 text-lg text-ink/65 dark:text-paper/65">{memorialProfile.dates}</p>
             <blockquote className="mt-8 max-w-2xl border-l-2 border-gold pl-5 font-serif text-2xl leading-relaxed text-ink/80 dark:text-paper/80">
               {memorialProfile.quote}

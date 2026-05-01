@@ -8,7 +8,7 @@ export function FadeIn({ children, delay = 0 }: { children: ReactNode; delay?: n
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      initial={false}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, ease: 'easeOut', delay }}
