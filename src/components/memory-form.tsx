@@ -1,7 +1,7 @@
 'use client';
 
 import { Send } from 'lucide-react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useId, useState } from 'react';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { memorySubmissionSchema } from '@/lib/validation';
 
@@ -26,6 +26,12 @@ function checkRateLimit(): boolean {
 }
 
 export function MemoryForm() {
+  const uid = useId();
+  const nameId = `${uid}-name`;
+  const relationshipId = `${uid}-relationship`;
+  const messageId = `${uid}-message`;
+  const statusId = `${uid}-status`;
+
   const [state, setState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
 
@@ -85,9 +91,16 @@ export function MemoryForm() {
     event.currentTarget.reset();
   }
 
+  const hasStatus = message.length > 0;
+  const inputClass = "rounded-md border border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-twilight dark:text-paper";
+
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4 rounded-lg border border-ink/10 bg-white/70 p-5 shadow-soft dark:border-white/10 dark:bg-white/5">
-      {/* Honeypot field — hidden from real users, traps bots */}
+    <form
+      onSubmit={handleSubmit}
+      aria-describedby={hasStatus ? statusId : undefined}
+      className="grid gap-4 rounded-lg border border-ink/10 bg-white/70 p-5 shadow-soft dark:border-white/10 dark:bg-white/5"
+    >
+      {/* Honeypot — hidden from real users, traps bots */}
       <input
         name="website"
         type="text"
@@ -98,41 +111,56 @@ export function MemoryForm() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-ink dark:text-paper">
-          Your name
+        <div className="grid gap-2">
+          <label htmlFor={nameId} className="text-sm font-medium text-ink dark:text-paper">
+            Your name
+          </label>
           <input
+            id={nameId}
             name="name"
             required
             minLength={2}
             maxLength={80}
             autoComplete="name"
-            className="rounded-md border border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-twilight dark:text-paper"
+            aria-required="true"
+            aria-describedby={hasStatus && state === 'error' ? statusId : undefined}
+            className={inputClass}
           />
-        </label>
-        <label className="grid gap-2 text-sm font-medium text-ink dark:text-paper">
-          Relationship
+        </div>
+        <div className="grid gap-2">
+          <label htmlFor={relationshipId} className="text-sm font-medium text-ink dark:text-paper">
+            Relationship
+          </label>
           <input
+            id={relationshipId}
             name="relationship"
             required
             minLength={2}
             maxLength={80}
             autoComplete="off"
-            className="rounded-md border border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-twilight dark:text-paper"
+            aria-required="true"
+            aria-describedby={hasStatus && state === 'error' ? statusId : undefined}
+            className={inputClass}
           />
-        </label>
+        </div>
       </div>
 
-      <label className="grid gap-2 text-sm font-medium text-ink dark:text-paper">
-        Memory or tribute
+      <div className="grid gap-2">
+        <label htmlFor={messageId} className="text-sm font-medium text-ink dark:text-paper">
+          Memory or tribute
+        </label>
         <textarea
+          id={messageId}
           name="message"
           required
           minLength={20}
           maxLength={2000}
           rows={5}
-          className="resize-y rounded-md border border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-twilight dark:text-paper"
+          aria-required="true"
+          aria-describedby={hasStatus && state === 'error' ? statusId : undefined}
+          className={`resize-y ${inputClass}`}
         />
-      </label>
+      </div>
 
       <button
         type="submit"
@@ -143,8 +171,9 @@ export function MemoryForm() {
         {state === 'sending' ? 'Sending…' : 'Submit memory'}
       </button>
 
-      {message && (
+      {hasStatus && (
         <p
+          id={statusId}
           role="alert"
           aria-live="polite"
           className={`text-sm ${state === 'error' ? 'text-red-700 dark:text-red-300' : 'text-cedar dark:text-gold'}`}

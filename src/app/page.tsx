@@ -10,7 +10,7 @@ import { withBasePath } from '@/lib/site';
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-paper text-ink dark:bg-twilight dark:text-paper">
+    <main id="main-content" className="overflow-hidden bg-paper text-ink dark:bg-twilight dark:text-paper">
       <SiteHeader />
 
       <section id="home" className="relative flex min-h-dvh items-center px-5 pb-14 pt-28 sm:px-8 lg:px-12">
