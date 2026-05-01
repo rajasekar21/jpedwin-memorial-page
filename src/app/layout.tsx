@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { siteConfig } from '@/lib/site';
+import { ErrorBoundary } from '@/components/error-boundary';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -82,7 +83,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to main content
         </a>
-        {children}
+        <ErrorBoundary>{children}</ErrorBoundary>
       </body>
     </html>
   );
