@@ -164,7 +164,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl flex-col gap-6 border-t border-ink/10 pt-8 text-sm text-ink/60 dark:border-white/10 dark:text-paper/60 md:flex-row md:items-center md:justify-between">
           <p>{memorialProfile.shortDedication}</p>
           <div className="flex flex-wrap gap-4">
-            <a href="mailto:family@example.com" className="inline-flex items-center gap-2 hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold dark:hover:text-paper">
+            <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'contact@edwinchelliah.com'}`} className="inline-flex items-center gap-2 hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold dark:hover:text-paper">
               <Mail aria-hidden className="h-4 w-4" />
               Family contact
             </a>

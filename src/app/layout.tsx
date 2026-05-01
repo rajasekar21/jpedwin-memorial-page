@@ -45,8 +45,31 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const connectSrc = supabaseUrl
+    ? `'self' ${supabaseUrl}`
+    : "'self'";
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob:",
+    `connect-src ${connectSrc}`,
+    "font-src 'self'",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "object-src 'none'",
+  ].join('; ');
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta httpEquiv="Content-Security-Policy" content={csp} />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+        <meta name="format-detection" content="telephone=no" />
+      </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

@@ -32,6 +32,7 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_SITE_URL: https://www.edwinchelliah.com
+          NEXT_PUBLIC_CONTACT_EMAIL: contact@edwinchelliah.com
           NEXT_PUBLIC_ENABLE_DYNAMIC_MEMORIES: "false"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
