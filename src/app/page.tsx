@@ -5,35 +5,13 @@ import { Gallery } from '@/components/gallery';
 import { MemoryForm } from '@/components/memory-form';
 import { FadeIn } from '@/components/motion-wrapper';
 import { Section } from '@/components/section';
-import { ThemeToggle } from '@/components/theme-provider';
+import { SiteHeader } from '@/components/theme-provider';
 import { withBasePath } from '@/lib/site';
-
-const navItems = [
-  ['About', '#about'],
-  ['Timeline', '#timeline'],
-  ['Gallery', '#gallery'],
-  ['Tributes', '#tributes'],
-  ['Events', '#events']
-];
 
 export default function Home() {
   return (
     <main className="overflow-hidden bg-paper text-ink dark:bg-twilight dark:text-paper">
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-ink/10 bg-paper/80 backdrop-blur-xl dark:border-white/10 dark:bg-twilight/80">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8 lg:px-12" aria-label="Main navigation">
-          <a href="#home" className="font-serif text-lg text-ink focus:outline-none focus:ring-2 focus:ring-gold dark:text-paper">
-            Memorial
-          </a>
-          <div className="hidden items-center gap-6 md:flex">
-            {navItems.map(([label, href]) => (
-              <a key={href} href={href} className="text-sm text-ink/70 transition hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold dark:text-paper/70 dark:hover:text-paper">
-                {label}
-              </a>
-            ))}
-          </div>
-          <ThemeToggle />
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section id="home" className="relative flex min-h-screen items-center px-5 pb-14 pt-28 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_20%,rgba(180,147,90,0.22),transparent_32%),linear-gradient(135deg,#f7f3ed_0%,#ebe3d7_55%,#e6ece8_100%)] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(180,147,90,0.18),transparent_32%),linear-gradient(135deg,#161a22_0%,#1f252a_55%,#26352f_100%)]" />

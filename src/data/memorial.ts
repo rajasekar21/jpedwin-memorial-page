@@ -24,7 +24,7 @@ export type Tribute = {
 
 export const memorialProfile = {
   fullName: 'J.P.Edwin Chelliah',
-  dates: 'Remembered with love',
+  dates: '1955 to 2025',
   portrait: '/images/portrait.svg',
   quote: 'A life remembered with gratitude, a legacy carried with love.',
   shortDedication: 'Dedicated by family and friends to preserve his kindness, wisdom, and enduring presence.',
@@ -39,7 +39,7 @@ export const memorialProfile = {
 
 export const timeline: TimelineEvent[] = [
   {
-    year: 'Life',
+    year: '1955',
     title: 'A Life Begins',
     description: 'Born into a loving family, surrounded by traditions, stories, and the care that shaped his earliest years.',
     icon: Sparkles
@@ -69,7 +69,7 @@ export const timeline: TimelineEvent[] = [
     icon: Users
   },
   {
-    year: 'Legacy',
+    year: '2025',
     title: 'A Continuing Legacy',
     description: 'His memory continues through stories, photographs, values, and the many lives shaped by his presence.',
     icon: Heart
