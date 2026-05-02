@@ -8,6 +8,7 @@ type SectionProps = {
   className?: string;
 };
 
+/** Full-width page section with a consistent eyebrow label, heading, and content area. */
 export function Section({ id, eyebrow, title, children, className = '' }: SectionProps) {
   return (
     <section id={id} className={`scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 ${className}`}>

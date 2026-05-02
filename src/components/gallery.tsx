@@ -10,6 +10,7 @@ const albums = ['All', ...Array.from(new Set(galleryPhotos.map((p) => p.album)))
 
 const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
+/** Filterable photo gallery with an accessible lightbox modal and focus trap. */
 export function Gallery() {
   const [album, setAlbum] = useState<(typeof albums)[number]>('All');
   const [active, setActive] = useState<GalleryPhoto | null>(null);

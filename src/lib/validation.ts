@@ -6,6 +6,7 @@ const cleanText = (value: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+/** Zod schema that validates and sanitises a visitor memory submission. */
 export const memorySubmissionSchema = z.object({
   name: z.string().min(2).max(80).transform(cleanText),
   relationship: z.string().min(2).max(80).transform(cleanText),

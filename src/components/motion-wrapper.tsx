@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
+/** Animates children into view on scroll; respects prefers-reduced-motion. */
 export function FadeIn({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   const reduceMotion = useReducedMotion();
 

@@ -14,6 +14,9 @@ const navItems = [
 
 const sectionIds = navItems.map(([, href]) => href.slice(1));
 
+/** Keeps sections "active" only while they occupy the upper viewport band. */
+const SCROLL_SPY_ROOT_MARGIN = '-10% 0px -60% 0px';
+
 // ─── Scroll progress bar ──────────────────────────────────────────────────────
 function ScrollProgressBar() {
   const [progress, setProgress] = useState(0);
@@ -43,6 +46,7 @@ function ScrollProgressBar() {
 }
 
 // ─── Theme toggle ─────────────────────────────────────────────────────────────
+/** Button that toggles between light and dark themes and persists the choice in localStorage. */
 export function ThemeToggle() {
   useEffect(() => {
     const stored = window.localStorage.getItem('theme');
@@ -72,6 +76,7 @@ export function ThemeToggle() {
 }
 
 // ─── Site header ──────────────────────────────────────────────────────────────
+/** Fixed site header with scroll-spy navigation, theme toggle, and mobile menu. */
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -100,7 +105,7 @@ export function SiteHeader() {
           }
         }
       },
-      { threshold: [0, 0.1, 0.25, 0.5], rootMargin: '-10% 0px -60% 0px' }
+      { threshold: [0, 0.1, 0.25, 0.5], rootMargin: SCROLL_SPY_ROOT_MARGIN }
     );
 
     for (const id of sectionIds) {

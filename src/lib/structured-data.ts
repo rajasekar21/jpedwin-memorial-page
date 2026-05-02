@@ -3,6 +3,7 @@ import { siteConfig } from '@/lib/site';
 
 const BASE_URL = siteConfig.url;
 
+/** Schema.org Person schema for the memorial subject. */
 export function personSchema() {
   return {
     '@context': 'https://schema.org',
@@ -19,6 +20,7 @@ export function personSchema() {
   };
 }
 
+/** Schema.org WebSite schema for the memorial site. */
 export function webSiteSchema() {
   return {
     '@context': 'https://schema.org',
@@ -36,6 +38,7 @@ export function webSiteSchema() {
   };
 }
 
+/** Returns one Schema.org Event schema object per remembrance event. */
 export function eventsSchema() {
   return memorialEvents.map((event) => ({
     '@context': 'https://schema.org',
@@ -60,6 +63,7 @@ export function eventsSchema() {
   }));
 }
 
+/** Schema.org WebPage schema with breadcrumb for the memorial page. */
 export function memorialPageSchema() {
   return {
     '@context': 'https://schema.org',

@@ -25,6 +25,7 @@ function checkRateLimit(): boolean {
   }
 }
 
+/** Form for submitting a visitor memory; includes honeypot, rate-limiting, and Supabase integration. */
 export function MemoryForm() {
   const uid = useId();
   const nameId = `${uid}-name`;
