@@ -22,7 +22,7 @@ export default function Home() {
       <SiteHeader />
 
       <section id="home" className="relative flex min-h-dvh items-center px-5 pb-14 pt-28 sm:px-8 lg:px-12">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.3),transparent_32%),linear-gradient(135deg,#ede7ff_0%,#e2d8ff_54%,#e7ecff_100%)] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_20%,rgba(248,245,255,0.34),transparent_32%),linear-gradient(135deg,#B57EDC_0%,#d8b7f0_54%,#e7ecff_100%)] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <FadeIn>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-sm text-ink/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-paper/70">
