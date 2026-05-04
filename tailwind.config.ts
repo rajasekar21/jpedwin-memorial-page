@@ -8,7 +8,7 @@ const config: Config = {
       colors: {
         paper: '#B57EDC',
         ink: '#271f3d',
-        linen: '#d8b7f0',
+        linen: '#B57EDC',
         clay: '#7655a6',
         cedar: '#5e6fa8',
         gold: '#b986e8',
