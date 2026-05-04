@@ -18,13 +18,13 @@ html {
 
 body {
   min-height: 100dvh;
-  background: #f8f5ff;
+  background: #ede7ff;
   color: #271f3d;
 }
 
 .dark body {
   background: #171225;
-  color: #f8f5ff;
+  color: #ede7ff;
 }
 
 ::selection {
