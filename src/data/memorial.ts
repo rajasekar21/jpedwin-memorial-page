@@ -25,7 +25,7 @@ export type Tribute = {
 export const memorialProfile = {
   fullName: 'J.P.Edwin Chelliah',
   dates: '1955 to 2025',
-  portrait: '/images/portrait.svg',
+  portrait: '/images/edwinchelliah.jpg',
   quote: 'A life remembered with gratitude, a legacy carried with love.',
   shortDedication: 'Dedicated by family and friends to preserve his kindness, wisdom, and enduring presence.',
   biography: [
