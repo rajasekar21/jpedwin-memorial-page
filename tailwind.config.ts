@@ -6,20 +6,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#f7f3ed',
-        ink: '#262421',
-        linen: '#ebe3d7',
-        clay: '#9a7864',
-        cedar: '#4f6f64',
-        gold: '#b4935a',
-        twilight: '#161a22'
+        paper: '#f8f5ff',
+        ink: '#271f3d',
+        linen: '#eee8fb',
+        clay: '#7655a6',
+        cedar: '#5e6fa8',
+        gold: '#b986e8',
+        twilight: '#171225'
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-serif)', 'Georgia', 'serif']
       },
       boxShadow: {
-        soft: '0 20px 80px rgba(38, 36, 33, 0.10)'
+        soft: '0 20px 80px rgba(39, 31, 61, 0.12)'
       }
     }
   },

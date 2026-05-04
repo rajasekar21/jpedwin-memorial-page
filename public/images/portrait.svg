@@ -14,7 +14,7 @@
   <rect width="720" height="880" fill="url(#bg)"/>
   <circle cx="360" cy="300" r="112" fill="#d9c2ac"/>
   <path d="M210 760c18-176 88-270 150-270s132 94 150 270H210Z" fill="url(#figure)"/>
-  <path d="M180 140c88-72 244-86 356-13 96 63 128 183 92 304-35 117-125 195-268 195S127 548 92 431C56 310 84 203 180 140Z" fill="none" stroke="#b4935a" stroke-width="6" opacity=".45"/>
-  <path d="M246 164c58-44 163-57 240-9" fill="none" stroke="#4f6f64" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+  <path d="M180 140c88-72 244-86 356-13 96 63 128 183 92 304-35 117-125 195-268 195S127 548 92 431C56 310 84 203 180 140Z" fill="none" stroke="#b986e8" stroke-width="6" opacity=".45"/>
+  <path d="M246 164c58-44 163-57 240-9" fill="none" stroke="#5e6fa8" stroke-width="10" stroke-linecap="round" opacity=".55"/>
   <text x="360" y="810" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#4f3f36">Replace with family portrait</text>
 </svg>

@@ -10,13 +10,20 @@ type MemoryPost = {
   name: string;
   relationship: string;
   message: string;
+  photo_path: string | null;
   status: 'pending' | 'approved' | 'removed';
   created_at: string;
 };
 
+type MemoryPostWithPhoto = MemoryPost & {
+  photoUrl?: string;
+};
+
+const memoryPhotoBucket = 'memories';
+
 export function AdminPanel() {
   const [user, setUser] = useState<User | null>(null);
-  const [posts, setPosts] = useState<MemoryPost[]>([]);
+  const [posts, setPosts] = useState<MemoryPostWithPhoto[]>([]);
   const [notice, setNotice] = useState('');
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
@@ -29,11 +36,24 @@ export function AdminPanel() {
 
   useEffect(() => {
     if (!supabase || !user) return;
-    supabase
+    const client = supabase;
+
+    client
       .from('memory_posts')
-      .select('id,name,relationship,message,status,created_at')
+      .select('id,name,relationship,message,photo_path,status,created_at')
       .order('created_at', { ascending: false })
-      .then(({ data }) => setPosts((data as MemoryPost[]) ?? []));
+      .then(async ({ data }) => {
+        const postsWithPhotos = await Promise.all(
+          ((data as MemoryPost[]) ?? []).map(async (post) => {
+            if (!post.photo_path) return post;
+
+            const { data: signed } = await client.storage.from(memoryPhotoBucket).createSignedUrl(post.photo_path, 60 * 60);
+            return { ...post, photoUrl: signed?.signedUrl };
+          })
+        );
+
+        setPosts(postsWithPhotos);
+      });
   }, [user]);
 
   async function login(event: FormEvent<HTMLFormElement>) {
@@ -100,9 +120,19 @@ export function AdminPanel() {
         {posts.map((post) => (
           <article key={post.id} className="rounded-lg border border-ink/10 bg-white/70 p-5 shadow-soft dark:border-white/10 dark:bg-white/5">
             <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h2 className="font-serif text-xl">{post.name}</h2>
-                <p className="text-sm text-ink/60 dark:text-paper/60">{post.relationship} · {new Date(post.created_at).toLocaleDateString()}</p>
+              <div className="flex items-center gap-3">
+                {post.photoUrl ? (
+                  <span
+                    className="h-12 w-12 rounded-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${post.photoUrl})` }}
+                    aria-label={`Photo of ${post.name}`}
+                    role="img"
+                  />
+                ) : null}
+                <div>
+                  <h2 className="font-serif text-xl">{post.name}</h2>
+                  <p className="text-sm text-ink/60 dark:text-paper/60">{post.relationship} - {new Date(post.created_at).toLocaleDateString()}</p>
+                </div>
               </div>
               <span className="rounded-full border border-ink/10 px-3 py-1 text-xs uppercase tracking-[0.12em] dark:border-white/10">{post.status}</span>
             </div>

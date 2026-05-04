@@ -3,6 +3,7 @@ import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, ShieldCheck } fr
 import { achievements, events, memorialProfile, timeline, tributes } from '@/data/memorial';
 import { Gallery } from '@/components/gallery';
 import { MemoryForm } from '@/components/memory-form';
+import { MemoryTributes } from '@/components/memory-tributes';
 import { FadeIn } from '@/components/motion-wrapper';
 import { Section } from '@/components/section';
 import { SiteHeader } from '@/components/theme-provider';
@@ -21,7 +22,7 @@ export default function Home() {
       <SiteHeader />
 
       <section id="home" className="relative flex min-h-dvh items-center px-5 pb-14 pt-28 sm:px-8 lg:px-12">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_20%,rgba(180,147,90,0.22),transparent_32%),linear-gradient(135deg,#f7f3ed_0%,#ebe3d7_55%,#e6ece8_100%)] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(180,147,90,0.18),transparent_32%),linear-gradient(135deg,#161a22_0%,#1f252a_55%,#26352f_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.26),transparent_32%),linear-gradient(135deg,#f8f5ff_0%,#eee8fb_54%,#e7ecff_100%)] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <FadeIn>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-sm text-ink/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-paper/70">
@@ -119,20 +120,9 @@ export default function Home() {
       </Section>
 
       <Section id="tributes" eyebrow="Memories and tributes" title="Words from the people whose lives he touched." className="bg-linen/70 dark:bg-white/[0.03]">
-        <div className="grid gap-5 lg:grid-cols-3">
-          {tributes.map((tribute, index) => (
-            <FadeIn key={tribute.name} delay={index * 0.05}>
-              <article className="h-full rounded-lg border border-ink/10 bg-paper p-6 shadow-soft dark:border-white/10 dark:bg-twilight">
-                <p className="font-serif text-xl leading-8 text-ink/80 dark:text-paper/80">&ldquo;{tribute.message}&rdquo;</p>
-                <div className="mt-6 border-t border-ink/10 pt-4 text-sm text-ink/60 dark:border-white/10 dark:text-paper/60">
-                  <p className="font-medium text-ink dark:text-paper">{tribute.name}</p>
-                  <p>{tribute.relationship}</p>
-                  <p>{tribute.date}</p>
-                </div>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn>
+          <MemoryTributes fallbackTributes={tributes} />
+        </FadeIn>
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <h3 className="font-serif text-2xl">Submit a memory</h3>
