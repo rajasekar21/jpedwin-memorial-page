@@ -32,6 +32,7 @@ export const memorialProfile = {
   shortDedication: 'Dedicated by family and friends to preserve his kindness, wisdom, and enduring presence.',
   biography: [
     'He lived with quiet strength, generous attention, and a steady devotion to the people around him. His story is one of family, service, discipline, and warmth.',
+    'He was moved by a genuine desire to help — not out of duty, but because kindness was simply part of who he was. Whether someone needed a listening ear, practical guidance, or quiet financial support, he gave without hesitation and without keeping count. His generosity was not reserved for close family alone; it reached neighbours, colleagues, and those he had only just met.',
     'This memorial gathers the moments that shaped him: the places he loved, the work he gave himself to, the values he practiced, and the memories carried by everyone whose life he touched.'
   ],
   values: ['Kindness', 'Integrity', 'Family', 'Service', 'Resilience', 'Faith'],
