@@ -14,3 +14,9 @@ export const memorySubmissionSchema = z.object({
 });
 
 export type MemorySubmission = z.infer<typeof memorySubmissionSchema>;
+
+export const memoryPhotoSchema = z
+  .custom<File>((file) => typeof File !== 'undefined' && file instanceof File)
+  .optional()
+  .refine((file) => !file || file.size <= 5 * 1024 * 1024, 'Photo must be 5 MB or smaller.')
+  .refine((file) => !file || ['image/jpeg', 'image/png', 'image/webp'].includes(file.type), 'Photo must be a JPG, PNG, or WebP image.');

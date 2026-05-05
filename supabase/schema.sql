@@ -29,6 +29,7 @@ create table public.memory_posts (
   name text not null check (char_length(name) between 2 and 80),
   relationship text not null check (char_length(relationship) between 2 and 80),
   message text not null check (char_length(message) between 20 and 2000),
+  photo_path text,
   status public.content_status not null default 'pending',
   ip_hash text,
   created_at timestamptz not null default now()
@@ -105,4 +106,23 @@ values (
 -- Storage buckets to create in Supabase dashboard:
 -- portraits: private, 10 MB limit, images only
 -- gallery: private, 20 MB limit, images only
--- memories: private, 10 MB limit, images/documents
+-- memories: private, 10 MB limit, images only
+
+create policy "Public uploads memory photos" on storage.objects for insert with check (
+  bucket_id = 'memories'
+  and auth.role() = 'anon'
+  and (storage.foldername(name))[1] = 'memory-authors'
+);
+
+create policy "Public reads memory photos" on storage.objects for select using (
+  bucket_id = 'memories'
+  and (storage.foldername(name))[1] = 'memory-authors'
+);
+
+create policy "Admins manage memory photos" on storage.objects for all using (
+  bucket_id = 'memories'
+  and public.is_admin()
+) with check (
+  bucket_id = 'memories'
+  and public.is_admin()
+);

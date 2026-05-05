@@ -1,6 +1,7 @@
 'use client';
 
 import { Component, type ReactNode, type ErrorInfo } from 'react';
+import Link from 'next/link';
 
 type Props = {
   children: ReactNode;
@@ -45,12 +46,12 @@ function DefaultFallback() {
         <p className="mt-4 text-ink/65 dark:text-paper/65">
           Please refresh the page or return home.
         </p>
-        <a
+        <Link
           href="/"
           className="mt-8 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper dark:bg-paper dark:text-ink"
         >
           Return home
-        </a>
+        </Link>
       </div>
     </div>
   );

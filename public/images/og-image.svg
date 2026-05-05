@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f7f3ed"/>
-  <path d="M0 470c190-96 382-103 576-22s401 76 624-28v210H0Z" fill="#e6ece8"/>
-  <circle cx="965" cy="160" r="108" fill="#b4935a" opacity=".25"/>
-  <text x="90" y="240" font-family="Georgia, serif" font-size="68" fill="#262421">J.P. Edwin Chelliah</text>
-  <text x="94" y="310" font-family="Arial, sans-serif" font-size="30" fill="#6d6258">1955 – 2025 · Digital memorial and family archive</text>
-  <path d="M94 386h360" stroke="#b4935a" stroke-width="8" stroke-linecap="round"/>
+  <rect width="1200" height="630" fill="#B57EDC"/>
+  <path d="M0 470c190-96 382-103 576-22s401 76 624-28v210H0Z" fill="#e7ecff"/>
+  <circle cx="965" cy="160" r="108" fill="#b986e8" opacity=".28"/>
+  <text x="90" y="240" font-family="Georgia, serif" font-size="68" fill="#271f3d">J.P. Edwin Chelliah</text>
+  <text x="94" y="310" font-family="Arial, sans-serif" font-size="30" fill="#66557f">1955 - 2025 - Digital memorial and family archive</text>
+  <path d="M94 386h360" stroke="#b986e8" stroke-width="8" stroke-linecap="round"/>
 </svg>
