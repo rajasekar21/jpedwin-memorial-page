@@ -64,14 +64,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const connectSrc = supabaseUrl
-    ? `'self' ${supabaseUrl}`
-    : "'self'";
+  const connectSrc = supabaseUrl ? `'self' ${supabaseUrl}` : "'self'";
+  // Supabase signed photo URLs are served from the same origin as the API URL
+  const imgSrc = supabaseUrl
+    ? `'self' data: blob: ${supabaseUrl}`
+    : "'self' data: blob:";
   const csp = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline'",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob:",
+    `img-src ${imgSrc}`,
     `connect-src ${connectSrc}`,
     "font-src 'self'",
     "frame-ancestors 'none'",

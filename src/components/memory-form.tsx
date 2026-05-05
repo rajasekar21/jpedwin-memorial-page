@@ -122,7 +122,8 @@ export function MemoryForm() {
     let photoPath: string | null = null;
 
     if (parsedPhoto.data) {
-      const extension = parsedPhoto.data.name.split('.').pop()?.toLowerCase() || 'jpg';
+      const mimeToExt: Record<string, string> = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+      const extension = mimeToExt[parsedPhoto.data.type] ?? 'jpg';
       photoPath = `memory-authors/${crypto.randomUUID()}.${extension}`;
 
       const { error: uploadError } = await client.storage.from(memoryPhotoBucket).upload(photoPath, parsedPhoto.data, {

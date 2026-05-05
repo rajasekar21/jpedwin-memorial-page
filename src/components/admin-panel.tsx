@@ -111,7 +111,7 @@ export function AdminPanel() {
           <p className="text-sm uppercase tracking-[0.18em] text-clay dark:text-gold">Moderation</p>
           <h1 className="font-serif text-4xl">Family admin</h1>
         </div>
-        <button onClick={() => supabase?.auth.signOut()} className="inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm dark:border-white/10">
+        <button type="button" onClick={() => supabase?.auth.signOut()} className="inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm dark:border-white/10">
           <LogOut aria-hidden className="h-4 w-4" />
           Sign out
         </button>
