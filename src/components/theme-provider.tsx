@@ -19,14 +19,18 @@ const SCROLL_SPY_ROOT_MARGIN = '-10% 0px -60% 0px';
 
 // ─── Scroll progress bar ──────────────────────────────────────────────────────
 function ScrollProgressBar() {
-  const [progress, setProgress] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function onScroll() {
       const el = document.documentElement;
       const scrolled = el.scrollTop || document.body.scrollTop;
       const total = el.scrollHeight - el.clientHeight;
-      setProgress(total > 0 ? (scrolled / total) * 100 : 0);
+      const pct = total > 0 ? (scrolled / total) * 100 : 0;
+      if (barRef.current) {
+        barRef.current.style.width = `${pct}%`;
+        barRef.current.setAttribute('aria-valuenow', String(Math.round(pct)));
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -34,13 +38,14 @@ function ScrollProgressBar() {
 
   return (
     <div
+      ref={barRef}
       role="progressbar"
       aria-label="Page scroll progress"
-      aria-valuenow={Math.round(progress)}
+      aria-valuenow={0}
       aria-valuemin={0}
       aria-valuemax={100}
       className="absolute bottom-0 left-0 h-[2px] bg-gold transition-[width] duration-100"
-      style={{ width: `${progress}%` }}
+      style={{ width: '0%' }}
     />
   );
 }

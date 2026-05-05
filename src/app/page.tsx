@@ -1,16 +1,29 @@
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { achievements, events, memorialProfile, timeline, tributes } from '@/data/memorial';
 import { Gallery } from '@/components/gallery';
-import { MemoryForm } from '@/components/memory-form';
 import { FadeIn } from '@/components/motion-wrapper';
 import { Section } from '@/components/section';
 import { SiteHeader } from '@/components/theme-provider';
 import { withBasePath } from '@/lib/site';
 import { personSchema, webSiteSchema, eventsSchema, memorialPageSchema } from '@/lib/structured-data';
 
+// Defer the Supabase SDK out of the initial bundle — the form is below the fold
+const MemoryForm = dynamic(
+  () => import('@/components/memory-form').then((m) => ({ default: m.MemoryForm })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-44 animate-pulse rounded-lg border border-ink/10 bg-white/30 dark:bg-white/5" />
+    )
+  }
+);
+
+// Static data — computed once at module scope, not on every render
+const jsonLd = [personSchema(), webSiteSchema(), memorialPageSchema(), ...eventsSchema()];
+
 export default function Home() {
-  const jsonLd = [personSchema(), webSiteSchema(), memorialPageSchema(), ...eventsSchema()];
 
   return (
     <main id="main-content" className="overflow-hidden bg-paper text-ink dark:bg-twilight dark:text-paper">

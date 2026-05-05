@@ -1,20 +1,35 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 
-/** Animates children into view on scroll; respects prefers-reduced-motion. */
+/** Fades children into view on scroll using IntersectionObserver + CSS transitions. Respects prefers-reduced-motion. */
 export function FadeIn({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
-  const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        }
+      },
+      { rootMargin: '-40px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      initial={false}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.55, ease: 'easeOut', delay }}
+    <div
+      ref={ref}
+      className="fade-in"
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

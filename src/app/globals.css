@@ -42,3 +42,21 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Scroll-triggered fade-in — toggled by IntersectionObserver in motion-wrapper.tsx */
+.fade-in {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fade-in.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
