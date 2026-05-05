@@ -58,7 +58,13 @@ export default function Home() {
             <h1 className="whitespace-nowrap font-serif text-[clamp(2.6rem,8vw,4.7rem)] leading-tight text-ink dark:text-paper">
               {memorialProfile.fullName}
             </h1>
-            <p className="mt-4 text-lg text-ink/65 dark:text-paper/65">{memorialProfile.dates}</p>
+            <p className="mt-4 flex items-center gap-3 font-serif text-lg text-ink/65 dark:text-paper/65">
+              <span aria-hidden>✦</span>
+              <span>{memorialProfile.birthYear}</span>
+              <span aria-hidden className="text-gold">–</span>
+              <span>{memorialProfile.deathYear}</span>
+              <span aria-hidden>✦</span>
+            </p>
             <blockquote className="mt-8 max-w-2xl border-l-2 border-gold pl-5 font-serif text-2xl leading-relaxed text-ink/80 dark:text-paper/80">
               {memorialProfile.quote}
             </blockquote>
