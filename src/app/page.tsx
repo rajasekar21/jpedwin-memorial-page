@@ -40,7 +40,7 @@ const jsonLd = [personSchema(), webSiteSchema(), memorialPageSchema(), ...events
 export default function Home() {
 
   return (
-    <main id="main-content" className="overflow-hidden bg-paper text-ink dark:bg-twilight dark:text-paper">
+    <main id="main-content" className="lavender-floral-bg overflow-hidden text-ink dark:bg-twilight dark:text-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -48,7 +48,7 @@ export default function Home() {
       <SiteHeader />
 
       <section id="home" className="relative flex min-h-dvh items-center px-5 pb-14 pt-28 sm:px-8 lg:px-12">
-        <div className="absolute inset-0 -z-10 bg-[#B57EDC] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
+        <div className="lavender-floral-bg absolute inset-0 -z-10 dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <FadeIn>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-sm text-ink/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-paper/70">
@@ -127,7 +127,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="timeline" eyebrow="Life journey" title="Milestones preserved as a family archive." className="bg-linen/70 dark:bg-white/[0.03]">
+      <Section id="timeline" eyebrow="Life journey" title="Milestones preserved as a family archive." className="lavender-floral-bg dark:bg-white/[0.03]">
         <div className="relative grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {timeline.map((event, index) => {
             const Icon = event.icon;
@@ -151,7 +151,7 @@ export default function Home() {
         <Gallery />
       </Section>
 
-      <Section id="tributes" eyebrow="Memories and tributes" title="Words from the people whose lives he touched." className="bg-linen/70 dark:bg-white/[0.03]">
+      <Section id="tributes" eyebrow="Memories and tributes" title="Words from the people whose lives he touched." className="lavender-floral-bg dark:bg-white/[0.03]">
         <FadeIn>
           <MemoryTributes fallbackTributes={tributes} />
         </FadeIn>
@@ -172,7 +172,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="events" eyebrow="Remembrance events" title="Gatherings and moments of shared remembrance." className="bg-linen/70 dark:bg-white/[0.03]">
+      <Section id="events" eyebrow="Remembrance events" title="Gatherings and moments of shared remembrance." className="lavender-floral-bg dark:bg-white/[0.03]">
         <div className="grid gap-5 md:grid-cols-2">
           {events.map((event) => (
             <article key={event.title} className="rounded-lg border border-ink/10 bg-paper p-6 shadow-soft dark:border-white/10 dark:bg-twilight">
