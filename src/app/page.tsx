@@ -50,7 +50,7 @@ export default function Home() {
       <section id="home" className="relative flex min-h-dvh items-center px-5 pb-14 pt-28 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10 bg-[#B57EDC] dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <FadeIn>
+          <div>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-sm text-ink/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-paper/70">
               <Feather aria-hidden className="h-4 w-4" />
               Digital memorial and family archive
@@ -78,19 +78,17 @@ export default function Home() {
                 <Heart aria-hidden className="h-4 w-4" />
               </a>
             </div>
-          </FadeIn>
-          <FadeIn delay={0.12}>
-            <div className="mx-auto max-w-sm overflow-hidden rounded-lg border border-white/50 bg-white/45 p-3 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5">
-              <Image
-                src={withBasePath(memorialProfile.portrait)}
-                alt={`Portrait of ${memorialProfile.fullName}`}
-                width={720}
-                height={880}
-                priority
-                className="aspect-[4/5] w-full rounded-md object-cover"
-              />
-            </div>
-          </FadeIn>
+          </div>
+          <div className="mx-auto max-w-sm overflow-hidden rounded-lg border border-white/50 bg-white/45 p-3 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5">
+            <Image
+              src={withBasePath(memorialProfile.portrait)}
+              alt={`Portrait of ${memorialProfile.fullName}`}
+              width={720}
+              height={880}
+              priority
+              className="aspect-[4/5] w-full rounded-md object-cover"
+            />
+          </div>
         </div>
       </section>
 
