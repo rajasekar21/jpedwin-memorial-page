@@ -6,9 +6,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#B57EDC',
+        paper: '#eadcf8',
         ink: '#271f3d',
-        linen: '#B57EDC',
+        linen: '#f3ebfb',
         clay: '#7655a6',
         cedar: '#5e6fa8',
         gold: '#b986e8',
