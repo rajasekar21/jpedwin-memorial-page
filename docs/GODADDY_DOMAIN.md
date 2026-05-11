@@ -20,13 +20,13 @@ Delete any existing parked-domain A records or GoDaddy forwarding rules before a
 
 1. In GitHub → repository → **Settings → Pages**
 2. Under **Custom domain**, enter `www.edwinchelliah.com`
-3. Click Save — GitHub will verify the `CNAME` file in the repository (`public/CNAME` contains `www.edwinchelliah.com`)
+3. Click Save — GitHub verifies the `CNAME` file in the repository (`public/CNAME` contains `www.edwinchelliah.com`)
 
 ---
 
 ## 3. Enable HTTPS
 
-After DNS has propagated (usually 30 minutes to a few hours):
+After DNS propagation (usually 30 minutes to a few hours):
 
 1. Return to Settings → Pages
 2. Tick **Enforce HTTPS**
@@ -49,6 +49,15 @@ nslookup www.edwinchelliah.com   # should resolve to rajasekar21.github.io
 nslookup edwinchelliah.com       # should return the four GitHub Pages IPs
 ```
 
+The live site pages:
+
+| Page | URL |
+|------|-----|
+| Memorial | https://www.edwinchelliah.com/ |
+| Admin | https://www.edwinchelliah.com/admin/ |
+| Family upload | https://www.edwinchelliah.com/upload/ |
+| QR code | https://www.edwinchelliah.com/qr/ |
+
 ---
 
 ## 6. Common issues
@@ -58,4 +67,5 @@ nslookup edwinchelliah.com       # should return the four GitHub Pages IPs
 | DNS still shows GoDaddy parking page | Delete old A records and GoDaddy forwarding/redirect rules |
 | HTTPS checkbox is greyed out | Wait for DNS to propagate; re-save the custom domain field |
 | Redirect loop | Do not combine GoDaddy web forwarding with GitHub Pages custom domain — use only DNS A/CNAME records |
-| `CNAME` file deleted by a build | The file lives in `public/CNAME` and is copied to the `out/` folder on every build |
+| `CNAME` file deleted by a build | The file lives in `public/CNAME` and is copied to `out/` on every build automatically |
+| `/admin/` or `/upload/` returns 404 | Navigate with trailing slash: `/admin/` not `/admin` |
