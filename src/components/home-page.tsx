@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { defaultLanguage, memorialContent, type Language } from '@/data/memorial';
-import { Gallery } from '@/components/gallery';
+import { GallerySupabase } from '@/components/gallery-supabase';
 import { MemoryForm } from '@/components/memory-form';
 import { MemoryTributes } from '@/components/memory-tributes';
 import { FadeIn } from '@/components/motion-wrapper';
@@ -170,7 +170,7 @@ export function HomePage({ jsonLd }: HomePageProps) {
       </Section>
 
       <Section id="gallery" eyebrow={content.sections.gallery.eyebrow} title={content.sections.gallery.title}>
-        <Gallery photos={content.galleryPhotos} labels={content.gallery} />
+        <GallerySupabase fallbackPhotos={content.galleryPhotos} labels={content.gallery} />
       </Section>
 
       <Section id="tributes" eyebrow={content.sections.tributes.eyebrow} title={content.sections.tributes.title} className="lavender-floral-bg dark:bg-white/[0.03]">

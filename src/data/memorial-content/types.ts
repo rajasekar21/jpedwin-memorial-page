@@ -56,6 +56,33 @@ export type MemorialContent = {
     dialogLabel: string;
     closePreview: string;
   };
+  upload: {
+    pageTitle: string;
+    pageIntro: string;
+    signIn: string;
+    signOut: string;
+    signInError: string;
+    notAuthorised: string;
+    titleLabel: string;
+    captionLabel: string;
+    albumLabel: string;
+    photoLabel: string;
+    photoHint: string;
+    choosePhoto: string;
+    noPhoto: string;
+    removePhoto: string;
+    submit: string;
+    submitting: string;
+    successMessage: string;
+    uploadError: string;
+    saveError: string;
+    validationError: string;
+    myUploadsTitle: string;
+    noUploads: string;
+    statusPending: string;
+    statusApproved: string;
+    statusRemoved: string;
+  };
   form: {
     honeypotSuccess: string;
     rateLimitError: string;
