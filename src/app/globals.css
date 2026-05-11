@@ -67,6 +67,27 @@ body {
   opacity: 1;
   transform: none;
 }
+
+.tamil-content :where(p, a, button, span, label, input, textarea) {
+  font-size: 0.92em;
+}
+
+.tamil-content :where(h2) {
+  font-size: clamp(1.45rem, 5vw, 2.1rem);
+}
+
+.tamil-content :where(h3) {
+  font-size: 1.12rem;
+}
+
+.tamil-content :where(blockquote) {
+  font-size: 1.28rem;
+}
+
+.tamil-content :where(.font-serif) {
+  line-height: 1.35;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fade-in {
     opacity: 1;

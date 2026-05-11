@@ -2,6 +2,7 @@
 
 import { ImagePlus, Send, X } from 'lucide-react';
 import { ChangeEvent, FormEvent, useEffect, useId, useState } from 'react';
+import { defaultContent, type MemorialContent } from '@/data/memorial';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { memoryPhotoSchema, memorySubmissionSchema } from '@/lib/validation';
 
@@ -11,6 +12,10 @@ const RATE_LIMIT_KEY = 'memory_submissions';
 const MAX_SUBMISSIONS = 3;
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const memoryPhotoBucket = 'memories';
+
+type MemoryFormProps = {
+  labels?: MemorialContent['form'];
+};
 
 function checkRateLimit(): boolean {
   try {
@@ -30,7 +35,7 @@ function checkRateLimit(): boolean {
 }
 
 /** Form for submitting a visitor memory; includes honeypot, rate-limiting, photo upload, and Supabase integration. */
-export function MemoryForm() {
+export function MemoryForm({ labels = defaultContent.form }: MemoryFormProps) {
   const uid = useId();
   const nameId = `${uid}-name`;
   const relationshipId = `${uid}-relationship`;
@@ -85,7 +90,7 @@ export function MemoryForm() {
     // Honeypot: bots fill hidden fields, humans do not.
     if (form.get('website')) {
       setState('success');
-      setMessage('Your memory has been received. Thank you.');
+      setMessage(labels.honeypotSuccess);
       formElement.reset();
       clearPhoto(formElement);
       return;
@@ -93,7 +98,7 @@ export function MemoryForm() {
 
     if (!checkRateLimit()) {
       setState('error');
-      setMessage('Too many submissions. Please wait an hour before submitting again.');
+      setMessage(labels.rateLimitError);
       return;
     }
 
@@ -106,13 +111,13 @@ export function MemoryForm() {
 
     if (!parsed.success || !parsedPhoto.success) {
       setState('error');
-      setMessage(parsedPhoto.success ? 'Please complete every field with a respectful memory before submitting.' : parsedPhoto.error.issues[0]?.message ?? 'Please choose a valid photo.');
+      setMessage(parsedPhoto.success ? labels.validationError : labels.invalidPhotoFallback);
       return;
     }
 
     if (!isSupabaseConfigured || !supabase) {
       setState('success');
-      setMessage('Your message is ready. In Phase 1, please send it to the family contact so it can be added to the static tribute list.');
+      setMessage(labels.phaseOneSuccess);
       formElement.reset();
       clearPhoto(formElement);
       return;
@@ -134,7 +139,7 @@ export function MemoryForm() {
 
       if (uploadError) {
         setState('error');
-        setMessage('We could not upload the photo right now. Please try again or submit without a photo.');
+        setMessage(labels.uploadError);
         return;
       }
     }
@@ -147,12 +152,12 @@ export function MemoryForm() {
 
     if (error) {
       setState('error');
-      setMessage('We could not save this memory right now. Please try again later.');
+      setMessage(labels.saveError);
       return;
     }
 
     setState('success');
-    setMessage('Thank you. Your memory was submitted and will appear after family moderation.');
+    setMessage(labels.submittedSuccess);
     formElement.reset();
     clearPhoto(formElement);
   }
@@ -178,7 +183,7 @@ export function MemoryForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="grid gap-2">
           <label htmlFor={nameId} className="text-sm font-medium text-ink dark:text-paper">
-            Your name
+            {labels.nameLabel}
           </label>
           <input
             id={nameId}
@@ -194,7 +199,7 @@ export function MemoryForm() {
         </div>
         <div className="grid gap-2">
           <label htmlFor={relationshipId} className="text-sm font-medium text-ink dark:text-paper">
-            Relationship
+            {labels.relationshipLabel}
           </label>
           <input
             id={relationshipId}
@@ -212,7 +217,7 @@ export function MemoryForm() {
 
       <div className="grid gap-2">
         <label htmlFor={messageId} className="text-sm font-medium text-ink dark:text-paper">
-          Memory or tribute
+          {labels.messageLabel}
         </label>
         <textarea
           id={messageId}
@@ -229,14 +234,14 @@ export function MemoryForm() {
 
       <div className="grid gap-2">
         <label htmlFor={photoId} className="text-sm font-medium text-ink dark:text-paper">
-          Your photo <span className="font-normal text-ink/55 dark:text-paper/55">Optional JPG, PNG, or WebP up to 5 MB</span>
+          {labels.photoLabel} <span className="font-normal text-ink/55 dark:text-paper/55">{labels.photoHint}</span>
         </label>
         <label htmlFor={photoId} className="flex cursor-pointer flex-wrap items-center gap-4 rounded-md border border-dashed border-ink/15 bg-white px-4 py-4 dark:border-white/15 dark:bg-twilight">
           <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm font-medium dark:border-white/10">
             <ImagePlus aria-hidden className="h-4 w-4" />
-            Choose photo
+            {labels.choosePhoto}
           </span>
-          <span className="min-w-0 flex-1 truncate text-sm font-normal text-ink/60 dark:text-paper/60">{selectedPhotoName || 'No photo selected'}</span>
+          <span className="min-w-0 flex-1 truncate text-sm font-normal text-ink/60 dark:text-paper/60">{selectedPhotoName || labels.noPhoto}</span>
           <input id={photoId} name="photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={handlePhotoChange} className="sr-only" />
         </label>
       </div>
@@ -247,7 +252,7 @@ export function MemoryForm() {
             <span className="h-14 w-14 shrink-0 rounded-full bg-cover bg-center" style={{ backgroundImage: `url(${photoPreview})` }} aria-hidden />
             <p className="truncate text-sm text-ink/70 dark:text-paper/70">{selectedPhotoName}</p>
           </div>
-          <button type="button" onClick={(event) => clearPhoto(event.currentTarget.form)} className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/10 text-ink/70 focus:outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:text-paper/70" aria-label="Remove selected photo">
+          <button type="button" onClick={(event) => clearPhoto(event.currentTarget.form)} className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/10 text-ink/70 focus:outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:text-paper/70" aria-label={labels.removePhoto}>
             <X aria-hidden className="h-4 w-4" />
           </button>
         </div>
@@ -259,7 +264,7 @@ export function MemoryForm() {
         className="inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper transition hover:bg-clay focus:outline-none focus:ring-2 focus:ring-gold disabled:cursor-wait disabled:opacity-70 dark:bg-paper dark:text-ink"
       >
         <Send aria-hidden className="h-4 w-4" />
-        {state === 'sending' ? 'Sending...' : 'Submit memory'}
+        {state === 'sending' ? labels.sending : labels.submit}
       </button>
 
       {hasStatus && (
