@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Tribute } from '@/data/memorial';
+import { defaultContent, type MemorialContent, type Tribute } from '@/data/memorial';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 type ApprovedMemory = {
@@ -24,6 +24,7 @@ type DisplayTribute = {
 
 type MemoryTributesProps = {
   fallbackTributes: Tribute[];
+  labels?: MemorialContent['tributeLabels'];
 };
 
 const memoryPhotoBucket = 'memories';
@@ -37,14 +38,14 @@ function initialsFor(name: string) {
     .join('');
 }
 
-function formatDate(value: string) {
-  return new Date(value).toLocaleDateString(undefined, {
+function formatDate(value: string, locale: string) {
+  return new Date(value).toLocaleDateString(locale, {
     month: 'long',
     year: 'numeric'
   });
 }
 
-export function MemoryTributes({ fallbackTributes }: MemoryTributesProps) {
+export function MemoryTributes({ fallbackTributes, labels = defaultContent.tributeLabels }: MemoryTributesProps) {
   const [approvedMemories, setApprovedMemories] = useState<DisplayTribute[]>([]);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export function MemoryTributes({ fallbackTributes }: MemoryTributesProps) {
             name: memory.name,
             relationship: memory.relationship,
             message: memory.message,
-            date: formatDate(memory.created_at),
+            date: formatDate(memory.created_at, labels.dateLocale),
             photoUrl
           };
         })
@@ -90,7 +91,7 @@ export function MemoryTributes({ fallbackTributes }: MemoryTributesProps) {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [labels.dateLocale]);
 
   const tributes: DisplayTribute[] = [
     ...approvedMemories,
@@ -110,7 +111,7 @@ export function MemoryTributes({ fallbackTributes }: MemoryTributesProps) {
               <span
                 className="h-12 w-12 shrink-0 rounded-full border border-ink/10 bg-cover bg-center dark:border-white/10"
                 style={{ backgroundImage: `url(${tribute.photoUrl})` }}
-                aria-label={`Photo of ${tribute.name}`}
+                aria-label={`${labels.photoOf} ${tribute.name}`}
                 role="img"
               />
             ) : (
