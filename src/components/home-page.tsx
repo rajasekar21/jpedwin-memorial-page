@@ -51,7 +51,7 @@ export function HomePage({ jsonLd }: HomePageProps) {
           <div className="min-w-0">
             <p
               className={`mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-ink/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-paper/70 ${
-                language === 'ta' ? 'whitespace-nowrap text-[0.5rem] sm:text-[0.65rem] lg:text-xs' : 'text-sm'
+                language === 'ta' ? 'text-xs sm:text-sm lg:text-sm' : 'text-sm'
               }`}
             >
               <Feather aria-hidden className="h-4 w-4 shrink-0" />
