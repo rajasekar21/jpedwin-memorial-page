@@ -168,3 +168,25 @@ create policy "Admins manage memory photos" on storage.objects for all using (
   bucket_id = 'memories'
   and public.is_admin()
 );
+
+-- Auto-delete orphaned photos from storage when a memory post is removed
+create or replace function public.delete_memory_photo_on_remove()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.status = 'removed' and old.photo_path is not null and old.photo_path != '' then
+    delete from storage.objects
+    where bucket_id = 'memories' and name = old.photo_path;
+  end if;
+  return new;
+end;
+$$;
+
+create trigger memory_post_photo_cleanup
+after update of status on public.memory_posts
+for each row
+when (new.status = 'removed' and old.photo_path is not null)
+execute function public.delete_memory_photo_on_remove();
