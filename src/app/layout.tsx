@@ -65,10 +65,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const connectSrc = supabaseUrl ? `'self' ${supabaseUrl}` : "'self'";
-  // Supabase signed photo URLs are served from the same origin as the API URL
+  // blob: covers photo preview object URLs; data: is excluded to reduce attack surface
   const imgSrc = supabaseUrl
-    ? `'self' data: blob: ${supabaseUrl}`
-    : "'self' data: blob:";
+    ? `'self' blob: ${supabaseUrl}`
+    : "'self' blob:";
   const csp = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline'",
@@ -86,7 +86,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta httpEquiv="Content-Security-Policy" content={csp} />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        {/* X-Content-Type-Options must be an HTTP header — configure at CDN/hosting level */}
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="manifest" href="/manifest.json" />

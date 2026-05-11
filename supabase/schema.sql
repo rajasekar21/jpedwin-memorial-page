@@ -114,9 +114,14 @@ create policy "Public uploads memory photos" on storage.objects for insert with 
   and (storage.foldername(name))[1] = 'memory-authors'
 );
 
-create policy "Public reads memory photos" on storage.objects for select using (
+-- Only allow reading photos whose associated post has been approved
+create policy "Public reads approved memory photos" on storage.objects for select using (
   bucket_id = 'memories'
   and (storage.foldername(name))[1] = 'memory-authors'
+  and exists (
+    select 1 from public.memory_posts
+    where photo_path = name and status = 'approved'
+  )
 );
 
 create policy "Admins manage memory photos" on storage.objects for all using (

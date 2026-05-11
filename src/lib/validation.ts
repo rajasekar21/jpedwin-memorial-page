@@ -3,6 +3,8 @@ import { z } from 'zod';
 const cleanText = (value: string) =>
   value
     .replace(/<[^>]*>?/gm, '')
+    // Strip Unicode bidi overrides and zero-width characters to prevent admin UI spoofing
+    .replace(/[​-‍‪-‮⁦-⁩﻿]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
 

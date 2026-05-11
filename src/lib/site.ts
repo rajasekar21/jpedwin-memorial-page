@@ -11,6 +11,6 @@ export const siteConfig = {
 /** Prepends the configured basePath to a root-relative path; absolute URLs pass through unchanged. */
 export function withBasePath(path: string) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  if (path.startsWith('http')) return path;
+  if (path.startsWith('https://') || path.startsWith('http://')) return path;
   return `${basePath}${path}`;
 }

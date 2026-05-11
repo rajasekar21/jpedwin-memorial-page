@@ -40,7 +40,7 @@ export function HomePage({ jsonLd }: HomePageProps) {
       </a>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <SiteHeader content={content} language={language} onLanguageChange={setLanguage} />
 
