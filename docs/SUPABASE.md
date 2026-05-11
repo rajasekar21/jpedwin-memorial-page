@@ -1,47 +1,106 @@
-# Supabase Phase 3 Setup
+# Supabase Setup — Phase 3
 
-## Create project
+Supabase is optional. Without it the site runs in Phase 1 mode: the memory form
+guides visitors to email the family, and static fallback tributes are shown.
+The admin panel shows a setup guide instead of the moderation UI.
 
-1. Create a Supabase project.
-2. Open SQL Editor and run `supabase/schema.sql`.
-3. Create buckets named `portraits`, `gallery`, and `memories`. Keep `memories` private, images-only, with a 10 MB limit.
-4. Add a Supabase Auth user for the family admin.
-5. Insert that user's UUID into `admin_users`.
+---
+
+## 1. Create a Supabase project
+
+1. Go to [supabase.com](https://supabase.com) and create a new project.
+2. Open **SQL Editor** and run the full contents of `supabase/schema.sql`.
+   This creates all tables, RLS policies, storage policies, and the photo cleanup trigger.
+3. Create a Supabase Auth user for the family admin (Dashboard → Authentication → Users → Invite).
+4. Insert that user's UUID into the `admin_users` table:
 
 ```sql
 insert into public.admin_users (user_id, display_name)
 values ('AUTH_USER_UUID_HERE', 'Family Admin');
 ```
 
-For an existing project that already ran the original schema, run `supabase/add-memory-photo-support.sql` after creating the `memories` bucket. It adds the optional author-photo column and Storage policies used by memory submissions.
+---
 
-## Environment variables
+## 2. Create storage buckets
 
-Add these to GitHub Actions repository secrets or local `.env.local`:
+Create three buckets in Dashboard → Storage → New bucket:
+
+| Bucket | Access | Max size | Notes |
+|--------|--------|----------|-------|
+| `portraits` | Private | 10 MB | Family portrait photos |
+| `gallery` | Private | 20 MB | Gallery album photos |
+| `memories` | Private | 10 MB | Visitor memory author photos |
+
+**Required dashboard action for `memories` bucket:**
+After creating it, click Edit → set **Allowed MIME types** to:
+```
+image/jpeg, image/png, image/webp
+```
+This enforces file-type validation server-side, independent of the client-side check.
+
+---
+
+## 3. Environment variables
+
+Add these to GitHub Actions repository secrets and to a local `.env.local` file:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_ENABLE_DYNAMIC_MEMORIES=true
 ```
 
-Do not expose `SUPABASE_SERVICE_ROLE_KEY` in the browser or GitHub Pages build unless you later move privileged operations to server functions.
+The GitHub Actions workflow already sets `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_CONTACT_EMAIL`.
+Do not add `SUPABASE_SERVICE_ROLE_KEY` as a `NEXT_PUBLIC_` variable — it must never reach the browser.
 
-## Security model
+---
 
-- Public visitors can read only approved content.
-- Public visitors can insert pending memories and guestbook entries.
-- Public visitors can optionally upload a memory author photo; the public page only requests signed photo URLs for approved memories.
-- Admins can approve, remove, and manage content.
-- Input is length-limited and sanitized in the client; RLS enforces server-side access.
-- Add CAPTCHA or a Supabase Edge Function if spam becomes a problem.
+## 4. Supabase Auth hardening
 
-## Optional server evolution
+Do these steps in the Supabase dashboard before going live:
 
-Move to Vercel when you need:
+| Setting | Location | Action |
+|---------|----------|--------|
+| Email enumeration protection | Auth → Settings | Enable "Protect against email enumeration" |
+| MFA for admin account | Account → Security | Enable two-factor authentication |
+| Rate limiting | Auth → Settings | Review sign-in attempt limits (default: 5 per hour) |
 
-- Strong IP-based rate limiting
-- AI-generated summaries with private OpenAI keys
-- Signed upload flows
-- Event RSVP email notifications
+---
+
+## 5. Security model
+
+| Actor | Can do |
+|-------|--------|
+| Anonymous visitor | Read approved memories, gallery, timeline; submit pending memory + optional photo |
+| Admin (authenticated) | Read all content including pending; approve or remove posts; delete photos |
+| Database trigger | Auto-deletes Storage photo when post status → `removed` |
+
+Key RLS rules enforced at the database level:
+- Visitors can only insert memories with `status = 'pending'` — they cannot self-approve
+- Visitors can only read memories where `status = 'approved'`
+- Storage photos are only readable when their associated post is approved
+- Admin access verified by `is_admin()` which checks `auth.uid()` against `admin_users`
+
+---
+
+## 6. Upgrading an existing project
+
+If you ran an earlier version of the schema, apply the incremental migration:
+
+```bash
+supabase/add-memory-photo-support.sql
+```
+
+This adds the `photo_path` column to `memory_posts` and the storage policies for
+the `memories` bucket.
+
+---
+
+## 7. Moving to a server (Phase 4)
+
+Migrate to Vercel and add Next.js Route Handlers when you need:
+
+- IP-based rate limiting (the current client-side localStorage limit is bypassable)
+- Private API keys (OpenAI, email notifications)
+- Signed photo upload flows
+- Event RSVP with email confirmations
 - Scheduled anniversary reminders

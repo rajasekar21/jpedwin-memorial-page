@@ -1,51 +1,61 @@
 # GoDaddy Custom Domain Setup
 
-## Purchase and connect
+## 1. Configure DNS
 
-1. Buy the domain in GoDaddy.
-2. In GitHub, open repository Settings -> Pages.
-3. Enter the custom domain, for example `example.com`.
-4. Save. GitHub will create or expect a `CNAME` file in the published site.
+In your GoDaddy account → DNS Management, set these records:
 
-## DNS records
+| Type  | Name | Value                 | TTL |
+|-------|------|-----------------------|-----|
+| CNAME | www  | rajasekar21.github.io | 1hr |
+| A     | @    | 185.199.108.153       | 1hr |
+| A     | @    | 185.199.109.153       | 1hr |
+| A     | @    | 185.199.110.153       | 1hr |
+| A     | @    | 185.199.111.153       | 1hr |
 
-At GoDaddy DNS Management, set these records for the apex domain:
+Delete any existing parked-domain A records or GoDaddy forwarding rules before adding these.
 
-| Type | Name | Value |
-| --- | --- | --- |
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| CNAME | www | rajasekar21.github.io |
+---
 
-Remove conflicting parked-domain A records.
+## 2. Connect the domain to GitHub Pages
 
-## WWW and non-WWW
+1. In GitHub → repository → **Settings → Pages**
+2. Under **Custom domain**, enter `www.edwinchelliah.com`
+3. Click Save — GitHub will verify the `CNAME` file in the repository (`public/CNAME` contains `www.edwinchelliah.com`)
 
-Recommended setup:
+---
 
-- Put `www.example.com` in GitHub Pages custom domain if you prefer WWW.
-- Put `example.com` in GitHub Pages custom domain if you prefer apex.
-- GitHub Pages will redirect the alternate host when DNS is configured correctly.
+## 3. Enable HTTPS
 
-## Verification
+After DNS has propagated (usually 30 minutes to a few hours):
 
-Use:
+1. Return to Settings → Pages
+2. Tick **Enforce HTTPS**
+3. GitHub provisions a Let's Encrypt certificate automatically
+
+---
+
+## 4. WWW vs apex
+
+The DNS records above make both `edwinchelliah.com` and `www.edwinchelliah.com` work.
+GitHub Pages redirects the apex (`edwinchelliah.com`) to the WWW version automatically
+when the CNAME is set to `www.edwinchelliah.com`.
+
+---
+
+## 5. Verify
 
 ```bash
-nslookup example.com
-nslookup www.example.com
+nslookup www.edwinchelliah.com   # should resolve to rajasekar21.github.io
+nslookup edwinchelliah.com       # should return the four GitHub Pages IPs
 ```
 
-Expected apex results are the four GitHub Pages IPs. Expected WWW result is `rajasekar21.github.io`.
+---
 
-## HTTPS
+## 6. Common issues
 
-After DNS resolves, return to Settings -> Pages and enable Enforce HTTPS. Certificate provisioning can take minutes to several hours.
-
-## Common issues
-
-- DNS still shows GoDaddy parking: delete old A or forwarding records.
-- HTTPS checkbox is disabled: wait, save the domain again, or temporarily remove and re-add it.
-- Redirect loop: do not combine GoDaddy web forwarding with GitHub Pages custom domain redirects.
+| Problem | Fix |
+|---------|-----|
+| DNS still shows GoDaddy parking page | Delete old A records and GoDaddy forwarding/redirect rules |
+| HTTPS checkbox is greyed out | Wait for DNS to propagate; re-save the custom domain field |
+| Redirect loop | Do not combine GoDaddy web forwarding with GitHub Pages custom domain — use only DNS A/CNAME records |
+| `CNAME` file deleted by a build | The file lives in `public/CNAME` and is copied to the `out/` folder on every build |

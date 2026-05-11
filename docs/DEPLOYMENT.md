@@ -1,62 +1,107 @@
 # Deployment Guide
 
-## Architecture overview
+## Architecture
 
-Phase 1 is a static Next.js export hosted on GitHub Pages. The site reads editable memorial content from `src/data/memorial.ts` and local images from `public/images`.
+The site is a static Next.js 16 export (`output: 'export'`) hosted on GitHub Pages.
+All content is pre-rendered to HTML at build time. Supabase is called directly from
+the browser using the public anon key and Row Level Security — no server is needed.
 
-Phase 3 keeps GitHub Pages possible by using Supabase directly from the browser with Row Level Security. If a future server is needed for stronger rate limiting, private AI calls, or image transformations, migrate the same Next.js app to Vercel and add route handlers.
+If a server-side layer is ever required (IP-based rate limiting, private API keys,
+signed upload flows), migrate to Vercel and add Next.js Route Handlers.
+
+---
 
 ## Folder structure
 
-```text
-.github/workflows/deploy.yml   GitHub Pages CI/CD
-docs/                          Deployment, DNS, and maintenance guides
-public/images/                 Portrait, gallery, and OpenGraph assets
-src/app/                       Next.js app routes
-src/components/                UI and client components
-src/data/memorial.ts           Family-editable memorial content
-src/lib/                       Site, Supabase, and validation utilities
-supabase/schema.sql            Database schema and RLS policies
 ```
+.github/workflows/deploy.yml   GitHub Actions CI/CD
+docs/                          Guides: editing, DNS, Supabase, roadmap
+public/                        Static assets served as-is
+  images/                      Portrait, gallery, OG image, PWA icons
+  _headers                     CDN security headers (Netlify / Cloudflare)
+  CNAME                        Custom domain
+  favicon.svg
+  manifest.json
+src/app/                       Next.js routes (/, /admin, robots.txt, sitemap.xml)
+src/components/                UI components
+src/data/memorial-content/     Bilingual content (en.ts / ta.ts)
+src/lib/                       site.ts, supabase.ts, validation.ts, structured-data.ts
+supabase/schema.sql            Database schema, RLS policies, storage policies, triggers
+next.config.js                 Static export config
+tailwind.config.ts             Colour palette
+```
+
+---
 
 ## GitHub Pages setup
 
-1. Create or open `https://github.com/rajasekar21/webpage-design`.
-2. Push this project to the `main` branch.
-3. In GitHub, open Settings -> Pages.
-4. Under Build and deployment, choose GitHub Actions.
-5. Run the `Deploy static memorial site` workflow or push to `main`.
-6. The site will publish at `https://rajasekar21.github.io/webpage-design/`.
+1. Push to `https://github.com/rajasekar21/jpedwin-memorial-page` (the canonical repo).
+2. In GitHub → Settings → Pages, set **Source** to **GitHub Actions**.
+3. Push to `main` or run the workflow manually.
+4. The site publishes at `https://www.edwinchelliah.com` (custom domain via CNAME).
 
-## Local commands
+The workflow file is `.github/workflows/deploy.yml` and runs on every push to `main`.
+
+---
+
+## Local development
 
 ```bash
 npm install
-npm run dev
-npm run typecheck
-npm run build
+npm run dev          # dev server at http://localhost:3000
+npm run typecheck    # TypeScript check
+npm run lint         # ESLint
+npm run build        # production static export to /out
+npm test             # Jest (49 tests)
+npm run test:coverage
 ```
 
-For GitHub Pages parity:
+To replicate the exact GitHub Pages build environment locally:
 
 ```bash
-GITHUB_PAGES=true NEXT_PUBLIC_SITE_URL=https://rajasekar21.github.io/webpage-design npm run build
+GITHUB_PAGES=true NEXT_PUBLIC_SITE_URL=https://www.edwinchelliah.com npm run build
 ```
 
-## Repository creation commands
+---
 
-```bash
-git init
-git branch -M main
-git remote add origin https://github.com/rajasekar21/webpage-design.git
-git add .
-git commit -m "Build memorial website platform"
-git push -u origin main
+## Environment variables
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Yes (build) | Canonical URL for metadata and sitemap |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | No | Footer contact link (defaults to `contact@edwinchelliah.com`) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Phase 3 | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Phase 3 | Supabase public anon key |
+
+Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` as GitHub Actions
+repository secrets to enable live memory submissions and the admin panel.
+
+Never set `SUPABASE_SERVICE_ROLE_KEY` as a `NEXT_PUBLIC_` variable.
+
+---
+
+## Security headers
+
+The file `public/_headers` is served automatically by Netlify and Cloudflare Pages.
+For GitHub Pages (which does not support custom response headers), configure equivalent
+headers at the CDN or hosting edge layer:
+
 ```
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+```
+
+---
 
 ## Troubleshooting
 
-- Blank page on GitHub Pages: confirm `GITHUB_PAGES=true` is set in the workflow and `next.config.js` uses the correct repo name.
-- Images missing: place files under `public/images` and reference them with a leading slash in `src/data/memorial.ts`.
-- Workflow fails during dependency install: rerun the action, then check that `package.json` has valid versions.
-- Custom domain not serving HTTPS: wait for DNS propagation, then disable and re-enable Enforce HTTPS in GitHub Pages.
+| Symptom | Fix |
+|---------|-----|
+| Blank page on GitHub Pages | Confirm `GITHUB_PAGES=true` in the workflow and `trailingSlash: true` in `next.config.js` |
+| Images missing | Place files under `public/images/` and reference them with a leading slash |
+| Workflow fails on install | Re-run the action; check `package.json` has valid version ranges |
+| Custom domain not serving HTTPS | Wait for DNS propagation, then disable and re-enable "Enforce HTTPS" in Pages settings |
+| Admin page shows setup guide | Supabase env vars are not set — see `docs/SUPABASE.md` |
+| Memory form shows Phase 1 message | Expected when Supabase is not configured; submissions go to family email |
