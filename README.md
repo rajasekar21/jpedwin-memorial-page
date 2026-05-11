@@ -13,6 +13,8 @@ Built with Next.js static export and deployed via GitHub Pages with a custom GoD
 - Next.js, TypeScript, Tailwind CSS, Framer Motion, Lucide icons
 - Static export for GitHub Pages with custom domain
 - Responsive memorial sections: hero, biography, timeline, gallery, tributes, family message, events, footer
+- Bilingual English and Tamil memorial content with a header language switcher
+- Tamil-specific typography and spacing support for readable Tamil text and poetry
 - Dark mode, keyboard-friendly controls, semantic HTML, reduced-motion support
 - Gallery filtering and lightbox
 - Phase 1 offline memory submission guidance
@@ -23,10 +25,26 @@ Built with Next.js static export and deployed via GitHub Pages with a custom GoD
 
 ## Edit memorial content
 
-Update family-approved content in:
+English and Tamil content are managed separately:
 
 ```text
+src/data/memorial-content/en.ts
+src/data/memorial-content/ta.ts
+```
+
+Shared content types and language wiring live in:
+
+```text
+src/data/memorial-content/types.ts
+src/data/memorial-content/index.ts
 src/data/memorial.ts
+```
+
+The homepage uses the bilingual content through:
+
+```text
+src/components/home-page.tsx
+src/components/theme-provider.tsx
 ```
 
 Replace images in:
@@ -34,6 +52,8 @@ Replace images in:
 ```text
 public/images/
 ```
+
+Tamil text should be entered directly as Unicode Tamil. Preserve poetry line breaks in the content strings, and use the existing Tamil language view to verify spacing on mobile and desktop.
 
 ## Run locally
 
@@ -74,4 +94,4 @@ Add these records in your GoDaddy DNS settings:
 
 ## Maintenance for family members
 
-Keep changes small and reviewed. Update text in `src/data/memorial.ts`, add compressed images to `public/images`, and let GitHub Actions publish the site after changes are merged into `main`.
+Keep changes small and reviewed. Update English text in `src/data/memorial-content/en.ts`, Tamil text in `src/data/memorial-content/ta.ts`, add compressed images to `public/images`, and let GitHub Actions publish the site after changes are merged into `main`.

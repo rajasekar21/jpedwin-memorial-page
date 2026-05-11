@@ -53,6 +53,12 @@ create table public.timeline_events (
   created_at timestamptz not null default now()
 );
 
+create table public.site_visit_counter (
+  id text primary key default 'main' check (id = 'main'),
+  visit_count bigint not null default 0,
+  updated_at timestamptz not null default now()
+);
+
 create table public.admin_users (
   user_id uuid primary key references auth.users(id) on delete cascade,
   display_name text not null,
@@ -64,6 +70,7 @@ alter table public.gallery_photos enable row level security;
 alter table public.memory_posts enable row level security;
 alter table public.guestbook_entries enable row level security;
 alter table public.timeline_events enable row level security;
+alter table public.site_visit_counter enable row level security;
 alter table public.admin_users enable row level security;
 
 create or replace function public.is_admin()
@@ -75,6 +82,33 @@ set search_path = public
 as $$
   select exists(select 1 from public.admin_users where user_id = auth.uid());
 $$;
+
+create or replace function public.increment_site_visit_count()
+returns bigint
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  next_count bigint;
+begin
+  insert into public.site_visit_counter (id, visit_count)
+  values ('main', 1)
+  on conflict (id)
+  do update set
+    visit_count = public.site_visit_counter.visit_count + 1,
+    updated_at = now()
+  returning visit_count into next_count;
+
+  return next_count;
+end;
+$$;
+
+insert into public.site_visit_counter (id, visit_count)
+values ('main', 0)
+on conflict (id) do nothing;
+
+grant execute on function public.increment_site_visit_count() to anon, authenticated;
 
 create policy "Public can read approved profile" on public.memorial_profile for select using (true);
 create policy "Admins manage profile" on public.memorial_profile for all using (public.is_admin()) with check (public.is_admin());
@@ -92,6 +126,9 @@ create policy "Admins manage guestbook" on public.guestbook_entries for all usin
 
 create policy "Public reads approved timeline" on public.timeline_events for select using (status = 'approved');
 create policy "Admins manage timeline" on public.timeline_events for all using (public.is_admin()) with check (public.is_admin());
+
+create policy "Public reads visitor counter" on public.site_visit_counter for select using (true);
+create policy "Admins manage visitor counter" on public.site_visit_counter for all using (public.is_admin()) with check (public.is_admin());
 
 create policy "Admins read admins" on public.admin_users for select using (public.is_admin());
 

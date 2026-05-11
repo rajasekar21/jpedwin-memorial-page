@@ -72,7 +72,8 @@ export const englishContent: MemorialContent = {
   },
   footer: {
     familyContact: 'Family contact',
-    preserved: 'Preserved with care'
+    preserved: 'Preserved with care',
+    visitorCount: 'Visitors'
   },
   memorialProfile: {
     fullName: 'J.P. Edwin Chelliah',
