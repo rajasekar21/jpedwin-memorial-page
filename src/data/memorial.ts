@@ -28,12 +28,18 @@ export const memorialProfile = {
   deathYear: '2025',
   dates: '1955 to 2025',
   portrait: '/images/edwinchelliah.jpg',
-  quote: 'A life remembered with gratitude, a legacy carried with love.',
+  quote: [
+    'A man of Honesty, Simplicity, and Faithfulness. Known for his sincerity, and concern for others.',
+    'A blessing to everyone around him.',
+    ' His compassion and helping nature will forever be remembered with gratitude and love.'
+  ],
   shortDedication: 'Dedicated by family and friends to preserve his kindness, wisdom, and enduring presence.',
   biography: [
-    'He lived with quiet strength, generous attention, and a steady devotion to the people around him. His story is one of family, service, discipline, and warmth.',
-    'He was moved by a genuine desire to help — not out of duty, but because kindness was simply part of who he was. Whether someone needed a listening ear, practical guidance, or quiet financial support, he gave without hesitation and without keeping count. His generosity was not reserved for close family alone; it reached neighbours, colleagues, and those he had only just met.',
-    'This memorial gathers the moments that shaped him: the places he loved, the work he gave himself to, the values he practiced, and the memories carried by everyone whose life he touched.'
+    'My father Mr. J. P. Edwin Chelliah was born in the year 1955. He was the heart of our family, a man whose presence brought comfort and strength to all of us. He was deeply caring and always placed the needs of his loved ones before his own. His love was expressed through patience, understanding, and constant support in every stage of our lives.',
+    'One of his most remarkable qualities was his simplicity. He lived a humble and contented life, never seeking attention or material wealth. He believed in simple living and meaningful values, and his actions reflected this every day.',
+    'He was also sincere and dedicated in his work. Being an officer in Canara Bank, he carried out his responsibilities with honesty and a strong sense of duty, earning the respect of everyone around him. For him, true success meant doing one’s work with integrity.',
+    'Beyond family and work, he was always ready to help others. His kindness, generosity, and willingness to support those in need touched many lives. Anyone in need dint hesitate to approach him at any time for their needs.',
+    'Though he is no longer with us, his love and values continue to guide us. We miss him deeply and will always remember him as a caring, sincere, and humble human being.'
   ],
   values: ['Kindness', 'Integrity', 'Family', 'Service', 'Resilience', 'Faith'],
   familyMessage:

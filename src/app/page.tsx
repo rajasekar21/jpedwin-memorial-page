@@ -30,7 +30,7 @@ export default function Home() {
           <div>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-sm text-ink/70 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-paper/70">
               <Feather aria-hidden className="h-4 w-4" />
-              Digital memorial and family archive
+              Digital memorial preserving the life and legacy of J.P. Edwin Chelliah
             </p>
             <h1 className="whitespace-nowrap font-serif text-[clamp(2.6rem,8vw,4.7rem)] leading-tight text-ink dark:text-paper">
               {memorialProfile.fullName}
@@ -43,7 +43,9 @@ export default function Home() {
               <span aria-hidden>✦</span>
             </p>
             <blockquote className="mt-8 max-w-2xl border-l-2 border-gold pl-5 font-serif text-2xl leading-relaxed text-ink/80 dark:text-paper/80">
-              {memorialProfile.quote}
+                {memorialProfile.quote.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </blockquote>
             <div className="mt-10 flex flex-wrap gap-3">
               <a href="#about" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper transition hover:bg-clay focus:outline-none focus:ring-2 focus:ring-gold dark:bg-paper dark:text-ink">
@@ -69,7 +71,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Section id="about" eyebrow="About him" title="A life held in story, family, and enduring values.">
+      <Section id="about" eyebrow="About him" title="A life that inspires everyone!">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <FadeIn>
             <div className="space-y-5 text-lg leading-8 text-ink/75 dark:text-paper/75">
