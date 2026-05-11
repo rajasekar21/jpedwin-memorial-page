@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { achievements, events, memorialProfile, timeline, tributes } from '@/data/memorial';
 import { Gallery } from '@/components/gallery';
+import { MemoryForm } from '@/components/memory-form';
+import { MemoryTributes } from '@/components/memory-tributes';
 import { FadeIn } from '@/components/motion-wrapper';
 import { Section } from '@/components/section';
 import { SiteHeader } from '@/components/theme-provider';
@@ -10,30 +11,6 @@ import { withBasePath } from '@/lib/site';
 import { personSchema, webSiteSchema, eventsSchema, memorialPageSchema } from '@/lib/structured-data';
 
 // Defer Supabase-dependent components out of the initial bundle — both are below the fold
-const MemoryForm = dynamic(
-  () => import('@/components/memory-form').then((m) => ({ default: m.MemoryForm })),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="h-44 animate-pulse rounded-lg border border-ink/10 bg-white/30 dark:bg-white/5" />
-    )
-  }
-);
-
-const MemoryTributes = dynamic(
-  () => import('@/components/memory-tributes').then((m) => ({ default: m.MemoryTributes })),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="grid gap-5 lg:grid-cols-3">
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="h-48 animate-pulse rounded-lg border border-ink/10 bg-white/30 dark:bg-white/5" />
-        ))}
-      </div>
-    )
-  }
-);
-
 // Static data — computed once at module scope, not on every render
 const jsonLd = [personSchema(), webSiteSchema(), memorialPageSchema(), ...eventsSchema()];
 
