@@ -228,7 +228,7 @@ export const englishContent: MemorialContent = {
   events: [
     {
       title: 'Annual Remembrance Gathering',
-      date: 'Every April',
+      date: 'Every June',
       location: 'Family residence',
       details: 'A quiet evening of prayer, stories, and shared food with close family and friends.'
     },
