@@ -95,3 +95,29 @@ body {
     transition: none;
   }
 }
+
+/* Print styles — used by /qr page */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  #qr-print-card {
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    margin: 0 auto;
+    page-break-inside: avoid;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Force all text inside the card to black */
+  #qr-print-card * {
+    color: #000000 !important;
+  }
+}

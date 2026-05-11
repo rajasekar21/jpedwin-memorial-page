@@ -83,6 +83,16 @@ export type MemorialContent = {
     statusApproved: string;
     statusRemoved: string;
   };
+  qr: {
+    eyebrow: string;
+    pageTitle: string;
+    pageIntro: string;
+    subtitle: string;
+    scanPrompt: string;
+    downloadPng: string;
+    print: string;
+    printedBy: string;
+  };
   form: {
     honeypotSuccess: string;
     rateLimitError: string;
@@ -111,6 +121,7 @@ export type MemorialContent = {
     familyContact: string;
     preserved: string;
     visitorCount: string;
+    qrCode: string;
   };
   memorialProfile: {
     fullName: string;

@@ -97,10 +97,21 @@ export const englishContent: MemorialContent = {
     statusApproved: 'Approved',
     statusRemoved: 'Removed'
   },
+  qr: {
+    eyebrow: 'Digital memorial',
+    pageTitle: 'QR Code for Printed Programmes',
+    pageIntro: 'Download or print this QR card to include in funeral booklets, remembrance programmes, or order-of-service sheets. Scanning it opens the full memorial website.',
+    subtitle: 'Digital memorial',
+    scanPrompt: 'Scan to visit the digital memorial — biography, photographs, timeline, and family tributes.',
+    downloadPng: 'Download PNG',
+    print: 'Print card',
+    printedBy: 'Preserved with love by family and friends'
+  },
   footer: {
     familyContact: 'Family contact',
     preserved: 'Preserved with care',
-    visitorCount: 'Visitors'
+    visitorCount: 'Visitors',
+    qrCode: 'Print QR code'
   },
   memorialProfile: {
     fullName: 'J.P. Edwin Chelliah',

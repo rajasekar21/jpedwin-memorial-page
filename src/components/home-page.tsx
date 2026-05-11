@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, ShieldCheck } from 'lucide-react';
+import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, QrCode, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { defaultLanguage, memorialContent, type Language } from '@/data/memorial';
 import { GallerySupabase } from '@/components/gallery-supabase';
@@ -218,6 +218,10 @@ export function HomePage({ jsonLd }: HomePageProps) {
             <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'contact@edwinchelliah.com'}`} className="inline-flex items-center gap-2 hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold dark:hover:text-paper">
               <Mail aria-hidden className="h-4 w-4" />
               {content.footer.familyContact}
+            </a>
+            <a href="/qr" className="inline-flex items-center gap-2 hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold dark:hover:text-paper">
+              <QrCode aria-hidden className="h-4 w-4" />
+              {content.footer.qrCode}
             </a>
             <span className="inline-flex items-center gap-2">
               <ShieldCheck aria-hidden className="h-4 w-4" />
