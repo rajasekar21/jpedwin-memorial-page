@@ -10,6 +10,7 @@ import { MemoryTributes } from '@/components/memory-tributes';
 import { FadeIn } from '@/components/motion-wrapper';
 import { Section } from '@/components/section';
 import { SiteHeader } from '@/components/theme-provider';
+import { VisitorCount } from '@/components/visitor-count';
 import { withBasePath } from '@/lib/site';
 
 type HomePageProps = {
@@ -222,6 +223,7 @@ export function HomePage({ jsonLd }: HomePageProps) {
               <ShieldCheck aria-hidden className="h-4 w-4" />
               {content.footer.preserved}
             </span>
+            <VisitorCount label={content.footer.visitorCount} />
           </div>
         </div>
       </footer>
