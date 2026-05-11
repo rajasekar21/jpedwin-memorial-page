@@ -106,6 +106,7 @@ export const englishContent: MemorialContent = {
     fullName: 'J.P. Edwin Chelliah',
     birthYear: '1955',
     deathYear: '2025',
+    deathDate: '6 June 2025',
     dates: '1955 to 2025',
     portrait: '/images/edwinchelliah.jpg',
     quote: [
@@ -156,9 +157,9 @@ export const englishContent: MemorialContent = {
       icon: Users
     },
     {
-      year: '2025',
+      year: 'June 2025',
       title: 'A Continuing Legacy',
-      description: 'His memory continues through stories, photographs, values, and the many lives shaped by his presence.',
+      description: 'He passed on 6 June 2025. His memory continues through stories, photographs, values, and the many lives shaped by his presence.',
       icon: Heart
     }
   ],

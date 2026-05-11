@@ -11,7 +11,7 @@ export function personSchema() {
     name: memorialProfile.fullName,
     description: memorialProfile.biography[0],
     birthDate: '1955',
-    deathDate: '2025',
+    deathDate: '2025-06-06',
     url: BASE_URL,
     image: `${BASE_URL}/images/portrait.svg`,
     familyName: 'Chelliah',

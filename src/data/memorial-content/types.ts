@@ -116,6 +116,7 @@ export type MemorialContent = {
     fullName: string;
     birthYear: string;
     deathYear: string;
+    deathDate: string;
     dates: string;
     portrait: string;
     quote: string[];

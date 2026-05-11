@@ -106,6 +106,7 @@ export const tamilContent: MemorialContent = {
     fullName: 'ஜா.ப. எட்வின் செல்லையா',
     birthYear: '1955',
     deathYear: '2025',
+    deathDate: '6 ஜூன் 2025',
     dates: '1955 முதல் 2025 வரை',
     portrait: '/images/edwinchelliah.jpg',
     quote: [
@@ -156,9 +157,9 @@ export const tamilContent: MemorialContent = {
       icon: Users
     },
     {
-      year: '2025',
+      year: 'ஜூன் 2025',
       title: 'தொடரும் மரபு',
-      description: 'கதைகள், புகைப்படங்கள், மதிப்புகள், அவர் தொட்ட பல வாழ்க்கைகள் ஆகியவற்றின் வழியாக அவரது நினைவு தொடர்கிறது.',
+      description: '6 ஜூன் 2025 அன்று அவர் இயற்கை எய்தினார். கதைகள், புகைப்படங்கள், மதிப்புகள், அவர் தொட்ட பல வாழ்க்கைகள் ஆகியவற்றின் வழியாக அவரது நினைவு தொடர்கிறது.',
       icon: Heart
     }
   ],
