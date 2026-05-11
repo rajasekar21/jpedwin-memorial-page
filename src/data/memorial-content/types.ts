@@ -83,6 +83,7 @@ export type MemorialContent = {
   footer: {
     familyContact: string;
     preserved: string;
+    visitorCount: string;
   };
   memorialProfile: {
     fullName: string;
