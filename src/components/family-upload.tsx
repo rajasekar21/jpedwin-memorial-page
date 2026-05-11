@@ -30,6 +30,8 @@ export function FamilyUpload({ language = 'en' }: Props) {
 
   const [user, setUser] = useState<User | null>(null);
   const [isFamilyMember, setIsFamilyMember] = useState(false);
+  const [memberCheckDone, setMemberCheckDone] = useState(false);
+  const [setupError, setSetupError] = useState(false);
   const [uploads, setUploads] = useState<GalleryUpload[]>([]);
   const [state, setState] = useState<UploadState>('idle');
   const [notice, setNotice] = useState('');
@@ -50,16 +52,26 @@ export function FamilyUpload({ language = 'en' }: Props) {
   // Check family_members membership when user changes
   useEffect(() => {
     if (!supabase || !user) {
-      // Defer to avoid synchronous setState inside effect body
-      const id = setTimeout(() => setIsFamilyMember(false), 0);
+      const id = setTimeout(() => { setIsFamilyMember(false); setMemberCheckDone(true); }, 0);
       return () => clearTimeout(id);
     }
+    setMemberCheckDone(false);
     supabase
       .from('family_members')
       .select('user_id')
       .eq('user_id', user.id)
       .maybeSingle()
-      .then(({ data }) => setIsFamilyMember(!!data));
+      .then(({ data, error }) => {
+        if (error) {
+          // Table missing or RLS error — surface setup problem rather than "not authorised"
+          setSetupError(true);
+          setIsFamilyMember(false);
+        } else {
+          setSetupError(false);
+          setIsFamilyMember(!!data);
+        }
+        setMemberCheckDone(true);
+      });
   }, [user]);
 
   // Load this user's own submissions with signed URLs
@@ -247,11 +259,47 @@ export function FamilyUpload({ language = 'en' }: Props) {
     );
   }
 
+  // --- Checking membership ---
+  if (!memberCheckDone) {
+    return (
+      <div className="rounded-lg border border-ink/10 bg-white/70 p-6 shadow-soft dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm text-ink/60 dark:text-paper/60">Checking access…</p>
+      </div>
+    );
+  }
+
+  // --- Database not set up yet ---
+  if (setupError) {
+    return (
+      <div className="rounded-lg border border-clay/30 bg-clay/10 p-6 dark:border-gold/30 dark:bg-gold/10">
+        <h1 className="font-serif text-2xl">{labels.pageTitle}</h1>
+        <p className="mt-3 leading-7 text-ink/70 dark:text-paper/70">
+          The family members database table has not been set up yet. Please ask the family admin to run{' '}
+          <code className="rounded bg-ink/10 px-1 py-0.5 text-sm">supabase/add-family-upload.sql</code> in
+          the Supabase SQL editor and register your account using{' '}
+          <code className="rounded bg-ink/10 px-1 py-0.5 text-sm">supabase/register-family-members.sql</code>.
+        </p>
+        <button
+          type="button"
+          onClick={() => supabase?.auth.signOut()}
+          className="mt-4 inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm dark:border-white/10"
+        >
+          <LogOut aria-hidden className="h-4 w-4" />
+          {labels.signOut}
+        </button>
+      </div>
+    );
+  }
+
   // --- Not a family member ---
   if (!isFamilyMember) {
     return (
       <div className="rounded-lg border border-ink/10 bg-white/70 p-6 shadow-soft dark:border-white/10 dark:bg-white/5">
-        <p className="text-ink/70 dark:text-paper/70">{labels.notAuthorised}</p>
+        <h1 className="font-serif text-2xl">{labels.pageTitle}</h1>
+        <p className="mt-3 text-ink/70 dark:text-paper/70">{labels.notAuthorised}</p>
+        <p className="mt-2 text-sm text-ink/55 dark:text-paper/55">
+          Signed in as <strong>{user?.email}</strong>. If this is incorrect, sign out and try again.
+        </p>
         <button
           type="button"
           onClick={() => supabase?.auth.signOut()}

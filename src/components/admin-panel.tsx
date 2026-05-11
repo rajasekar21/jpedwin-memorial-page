@@ -7,6 +7,7 @@ import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 type Status = 'pending' | 'approved' | 'removed';
 type Tab = 'memories' | 'gallery' | 'rsvp';
+type AdminCheck = 'pending' | 'authorised' | 'unauthorised' | 'setup-error';
 
 type RsvpRow = {
   id: string;
@@ -42,6 +43,7 @@ type GalleryPhoto = {
 
 export function AdminPanel() {
   const [user, setUser] = useState<User | null>(null);
+  const [adminCheck, setAdminCheck] = useState<AdminCheck>('pending');
   const [tab, setTab] = useState<Tab>('memories');
   const [posts, setPosts] = useState<MemoryPost[]>([]);
   const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[]>([]);
@@ -58,9 +60,24 @@ export function AdminPanel() {
     return () => listener.subscription.unsubscribe();
   }, []);
 
+  // Verify user is in admin_users table
+  useEffect(() => {
+    if (!supabase || !user) { setAdminCheck('pending'); return; }
+    supabase
+      .from('admin_users')
+      .select('user_id')
+      .eq('user_id', user.id)
+      .maybeSingle()
+      .then(({ data, error }) => {
+        if (error) setAdminCheck('setup-error');
+        else if (data) setAdminCheck('authorised');
+        else setAdminCheck('unauthorised');
+      });
+  }, [user]);
+
   // Load memory posts when signed in
   useEffect(() => {
-    if (!supabase || !user) return;
+    if (!supabase || !user || adminCheck !== 'authorised') return;
     const client = supabase;
     client
       .from('memory_posts')
@@ -83,7 +100,7 @@ export function AdminPanel() {
 
   // Load RSVPs when signed in
   useEffect(() => {
-    if (!supabase || !user) return;
+    if (!supabase || !user || adminCheck !== 'authorised') return;
     supabase
       .from('rsvp_attendance')
       .select('id,event_title,name,email,guest_count,message,created_at')
@@ -93,7 +110,7 @@ export function AdminPanel() {
 
   // Load gallery photos when signed in
   useEffect(() => {
-    if (!supabase || !user) return;
+    if (!supabase || !user || adminCheck !== 'authorised') return;
     const client = supabase;
     client
       .from('gallery_photos')
@@ -215,6 +232,54 @@ export function AdminPanel() {
         </button>
         {notice && <p className="text-sm text-clay dark:text-gold">{notice}</p>}
       </form>
+    );
+  }
+
+  // --- Admin check in progress ---
+  if (adminCheck === 'pending') {
+    return (
+      <div className="rounded-lg border border-ink/10 bg-white/70 p-6 shadow-soft dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm text-ink/60 dark:text-paper/60">Verifying admin access…</p>
+      </div>
+    );
+  }
+
+  // --- Schema not set up ---
+  if (adminCheck === 'setup-error') {
+    return (
+      <div className="rounded-lg border border-clay/30 bg-clay/10 p-6 dark:border-gold/30 dark:bg-gold/10">
+        <h1 className="font-serif text-3xl">Database setup incomplete</h1>
+        <p className="mt-3 leading-7 text-ink/70 dark:text-paper/70">
+          The <code className="rounded bg-ink/10 px-1 py-0.5 text-sm">admin_users</code> table could not be reached.
+          Please run <code className="rounded bg-ink/10 px-1 py-0.5 text-sm">supabase/schema.sql</code> in the
+          Supabase SQL editor, then add your user UUID to <code className="rounded bg-ink/10 px-1 py-0.5 text-sm">admin_users</code>.
+        </p>
+        <button type="button" onClick={() => supabase?.auth.signOut()}
+          className="mt-4 inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm dark:border-white/10">
+          <LogOut aria-hidden className="h-4 w-4" />
+          Sign out
+        </button>
+      </div>
+    );
+  }
+
+  // --- Authenticated but not an admin ---
+  if (adminCheck === 'unauthorised') {
+    return (
+      <div className="rounded-lg border border-ink/10 bg-white/70 p-6 shadow-soft dark:border-white/10 dark:bg-white/5">
+        <h1 className="font-serif text-3xl">Access denied</h1>
+        <p className="mt-3 leading-7 text-ink/70 dark:text-paper/70">
+          Your account ({user?.email}) is not in the admin list. Ask the family admin to run:
+        </p>
+        <pre className="mt-3 overflow-x-auto rounded-md bg-ink/5 p-4 text-sm dark:bg-white/5">
+          {`insert into public.admin_users (user_id, display_name)\nvalues ('${user?.id}', 'Your Name');`}
+        </pre>
+        <button type="button" onClick={() => supabase?.auth.signOut()}
+          className="mt-4 inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm dark:border-white/10">
+          <LogOut aria-hidden className="h-4 w-4" />
+          Sign out
+        </button>
+      </div>
     );
   }
 

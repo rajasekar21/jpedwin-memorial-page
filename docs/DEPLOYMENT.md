@@ -69,9 +69,9 @@ GITHUB_PAGES=true NEXT_PUBLIC_SITE_URL=https://www.edwinchelliah.com npm run bui
 | Variable | Required | Purpose |
 |----------|----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | Yes (build) | Canonical URL for metadata and sitemap |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | No | Footer contact link (defaults to `contact@edwinchelliah.com`) |
-| `NEXT_PUBLIC_SUPABASE_URL` | Phase 3 | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Phase 3 | Supabase public anon key |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | No | Footer contact link (defaults to `sweetlinepriya.edwin@gmail.com`) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Phase 3+ | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Phase 3+ | Supabase public anon key |
 
 Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` as GitHub Actions
 repository secrets to enable live memory submissions and the admin panel.
@@ -103,5 +103,8 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 | Images missing | Place files under `public/images/` and reference them with a leading slash |
 | Workflow fails on install | Re-run the action; check `package.json` has valid version ranges |
 | Custom domain not serving HTTPS | Wait for DNS propagation, then disable and re-enable "Enforce HTTPS" in Pages settings |
-| Admin page shows setup guide | Supabase env vars are not set — see `docs/SUPABASE.md` |
+| Admin or upload page shows "setup pending" | Supabase env vars not in build — add secrets to GitHub Actions, push a new commit |
+| Admin page shows "Access denied" | User not in `admin_users` table — run the INSERT shown on screen |
+| Upload page shows "database error" | Run `supabase/add-family-upload.sql` in Supabase SQL editor |
+| Upload page shows "not authorised" | User not in `family_members` — run `supabase/register-family-members.sql` |
 | Memory form shows Phase 1 message | Expected when Supabase is not configured; submissions go to family email |
