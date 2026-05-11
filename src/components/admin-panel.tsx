@@ -1,12 +1,22 @@
 'use client';
 
-import { Check, ImagePlus, LogIn, LogOut, Trash2 } from 'lucide-react';
+import { Check, ImagePlus, LogIn, LogOut, Trash2, Users } from 'lucide-react';
 import { FormEvent, useEffect, useState } from 'react';
 import type { User } from '@supabase/supabase-js';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 type Status = 'pending' | 'approved' | 'removed';
-type Tab = 'memories' | 'gallery';
+type Tab = 'memories' | 'gallery' | 'rsvp';
+
+type RsvpRow = {
+  id: string;
+  event_title: string;
+  name: string;
+  email: string | null;
+  guest_count: number;
+  message: string | null;
+  created_at: string;
+};
 
 type MemoryPost = {
   id: string;
@@ -35,6 +45,7 @@ export function AdminPanel() {
   const [tab, setTab] = useState<Tab>('memories');
   const [posts, setPosts] = useState<MemoryPost[]>([]);
   const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[]>([]);
+  const [rsvps, setRsvps] = useState<RsvpRow[]>([]);
   const [notice, setNotice] = useState('');
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
@@ -68,6 +79,16 @@ export function AdminPanel() {
         );
         setPosts(withPhotos);
       });
+  }, [user]);
+
+  // Load RSVPs when signed in
+  useEffect(() => {
+    if (!supabase || !user) return;
+    supabase
+      .from('rsvp_attendance')
+      .select('id,event_title,name,email,guest_count,message,created_at')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => setRsvps((data as RsvpRow[]) ?? []));
   }, [user]);
 
   // Load gallery photos when signed in
@@ -199,6 +220,7 @@ export function AdminPanel() {
 
   const pendingMemories = posts.filter((p) => p.status === 'pending').length;
   const pendingGallery = galleryPhotos.filter((p) => p.status === 'pending').length;
+  const totalRsvps = rsvps.reduce((sum, r) => sum + r.guest_count, 0);
 
   // --- Dashboard ---
   return (
@@ -220,8 +242,11 @@ export function AdminPanel() {
 
       {/* Tabs */}
       <div className="flex gap-2 border-b border-ink/10 dark:border-white/10" role="tablist">
-        {(['memories', 'gallery'] as Tab[]).map((t) => {
-          const count = t === 'memories' ? pendingMemories : pendingGallery;
+        {(['memories', 'gallery', 'rsvp'] as Tab[]).map((t) => {
+          const badge =
+            t === 'memories' ? pendingMemories :
+            t === 'gallery'  ? pendingGallery  :
+            totalRsvps       ? totalRsvps       : 0;
           return (
             <button
               key={t}
@@ -236,9 +261,9 @@ export function AdminPanel() {
               }`}
             >
               {t}
-              {count > 0 && (
+              {badge > 0 && (
                 <span className="rounded-full bg-clay px-2 py-0.5 text-xs text-white">
-                  {count}
+                  {badge}
                 </span>
               )}
             </button>
@@ -277,6 +302,56 @@ export function AdminPanel() {
               <ActionButtons id={post.id} onUpdate={updatePost} />
             </article>
           ))}
+        </div>
+      )}
+
+      {/* RSVP tab */}
+      {tab === 'rsvp' && (
+        <div className="grid gap-6">
+          <p className="text-sm text-ink/60 dark:text-paper/60">
+            {rsvps.length} {rsvps.length === 1 ? 'response' : 'responses'} · {totalRsvps} {totalRsvps === 1 ? 'guest' : 'guests'} total
+          </p>
+          {rsvps.length === 0 && (
+            <p className="text-sm text-ink/60 dark:text-paper/60">No RSVPs received yet.</p>
+          )}
+          {/* Group by event */}
+          {Array.from(new Set(rsvps.map((r) => r.event_title))).map((eventTitle) => {
+            const group = rsvps.filter((r) => r.event_title === eventTitle);
+            const guestTotal = group.reduce((s, r) => s + r.guest_count, 0);
+            return (
+              <section key={eventTitle}>
+                <h2 className="flex items-center gap-2 font-serif text-2xl">
+                  <Users aria-hidden className="h-5 w-5 text-clay dark:text-gold" />
+                  {eventTitle}
+                  <span className="text-base text-ink/50 dark:text-paper/50">— {guestTotal} guests</span>
+                </h2>
+                <div className="mt-3 overflow-x-auto rounded-lg border border-ink/10 dark:border-white/10">
+                  <table className="w-full text-sm">
+                    <thead className="border-b border-ink/10 bg-white/50 dark:border-white/10 dark:bg-white/5">
+                      <tr>
+                        {['Name', 'Email', 'Guests', 'Message', 'Date'].map((h) => (
+                          <th key={h} className="px-4 py-2.5 text-left font-medium text-ink/70 dark:text-paper/70">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {group.map((r) => (
+                        <tr key={r.id} className="border-b border-ink/5 last:border-0 dark:border-white/5">
+                          <td className="px-4 py-3 font-medium">{r.name}</td>
+                          <td className="px-4 py-3 text-ink/65 dark:text-paper/65">{r.email ?? '—'}</td>
+                          <td className="px-4 py-3 text-center">{r.guest_count}</td>
+                          <td className="max-w-xs px-4 py-3 text-ink/65 dark:text-paper/65">{r.message ?? '—'}</td>
+                          <td className="px-4 py-3 text-ink/50 dark:text-paper/50 whitespace-nowrap">
+                            {new Date(r.created_at).toLocaleDateString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            );
+          })}
         </div>
       )}
 

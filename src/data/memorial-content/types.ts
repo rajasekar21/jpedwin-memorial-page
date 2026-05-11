@@ -117,6 +117,20 @@ export type MemorialContent = {
     photoOf: string;
     dateLocale: string;
   };
+  rsvp: {
+    formTitle: string;
+    nameLabel: string;
+    emailLabel: string;
+    emailHint: string;
+    guestCountLabel: string;
+    messageLabel: string;
+    messageHint: string;
+    submit: string;
+    submitting: string;
+    successMessage: string;
+    phaseOneMessage: string;
+    errorMessage: string;
+  };
   footer: {
     familyContact: string;
     preserved: string;

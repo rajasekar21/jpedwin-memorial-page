@@ -107,6 +107,20 @@ export const englishContent: MemorialContent = {
     print: 'Print card',
     printedBy: 'Preserved with love by family and friends'
   },
+  rsvp: {
+    formTitle: 'RSVP for this gathering',
+    nameLabel: 'Your name',
+    emailLabel: 'Email',
+    emailHint: '(optional)',
+    guestCountLabel: 'Number of guests',
+    messageLabel: 'Message',
+    messageHint: '(optional)',
+    submit: 'Confirm attendance',
+    submitting: 'Sending…',
+    successMessage: 'Thank you — your attendance has been noted. We look forward to seeing you.',
+    phaseOneMessage: 'To confirm your attendance, please email the family at {email}.',
+    errorMessage: 'Could not save your RSVP right now. Please try again or email the family.'
+  },
   footer: {
     familyContact: 'Family contact',
     preserved: 'Preserved with care',

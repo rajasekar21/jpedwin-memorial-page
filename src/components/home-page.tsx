@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, QrCode, ShieldCheck } from 'lucide-react';
+import { RsvpForm } from '@/components/rsvp-form';
 import { useEffect, useState } from 'react';
 import { defaultLanguage, memorialContent, type Language } from '@/data/memorial';
 import { GallerySupabase } from '@/components/gallery-supabase';
@@ -206,6 +207,13 @@ export function HomePage({ jsonLd }: HomePageProps) {
               </p>
               <p className="mt-1 text-sm text-ink/65 dark:text-paper/65">{event.date}</p>
               <p className="mt-4 leading-7 text-ink/70 dark:text-paper/70">{event.details}</p>
+              {event.location !== 'Online' && event.location !== 'ஆன்லைன்' && (
+                <RsvpForm
+                  eventTitle={event.title}
+                  labels={content.rsvp}
+                  contactEmail={process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'sweetlinepriya.edwin@gmail.com'}
+                />
+              )}
             </article>
           ))}
         </div>
