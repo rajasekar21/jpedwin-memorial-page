@@ -66,11 +66,11 @@ export function HomePage({ jsonLd }: HomePageProps) {
               {memorialProfile.fullName}
             </h1>
             <p className="mt-4 flex items-center gap-3 font-serif text-lg text-ink/65 dark:text-paper/65">
-              <span aria-hidden>*</span>
+              <span aria-hidden className="text-clay dark:text-gold">✝</span>
               <span>{memorialProfile.birthYear}</span>
-              <span aria-hidden className="text-gold">-</span>
+              <span aria-hidden className="text-gold">–</span>
               <span>{memorialProfile.deathYear}</span>
-              <span aria-hidden>*</span>
+              <span aria-hidden className="text-clay dark:text-gold">✝</span>
             </p>
             <blockquote
               className={`mt-8 max-w-2xl border-l-2 border-gold pl-5 font-serif leading-relaxed text-ink/80 dark:text-paper/80 ${
