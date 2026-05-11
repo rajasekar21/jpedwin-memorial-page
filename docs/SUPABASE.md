@@ -54,7 +54,33 @@ Do not add `SUPABASE_SERVICE_ROLE_KEY` as a `NEXT_PUBLIC_` variable — it must 
 
 ---
 
-## 4. Supabase Auth hardening
+## 4. Register family members (Phase 4 gallery uploads)
+
+Family members can upload photos at `/upload` after being registered.
+The file `supabase/register-family-members.sql` already contains the INSERT
+statements for **Sweetline Priya** and **Angeline Gunavathy**.
+
+**Steps:**
+
+1. In Supabase Dashboard → **Authentication → Users**, click **Invite user**.
+2. Enter Sweetline Priya's email and send the invitation. Repeat for Angeline Gunavathy.
+3. Each person will receive an email; once they accept, their row appears in the Users list.
+4. Copy each person's **UID** from the Users list.
+5. Open `supabase/register-family-members.sql`, replace the two placeholder UUIDs with the real ones.
+6. Run the updated SQL in **SQL Editor**.
+
+They can then sign in at `https://www.edwinchelliah.com/upload` and begin uploading photos.
+
+To add more family members in future, run:
+
+```sql
+insert into public.family_members (user_id, display_name)
+values ('THEIR_AUTH_UUID', 'Their Name');
+```
+
+---
+
+## 5. Supabase Auth hardening
 
 Do these steps in the Supabase dashboard before going live:
 
