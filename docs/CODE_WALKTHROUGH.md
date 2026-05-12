@@ -494,6 +494,35 @@ src/app/page.tsx ──────► src/components/home-page.tsx
 
 ---
 
+## Architecture pattern
+
+This project does not use classic MVC (Model–View–Controller). It follows the **layered component architecture** common to Next.js static-export apps. The three MVC responsibilities are present but are split differently:
+
+| MVC role | How it maps here | Files |
+|----------|-----------------|-------|
+| **Model** | Typed content objects + Supabase as the live data store | `src/data/memorial-content/en.ts`, `ta.ts`, `types.ts`; `src/data/memorial.ts`; `src/lib/supabase.ts` |
+| **View** | React server and client components that render HTML | `src/app/layout.tsx`, `src/app/page.tsx`, `src/components/*.tsx` |
+| **Controller** | `home-page.tsx` language state + per-component `useEffect` hooks that fetch or mutate Supabase data | `src/components/home-page.tsx` (language state), `src/components/memory-form.tsx`, `src/components/rsvp-form.tsx`, `src/components/gallery-supabase.tsx` |
+
+### Layer summary
+
+```
+Data layer   src/data/          — static typed content (Model)
+             src/lib/supabase.ts — live Supabase client (Model)
+             src/lib/site.ts     — site-wide config constants
+
+Logic layer  src/app/page.tsx    — JSON-LD assembly, prop passing (thin Controller)
+             home-page.tsx       — language state, content selection (Controller)
+             *-form.tsx          — form validation + Supabase mutations (Controller)
+
+View layer   src/components/     — all JSX rendering (View)
+             src/app/layout.tsx  — root HTML shell, metadata, CSP (View)
+```
+
+Because this is a **static export with no server runtime**, there are no API routes or server actions acting as controllers. All "controller" logic runs in the browser inside React hooks.
+
+---
+
 ## Key design decisions
 
 | Decision | Why |
