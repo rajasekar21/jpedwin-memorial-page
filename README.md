@@ -180,6 +180,7 @@ See `docs/GODADDY_DOMAIN.md` for step-by-step instructions.
 
 | File | Contents |
 |------|----------|
+| `docs/CODE_WALKTHROUGH.md` | File execution order, component tree, data flow, design decisions |
 | `docs/EDITING_GUIDE.md` | Colours, content, photos, new sections, file map |
 | `docs/DEPLOYMENT.md` | Build, deploy, folder structure, troubleshooting |
 | `docs/GODADDY_DOMAIN.md` | DNS, HTTPS, WWW/apex setup |
