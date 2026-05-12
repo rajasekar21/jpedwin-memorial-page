@@ -154,30 +154,30 @@ export const englishContent: MemorialContent = {
     {
       year: '1955',
       title: 'A Life Begins',
-      description: 'Born into a loving family, surrounded by traditions, stories, and the care that shaped his earliest years.',
+      description: 'Born into a loving family to Mr. John Palanimuthu and Mrs. Annal, alongside his beloved siblings Mrs. Jansi, Mr. Johnson Chandrasekar and Mr. Immunuel Jeyaprakash, he grew up rooted in Christ, nurtured in faith, and surrounded by stories, warmth, and the loving care that shaped his earliest years.',
       icon: Sparkles
     },
     {
       year: '1976',
       title: 'Education & Character',
-      description: 'Developed a lifelong respect for learning, discipline, and the practical wisdom of showing up for others.',
+      description: 'With a deep respect for learning, discipline and dedication, he pursued his post-graduation in Commerce with determination, earning First Class with Merit through hard work and perseverance.',
       icon: GraduationCap
     },
     {
-      year: '1984',
+      year: '1977',
       title: 'Career of Service',
-      description: 'Built a respected professional life through reliability, clear judgment, and a deep sense of responsibility.',
+      description: 'Beginning his career as a Clerk in Canara Bank, he served society with honesty, sincerity, and unwavering dedication to his work. After being promoted as an Officer in 2001, he continued to serve the organisation faithfully until his retirement in 2015. Known for his humble nature and willingness to help others, he became someone people could approach with ease and trust.',
       icon: Briefcase
     },
     {
-      year: '1990',
+      year: '1981',
       title: 'Family Foundation',
-      description: 'Created a home defined by care, encouragement, celebration, and the steady rituals that make family strong.',
+      description: 'He married Mrs. Gunaseeli Selvarani in 1981 and was blessed with two daughters, Mrs. E. Angelin Gunavathy and Mrs. E. Sweetline Priya, who brought immense joy and pride to his life. Grounding his home in Christ, he led his family with faith, prayer, love, and strong godly values. The well-being and care of his family were always close to his heart. Through his constant efforts to stay connected with brothers, sisters, and extended in-law families by regularly visiting and spending time with them, he nurtured deep and lasting relationships. His warmth and affection strengthened the bond among family members and created a legacy of unity that continues even among the next generation today.',
       icon: Home
     },
     {
-      year: '2005',
-      title: 'Guiding Others',
+      year: '2018',
+      title: 'Leading Others',
       description: 'Became a mentor and trusted voice for relatives, colleagues, neighbors, and younger generations.',
       icon: Users
     },
