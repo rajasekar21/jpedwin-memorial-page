@@ -1,8 +1,19 @@
 # J.P. Edwin Chelliah — Digital Memorial
 
-A calm, respectful, production-ready memorial website at **[www.edwinchelliah.com](https://www.edwinchelliah.com)**.
+Secure, bilingual, production-ready digital memorial — static export with live Supabase backend
 
-Built with Next.js 16 static export, deployed via GitHub Actions to GitHub Pages, with a custom GoDaddy domain and a Supabase backend for live memory submissions, gallery uploads, event RSVPs, and family moderation.
+![Framework](https://img.shields.io/badge/Framework-Next.js%2016.2.6-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Backend](https://img.shields.io/badge/Backend-Supabase%202.49-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
+![Styling](https://img.shields.io/badge/Styling-Tailwind%20CSS%203.4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
+![Language](https://img.shields.io/badge/Language-TypeScript%205.8-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Bilingual](https://img.shields.io/badge/Bilingual-English%20%2B%20Tamil-f97316?style=flat-square&logoColor=white)
+![Hosting](https://img.shields.io/badge/Hosting-GitHub%20Pages-181717?style=flat-square&logo=github&logoColor=white)
+![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+![Security](https://img.shields.io/badge/Security-CSP%20%2B%20RLS-dc2626?style=flat-square&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-49%20Jest-C21325?style=flat-square&logo=jest&logoColor=white)
+![Phase](https://img.shields.io/badge/Phase%204-Complete-16a34a?style=flat-square&logoColor=white)
+
+A calm, respectful memorial website at **[www.edwinchelliah.com](https://www.edwinchelliah.com)** — built with Next.js 16 static export, deployed via GitHub Actions to GitHub Pages, with a custom GoDaddy domain and Supabase backend for live memory submissions, gallery uploads, event RSVPs, and family moderation.
 
 ---
 
