@@ -2,6 +2,7 @@ create extension if not exists "pgcrypto";
 
 create type public.content_status as enum ('pending', 'approved', 'removed');
 
+-- Phase 5 / future use: biography managed dynamically when moved to a server
 create table public.memorial_profile (
   id uuid primary key default gen_random_uuid(),
   full_name text not null,
@@ -35,6 +36,7 @@ create table public.memory_posts (
   created_at timestamptz not null default now()
 );
 
+-- Phase 5 / future use: guestbook distinct from memory tributes
 create table public.guestbook_entries (
   id uuid primary key default gen_random_uuid(),
   name text not null check (char_length(name) between 2 and 80),
@@ -43,6 +45,7 @@ create table public.guestbook_entries (
   created_at timestamptz not null default now()
 );
 
+-- Phase 5 / future use: editable timeline via admin panel
 create table public.timeline_events (
   id uuid primary key default gen_random_uuid(),
   event_year text not null,

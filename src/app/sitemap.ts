@@ -3,7 +3,7 @@ import { siteConfig } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-const LAST_MODIFIED = new Date('2026-05-01');
+const LAST_MODIFIED = new Date('2026-05-12');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;

@@ -33,7 +33,6 @@ jobs:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_SITE_URL: https://www.edwinchelliah.com
           NEXT_PUBLIC_CONTACT_EMAIL: sweetlinepriya.edwin@gmail.com
-          NEXT_PUBLIC_ENABLE_DYNAMIC_MEMORIES: "false"
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
       - name: Upload artifact
