@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { defaultContent, type MemorialContent, type Tribute } from '@/data/memorial';
+import { useEffect, useRef, useState } from 'react';
+import { defaultContent, type MemorialContent, type Tribute, type TributeMessage } from '@/data/memorial';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 type ApprovedMemory = {
@@ -17,7 +17,7 @@ type DisplayTribute = {
   id: string;
   name: string;
   relationship: string;
-  message: string;
+  message: TributeMessage;
   date: string;
   photoUrl?: string;
 };
@@ -27,7 +27,12 @@ type MemoryTributesProps = {
   labels?: MemorialContent['tributeLabels'];
 };
 
+type TributeMessageBodyProps = {
+  message: TributeMessage;
+};
+
 const memoryPhotoBucket = 'memories';
+const collapsedMessageHeight = 224;
 
 function initialsFor(name: string) {
   return name
@@ -43,6 +48,64 @@ function formatDate(value: string, locale: string) {
     month: 'long',
     year: 'numeric'
   });
+}
+
+function TributeMessageBody({ message }: TributeMessageBodyProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [canExpand, setCanExpand] = useState(false);
+  const messages = Array.isArray(message) ? message : [message];
+
+  useEffect(() => {
+    const element = contentRef.current;
+    if (!element) return;
+
+    function updateOverflow() {
+      const content = contentRef.current;
+      if (!content) return;
+
+      setCanExpand(content.scrollHeight > collapsedMessageHeight + 1);
+    }
+
+    updateOverflow();
+
+    const observer = new ResizeObserver(updateOverflow);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [message, isExpanded]);
+
+  return (
+    <div>
+      <div className="relative">
+        <div ref={contentRef} className={`space-y-4 ${isExpanded ? '' : 'max-h-56 overflow-hidden'}`}>
+          {messages.map((line, index) =>
+            Array.isArray(message) ? (
+              <p key={index} className="font-serif text-base leading-7 text-ink/80 dark:text-paper/80">
+                {line}
+              </p>
+            ) : (
+              <p key={index} className="font-serif text-base leading-7 text-ink/80 dark:text-paper/80">
+                &ldquo;{line}&rdquo;
+              </p>
+            )
+          )}
+        </div>
+        {canExpand && !isExpanded ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-paper to-paper/0 dark:from-twilight dark:to-twilight/0" />
+        ) : null}
+      </div>
+      {canExpand ? (
+        <button
+          type="button"
+          className="mt-4 text-sm font-semibold text-clay underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 dark:text-gold dark:focus-visible:ring-gold/40"
+          onClick={() => setIsExpanded((current) => !current)}
+        >
+          {isExpanded ? 'Show less' : 'Read more'}
+        </button>
+      ) : null}
+    </div>
+  );
 }
 
 export function MemoryTributes({ fallbackTributes, labels = defaultContent.tributeLabels }: MemoryTributesProps) {
@@ -105,7 +168,7 @@ export function MemoryTributes({ fallbackTributes, labels = defaultContent.tribu
     <div className="grid gap-5 lg:grid-cols-3">
       {tributes.map((tribute) => (
         <article key={tribute.id} className="h-full rounded-lg border border-ink/10 bg-paper p-6 shadow-soft dark:border-white/10 dark:bg-twilight">
-          <p className="font-serif text-xl leading-8 text-ink/80 dark:text-paper/80">&ldquo;{tribute.message}&rdquo;</p>
+          <TributeMessageBody message={tribute.message} />
           <div className="mt-6 flex items-center gap-3 border-t border-ink/10 pt-4 text-sm text-ink/60 dark:border-white/10 dark:text-paper/60">
             {tribute.photoUrl ? (
               <span

@@ -49,12 +49,12 @@ create policy "Family members read own gallery uploads" on public.gallery_photos
   );
 
 -- 5. Storage policies for the gallery bucket ------------------------------------
--- Family members may upload to gallery/family-uploads/<filename>
+-- Family members may upload to gallery/<album-folder>/<filename>
 create policy "Family members insert gallery storage" on storage.objects
   for insert with check (
     bucket_id = 'gallery'
     and public.is_family_member()
-    and (storage.foldername(name))[1] = 'family-uploads'
+    and (storage.foldername(name))[1] in ('memories', 'recent', 'retirement', 'mentor')
   );
 
 -- Family members may read their own uploaded files

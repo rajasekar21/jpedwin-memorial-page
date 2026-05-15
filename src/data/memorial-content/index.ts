@@ -2,7 +2,7 @@ import { englishContent } from './en';
 import { tamilContent } from './ta';
 import type { Language, MemorialContent } from './types';
 
-export type { GalleryPhoto, Language, MemorialContent, TimelineEvent, Tribute } from './types';
+export type { GalleryPhoto, Language, MemorialContent, TimelineEvent, Tribute, TributeMessage } from './types';
 
 export const memorialContent: Record<Language, MemorialContent> = {
   en: englishContent,

@@ -64,7 +64,7 @@ Both files follow the same structure. The sections are:
 | `achievements` | The three "About" cards (title, description, icon) |
 | `timeline` | Year, title, description, icon for each life milestone card |
 | `galleryPhotos` | Static fallback image src, alt text, album tab, caption |
-| `tributes` | Static fallback tributes (name, relationship, message, date) |
+| `tributes` | Static fallback tributes (name, relationship, message, date). `message` can be one string or an array of strings for multiple paragraphs. |
 | `events` | Remembrance events (title, date, location, details) |
 | `rsvp` | RSVP form field labels, hints, success and error messages |
 | `form` | Memory submission form labels and messages |
@@ -155,15 +155,21 @@ rsvp: {
 ```ts
 galleryPhotos: [
   {
-    src:     '/images/gallery-family.svg',
-    alt:     'Family gathering at home',
-    album:   'Family',        // tab: Family | Career | Celebrations | Legacy
+    src:     '/images/memories/memories-1.jpg',
+    alt:     'Memories album photo',
+    album:   'Memories',      // tab: Memories | Recent | Retirement | Mentor
     caption: 'Sunday lunch, 1990',
+  },
+  {
+    src:     '/images/memories/memories-2.jpg',
+    alt:     'Memories album photo',
+    album:   'Memories',
+    caption: 'A cherished memory',
   },
 ]
 ```
 
-These are shown when no approved photos exist in Supabase. When family members upload and admin approves photos, those appear instead.
+These are shown when no approved photos exist in Supabase. The gallery shows one cover card per album, then opens all photos in that album with left/right navigation. When family members upload and admin approves photos, those appear instead.
 
 ---
 
@@ -182,7 +188,7 @@ portrait: '/images/your-photo.jpg',
 
 ### Gallery photos (static)
 
-1. Add photo files to `public/images/` — e.g. `family-1.jpg`
+1. Add photo files to album folders under `public/images/` - e.g. `public/images/memories/memories-1.jpg`, `public/images/retirement/retirement-1.jpg`
 2. Update or add entries in `galleryPhotos` in `en.ts` and `ta.ts`
 3. Push to `main`
 
@@ -197,7 +203,7 @@ Approved photos are shown in the gallery automatically using signed Supabase Sto
 **Image tips:**
 - Use `.jpg` for photos; `.webp` for best compression
 - Compress before uploading at [squoosh.app](https://squoosh.app)
-- Use lowercase filenames with hyphens: `family-1990.jpg`
+- Use lowercase filenames with hyphens: `memories-1.jpg`
 
 ---
 
@@ -313,3 +319,4 @@ tailwind.config.ts            ← Colour palette and font definitions
 next.config.js                ← Static export, trailing slash, env defaults
 .github/workflows/deploy.yml  ← GitHub Actions CI/CD
 ```
+

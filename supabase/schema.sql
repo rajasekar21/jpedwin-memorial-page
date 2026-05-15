@@ -18,7 +18,7 @@ create table public.gallery_photos (
   id uuid primary key default gen_random_uuid(),
   title text not null,
   caption text,
-  album text not null default 'Legacy',
+  album text not null default 'Memories',
   storage_path text not null,
   alt_text text not null,
   status public.content_status not null default 'pending',

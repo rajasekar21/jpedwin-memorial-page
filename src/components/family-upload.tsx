@@ -19,11 +19,18 @@ type GalleryUpload = {
   signedUrl?: string;
 };
 
-const ALBUMS = ['Family', 'Career', 'Celebrations', 'Legacy'];
+const ALBUMS = ['Memories', 'Recent', 'Retirement', 'Mentor'];
 const MAX_BYTES = 20 * 1024 * 1024;
 const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp'];
 
 type Props = { language?: 'en' | 'ta' };
+
+function albumFolder(album: string) {
+  return album
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'gallery';
+}
 
 export function FamilyUpload({ language = 'en' }: Props) {
   const labels = defaultContent.upload;
@@ -134,7 +141,7 @@ export function FamilyUpload({ language = 'en' }: Props) {
     setNotice('');
 
     const ext = photo.type === 'image/png' ? 'png' : photo.type === 'image/webp' ? 'webp' : 'jpg';
-    const path = `family-uploads/${crypto.randomUUID()}.${ext}`;
+    const path = `${albumFolder(album)}/${crypto.randomUUID()}.${ext}`;
 
     const { error: uploadError } = await supabase.storage
       .from('gallery')
