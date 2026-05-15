@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { Gallery } from '../gallery';
 
 // next/image stub
@@ -31,10 +31,10 @@ describe('Gallery', () => {
     render(<Gallery />);
     const allInitial = screen.getAllByRole('button', { name: /View photo:/i }).length;
 
-    const familyTab = screen.getByRole('tab', { name: 'Family' });
-    fireEvent.click(familyTab);
+    const memoriesTab = screen.getByRole('tab', { name: 'Memories' });
+    fireEvent.click(memoriesTab);
 
-    expect(familyTab).toHaveAttribute('aria-selected', 'true');
+    expect(memoriesTab).toHaveAttribute('aria-selected', 'true');
     const filtered = screen.getAllByRole('button', { name: /View photo:/i }).length;
     expect(filtered).toBeLessThanOrEqual(allInitial);
   });
@@ -67,5 +67,26 @@ describe('Gallery', () => {
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-modal', 'true');
     expect(dialog).toHaveAttribute('aria-label');
+  });
+
+  it('navigates between photos inside the selected album', () => {
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'First family photo', album: 'Memories', caption: 'First family photo' },
+          { src: '/two.jpg', alt: 'Second family photo', album: 'Memories', caption: 'Second family photo' },
+          { src: '/career.jpg', alt: 'Career photo', album: 'Recent', caption: 'Career photo' },
+        ]}
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /View photo: Memories/i }));
+    expect(within(screen.getByRole('dialog')).getByAltText('First family photo')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Next photo/i }));
+    expect(within(screen.getByRole('dialog')).getByAltText('Second family photo')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Previous photo/i }));
+    expect(within(screen.getByRole('dialog')).getByAltText('First family photo')).toBeInTheDocument();
   });
 });

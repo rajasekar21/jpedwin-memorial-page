@@ -16,10 +16,12 @@ export type GalleryPhoto = {
   caption: string;
 };
 
+export type TributeMessage = string | string[];
+
 export type Tribute = {
   name: string;
   relationship: string;
-  message: string;
+  message: TributeMessage;
   date: string;
 };
 
@@ -55,6 +57,8 @@ export type MemorialContent = {
     viewPhoto: string;
     dialogLabel: string;
     closePreview: string;
+    previousPhoto?: string;
+    nextPhoto?: string;
   };
   upload: {
     pageTitle: string;

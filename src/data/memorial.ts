@@ -10,4 +10,4 @@ export {
   tributes
 } from './memorial-content';
 
-export type { GalleryPhoto, Language, MemorialContent, TimelineEvent, Tribute } from './memorial-content';
+export type { GalleryPhoto, Language, MemorialContent, TimelineEvent, Tribute, TributeMessage } from './memorial-content';

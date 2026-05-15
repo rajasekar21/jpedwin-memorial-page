@@ -47,7 +47,7 @@
 
 - **Gallery upload for family members** (`/upload/`):
   - Supabase Auth sign-in (restricted to registered family members)
-  - Upload to `gallery` bucket under `family-uploads/<uuid>.<ext>`
+  - Upload to `gallery` bucket under album folders: `memories/`, `recent/`, `retirement/`, `mentor/`
   - Inserts `gallery_photos` row with `status: 'pending'`
   - My submissions grid with signed URLs and status badges
   - Diagnostic messages for missing tables, unregistered users

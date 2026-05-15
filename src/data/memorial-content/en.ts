@@ -195,48 +195,239 @@ export const englishContent: MemorialContent = {
   ],
   galleryPhotos: [
     {
-      src: '/images/gallery-family.svg',
-      alt: 'J.P. Edwin Chelliah with family, warm gatherings and shared moments at home',
-      album: 'Family',
-      caption: 'Family gatherings and the comfort of being together'
+      src: '/images/memories/memories-1.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: ''
+    },
+     {
+      src: '/images/memories/memories-2.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: 'Memories and the comfort of being together'
+    },
+     {
+      src: '/images/memories/memories-3.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: ''
+    },
+     {
+      src: '/images/memories/memories-4.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: 'Memories and the comfort of being together'
+    },
+     {
+      src: '/images/memories/memories-5.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: ''
+    },
+     {
+      src: '/images/memories/memories-6.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: 'Memories and the comfort of being together'
+    },
+     {
+      src: '/images/memories/memories-7.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: ''
+    },
+     {
+      src: '/images/memories/memories-8.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: 'Memories and the comfort of being together'
+    },
+     {
+      src: '/images/memories/memories-9.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: ''
+    },
+     {
+      src: '/images/memories/memories-10.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: 'Memories and the comfort of being together'
     },
     {
-      src: '/images/gallery-career.svg',
-      alt: 'J.P. Edwin Chelliah at work, a career built on commitment and trusted responsibility',
-      album: 'Career',
-      caption: 'Years of dedicated work and trusted responsibility'
+      src: '/images/recent/recent-1.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-2.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-3.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
     },
     {
-      src: '/images/gallery-celebration.svg',
-      alt: 'J.P. Edwin Chelliah celebrating milestones, festivals, birthdays, and shared joy with loved ones',
-      album: 'Celebrations',
-      caption: 'Milestones, festivals, and shared joy'
+      src: '/images/recent/recent-4.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-5.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-6.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
     },
     {
-      src: '/images/gallery-legacy.svg',
-      alt: 'Objects, letters and mementos preserving the legacy and memory of J.P. Edwin Chelliah',
-      album: 'Legacy',
-      caption: 'Objects, letters, places, and memories preserved'
+      src: '/images/recent/recent-7.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-8.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-9.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+    {
+      src: '/images/recent/recent-10.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-11.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-12.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+    {
+      src: '/images/recent/recent-13.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-14.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+     {
+      src: '/images/recent/recent-15.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+    {
+      src: '/images/recent/recent-16.jpg',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: 'Recent photographs and remembrance moments'
+    },
+    {
+      src: '/images/retirement/retirement-1.jpg',
+      alt: 'J.P. Edwin Chelliah during retirement and later years',
+      album: 'Retirement',
+      caption: 'Retirement years and cherished later moments'
+    },
+     {
+      src: '/images/retirement/retirement-2.jpg',
+      alt: 'J.P. Edwin Chelliah during retirement and later years',
+      album: 'Retirement',
+      caption: 'Retirement years and cherished later moments'
+    },
+     {
+      src: '/images/retirement/retirement-3.jpg',
+      alt: 'J.P. Edwin Chelliah during retirement and later years',
+      album: 'Retirement',
+      caption: 'Retirement years and cherished later moments'
+    },
+    {
+      src: '/images/mentor/mentor-1.jpg',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: 'Guidance, encouragement, and the lives he shaped'
+    },
+       {
+      src: '/images/mentor/mentor-2.jpg',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: 'Guidance, encouragement, and the lives he shaped'
     }
   ],
   tributes: [
     {
-      name: 'Family',
-      relationship: 'Children and grandchildren',
-      message: 'Thank you for teaching us how to live with patience, dignity, and love. We carry your words with us in every season.',
-      date: 'April 2024'
+      name: 'J.P. Johnson Chandrasekar',
+      relationship: 'Elder Brother',
+      message: 'எனது தம்பி "செல்லப்பா" என அழைக்கப்படும் திரு.J.P எட்வின் செல்லையா அவர்களைப் பற்றி அவரது மூத்த சகோதரன் ஜான்ஸனின் நினைவலைகள். எனக்கும் அவருக்கும் வயது வித்தியாசம் 2.5 ஆண்டுகள், ஆனால் எண்ணங்களிலும் செயல்பாடுகளிலும் வித்தியாசம் 2.5% -க்கும் குறைவே!     முதலாவது அவரிடம் காணப்பட்ட பண்பு இறை பக்தி. சிறுவயதிலேயே ஆலயத்திலும் குடும்ப ஜெபவேளையில் அம்மா, அப்பா, அக்காள்.கமலா ஜான்ஸி ராணி, தம்பி. இம்மானுவேல் ஜெயப்பிரகாஷ் உடன் உரத்த குரலில் பாடி கர்த்தரைத் துதித்தது குறிப்படத்தக்கது. பெற்றோருக்கும், பெரியவர்களுக்கும், அவர் பாராட்டின மரியாதை, அரவணைப்பு, அன்பு அளவிடற்கரியது. கர்த்தருடைய கிருபையால் அவர்களது அறிவுறை, வழிகாட்டுதல்களைப் பெற்றும், தனது விருப்பங்கள், ஆலோசனைகள் தந்தும் வந்தார். சிறு வயது முதல் நண்பர்களிடம் நல் உறவு, விளையாட்டுகளில் ஆர்வம் அதிகம். சிறுவயதில் தூரத்திலிருந்த  நண்பன் "காமனன்" வீட்டு விசேஷத்திற்கு சென்றுவிட்டு  [எல்லோரும் பதறி தேடிக்கொண்டிருந்த போது] தாமதமாக வீட்டிற்கு வந்தது நினைவிற்கு வருகிறது. பின்நாட்களில் படிப்பிலும் கடின உழைப்பிலும் நற்குணங்களில் சிறந்த வாழ்க்கையை தொடர்ந்தார். பிறருக்கும் கர்த்தர் அருளிய தனது திறமை  மற்றும் ஆசீர்வாதங்களை பகிர்ந்து மகிழ்ந்தவர். ஆலய  சமுதாய காரியங்களில் குறிப்பாக சி.எஸ்.ஐ. மதுரை ராம்நாட் பேராயத்தில் பதிவாளராகவும் சி.எஸ்.ஐ. மேல்நிலைப் பள்ளியின் தாளாளராகவும் ஆலய பொருப்பாளர்களில் ஒருவராகவும் அனைவராலும்  பாராட்டும்படியாக செயல்பட்டவர். ஆலய குருமார்கள்,  மூப்பர்கள், மற்றும் குடும்ப மூத்த உறுப்பினர்களைக் கெளரவிப்பதிலும் முன்மாதிரியாக திகழ்ந்தார்.  தனது  விளையாட்டு ஆர்வத்தை பின்னாட்களில் எங்களது ஊர்  நிலக்கோட்டையில் நடைபெறும் தேசிய, மாநில அளவு கால்பந்து போட்டிகள் நடத்துவதில் தன்னை இணைத்துக்கொண்டதும், பிள்ளைகள் ஏஞ்சலின் குணவதி, ஸ்வீட்லின் பிரியா இருவரையும்  விளையாட்டில் ஆர்வம் காட்ட ஊக்கமளித்ததும், படிப்பிலும், நற்குணத்திலும் சிறந்துவிளங்கவும், அவர்களுக்கு நல்ல வாழ்க்கையை தனது துணைவியார் திருமதி .குணசீலி செல்வராணி அவர்களோடு சேர்ந்து   அமைத்துக் கொடுத்ததும் விஷேசமானவைகளாகும். எந்தக் காரியத்தையும் கவனமாக, நிதானத்தோடு செய்வது முடித்தவர்.  கபடமில்லாமல், எதையும் ஒதுக்காமல் சாப்பிடுவது. அம்மா சொல்வார்கள் "செல்லும், செல்லாததும் செட்டியாரிடம் செல்லும்"  என்று. அதாவது செல்லாது என மற்றவர்கள் வாங்க மறுக்கும் ரூபாய் நோட்டு செட்டியாரிடம் [வட்டிக்குக் கடனளிடப்பவர்] செல்லுபடியாகும். அதேபோல "வல்லவனுக்குப் புல்லும் ஆயுதம்" எனக் கூறுவார்கள். அதாவது சிறிய ஸ்லேட்டுக் குச்சியை கொண்டு எழுதி நல்ல மதிப்பெண்கள் பெற்று வருவதை பாராட்டுவார்கள். [சில நேரங்களில் அவரது ஸ்லேட்டுக் குச்சியை இரண்டாக உடைத்து இல்லாத பையனுக்கு அம்மா கொடுப்பார்கள்] . தான் மட்டுமல்ல மற்றவர்ளும் படிக்க கற்றுக்கொடுத்து  ஊக்கப்படுத்துவது, பணி செய்யும் போது அர்ப்பணிப்போடு,  உண்மையாகவும், வேலைகளை நிறைவேற்றி, சக பணியாளர்களுக்கும் தகுந்த ஆலோசனைகளை கொடுப்பது , [ அதனால் தானோ அவருக்கு படுத்தவுடன் கண்ணயர்ந்து தூக்கம் வந்ததோ!] பணி மூப்பிற்குப் பிறகும் தொய்வில்லாமல் கர்த்தருடைய கிருபையால் நிறைவாக பணிகளை சிறப்பாக செய்து இப்போது  நித்திய இளைப்பாறுதலுக்குள் உள்ளார் என்பதால் கர்த்தரை ஸ்தோத்திரிக்கிறேன். அவரது உலகப்பிரகாரமான பிரிவு குடும்பத்தார், உறவினர், மற்றும் பழகிய அனைத்து தரப்பட்டவர்களுக்கும் பேரிழப்பாகும். அவரது உலக பரிபூரண வாழ்க்கைக்காக கர்த்தருக்கு ஸ்தோத்திரம். அவர் விட்டுச் சென்றவர்கள் அவரது பணிகளை  தொடர்ந்து செய்ய பிரார்த்திக்கிறேன்.',
+      date: 'May 2026'
     },
     {
-      name: 'A Dear Friend',
-      relationship: 'Lifelong companion',
-      message: 'He had a rare way of making people feel heard. His friendship was steady, honest, and full of quiet kindness.',
-      date: 'May 2024'
+      name: 'Rev. Jacob Wincilin',
+      relationship: 'Presbyter & PC Chairman, CSI Christ Church, Visuvasapuri, Madurai',
+     message: ['வையகமும் வானவரும், உமதகம் நிறை காண',
+      'வைத்தனர், எம் கால, கடையேழு வள்ளலராய்',   
+'மெய் சிலிர்க்கும், புகழ் மணக்கும் விந்தை நீரன்றோ',  
+'பை நகரும் காலக் கண்ணாடியின்  காவியத்தை', 
+'மெய்யால் நினை, மையால் வரை, கவி ஓவியமாய்',  
+'பைந்தமிழ், கற்கண்டு சொல் கொண்டு தான் விண்டு', 
+'கை மாறு வேறில்லை, இல்லையேல் பழிக்கும் காலம்',
+'கை நீர் நீட்ட,  கண்ணீர்  காய, வழியும் காண', 
+'தைத்தன கிழிசல்  ஆடை உம் வெள்ளை  உள்ள நூலால்', 
+'வைத்தனர் பலர் வீட்டில்  உணவின் உலை', 
+ 'வரலாறு படைத்தீர் சுவடுகள் பதித்தீர்', 
+ 'பிறர் துன்பம் தன் துன்பம் போல்  கண்டு', 
+'உம் துன்பம் நீர் மறந்தே வாழ்ந்தீர்', 
+'உமக்காக வாழ மறுத்து பிறருக்காக மட்டுமே வாழ்ந்தீர்', 
+'உலகில் உமை தந்த கடவுளுக்கு பல நன்றி',  
+'உண்மையில் உமை பிரிந்த வேதனையின்  தாக்கம்',
+'உணரும் உயிர்களில் ஒருவனாய் நானும்',
+'உறைந்தே உதிர்க்கிறேன் புகழ் பா',],
+      date: 'May 2026'
     },
     {
-      name: 'Colleagues',
-      relationship: 'Work community',
-      message: 'His professionalism came from character. He led by example and left behind a standard we still look up to.',
-      date: 'June 2024'
+      name: 'M. Ravichandran',
+      relationship: 'Co-Employee, Telephone Operator (Retired), Madurai',
+      message: 'எட்வின் அண்ணா அவர்கள் கனரா வங்கி வட்ட அலுவலகத்தில்  என்னோடு பணியாற்றியவர். அவர் சிரித்த முகத்துடன் அனைவருடன் பழகும் விதம் மற்றும் அனைவருக்கும் உதவி செய்யும் குணமுமே என்னை, அண்ணாவை போல நாமும் இருக்க வேண்டும் என்ற எண்ணத்தை ஏற்படுத்தியது. அவருடைய இழப்பு எனது நட்பு வட்டாரத்தில் ஒரு பேரிழப்பு என எண்ணுகிறேன். அவருடன் இணைந்து பணியாற்றிய நாட்கள் மறக்க முடியாதவை. அத்தகைய அனுபவத்தை கொடுத்த இறைவனுக்கு கோடானு கோடி நன்றிகள். அண்ணாவின் ஆசீர்வாதம் என்றென்றும் அவரது குடும்பத்தாருக்கு கிடைத்திட இறைவனை வேண்டிக் கொள்கிறேன்.',
+      date: 'May 2026'
+    },
+    {
+      name: 'Mrs. Helen Priscilla Bai',
+      relationship: 'Niece',
+      message: 'My Chithappa is one of the kindest person I know, always ready to lend a hand to anyone in need. I’ve known him for almost 50 years, since my childhood. He makes time to visit those who are hospitalized offering them comfort and care. He’s also a frequent blood donor, stepping up without hesitation whenever someone needs help. He was a lover of music and I have preserved some of his best melodies. He has made a remarkable place in everyones heart.',
+      date: 'May 2026'
+    },
+    {
+      name: 'R. Irene Cynthia',
+      relationship: 'Grand daughter',
+      message: 'I love my Grandpa and I miss my Grandpa a lot. I hope he is in the heaven with his family. The day that God called your name, it broke my heart into two but heaven needed an Angel and the one He picked was you. I wish He could have waited and let you stay with me.',
+      date: 'May 2026'
     }
   ],
   events: [
