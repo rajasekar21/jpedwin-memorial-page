@@ -1,4 +1,4 @@
-import { memorialProfile, events as memorialEvents } from '@/data/memorial';
+import { memorialProfile } from '@/data/memorial';
 import { siteConfig } from '@/lib/site';
 
 const BASE_URL = siteConfig.url;
@@ -36,31 +36,6 @@ export function webSiteSchema() {
       url: BASE_URL
     }
   };
-}
-
-/** Returns one Schema.org Event schema object per remembrance event. */
-export function eventsSchema() {
-  return memorialEvents.map((event) => ({
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: event.title,
-    description: event.details,
-    startDate: event.date,
-    eventStatus: 'https://schema.org/EventScheduled',
-    eventAttendanceMode:
-      event.location.toLowerCase() === 'online'
-        ? 'https://schema.org/OnlineEventAttendanceMode'
-        : 'https://schema.org/OfflineEventAttendanceMode',
-    location:
-      event.location.toLowerCase() === 'online'
-        ? { '@type': 'VirtualLocation', url: BASE_URL }
-        : { '@type': 'Place', name: event.location },
-    organizer: {
-      '@type': 'Organization',
-      name: 'Edwin Chelliah Family',
-      url: BASE_URL
-    }
-  }));
 }
 
 /** Schema.org WebPage schema with breadcrumb for the memorial page. */

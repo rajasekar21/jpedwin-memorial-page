@@ -1,7 +1,7 @@
 import { HomePage } from '@/components/home-page';
-import { eventsSchema, memorialPageSchema, personSchema, webSiteSchema } from '@/lib/structured-data';
+import { memorialPageSchema, personSchema, webSiteSchema } from '@/lib/structured-data';
 
-const jsonLd = [personSchema(), webSiteSchema(), memorialPageSchema(), ...eventsSchema()];
+const jsonLd = [personSchema(), webSiteSchema(), memorialPageSchema()];
 
 export default function Home() {
   return <HomePage jsonLd={jsonLd} />;

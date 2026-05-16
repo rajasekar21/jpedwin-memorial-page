@@ -250,7 +250,7 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
               <p>{activePhoto.caption}</p>
               {hasCarousel ? (
                 <p className="shrink-0 text-ink/50 dark:text-paper/50">
-                  {active.index + 1} / {active.photos.length}
+                  {active ? active.index + 1 : 0} / {active ? active.photos.length : 0}
                 </p>
               ) : null}
             </div>

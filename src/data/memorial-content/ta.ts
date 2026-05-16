@@ -16,8 +16,7 @@ export const tamilContent: MemorialContent = {
       { label: 'வாழ்க்கைப் பயணம்', href: '#timeline' },
       { label: 'புகைப்படங்கள்', href: '#gallery' },
       { label: 'நினைவுகள்', href: '#tributes' },
-      { label: 'குடும்பம்', href: '#family' },
-      { label: 'நிகழ்வுகள்', href: '#events' }
+      { label: 'குடும்பம்', href: '#family' }
     ]
   },
   hero: {

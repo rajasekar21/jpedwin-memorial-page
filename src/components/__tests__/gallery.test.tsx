@@ -4,10 +4,15 @@ import { Gallery } from '../gallery';
 // next/image stub
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: ({ alt, ...props }: { alt: string; [key: string]: unknown }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img alt={alt} {...props} />
-  )
+  default: ({ alt, ...props }: { alt: string; fill?: boolean; sizes?: string; [key: string]: unknown }) => {
+    delete props.fill;
+    delete props.sizes;
+
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img alt={alt} {...props} />
+    );
+  }
 }));
 
 jest.mock('@/lib/site', () => ({
