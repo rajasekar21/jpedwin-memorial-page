@@ -170,26 +170,28 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
       </div>
 
       {/* Photo grid */}
-      <div className="columns-1 gap-5 sm:columns-2 lg:columns-4">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {visibleAlbums.map((group) => (
           <button
             key={group.name}
             type="button"
             onClick={(e) => openModal(group, e.currentTarget)}
             aria-label={`${labels.viewPhoto}: ${group.name}`}
-            className="mb-5 block w-full overflow-hidden rounded-lg border border-ink/10 bg-white text-left shadow-soft transition hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-white/5"
+            className="flex h-full w-full flex-col overflow-hidden rounded-lg border border-ink/10 bg-white text-left shadow-soft transition hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-white/5"
           >
-            <Image
-              src={withBasePath(group.cover.src)}
-              alt={group.cover.alt}
-              width={640}
-              height={780}
-              className="h-auto w-full"
-              loading="lazy"
-            />
-            <span className="block px-4 py-4 text-sm text-ink/75 dark:text-paper/75">
+            <span className="relative block aspect-[4/3] w-full overflow-hidden bg-linen dark:bg-white/10">
+              <Image
+                src={withBasePath(group.cover.src)}
+                alt={group.cover.alt}
+                fill
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </span>
+            <span className="block h-20 px-4 py-4 text-sm text-ink/75 dark:text-paper/75">
               <span className="block font-medium text-ink dark:text-paper">{group.name}</span>
-              <span>{group.photos.length === 1 ? group.cover.caption : `${group.photos.length} photos`}</span>
+              <span className="line-clamp-2 block">{group.photos.length === 1 ? group.cover.caption : `${group.photos.length} photos`}</span>
             </span>
           </button>
         ))}
@@ -207,7 +209,7 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
         >
           <div
             ref={modalRef}
-            className="relative max-h-[90vh] max-w-4xl overflow-hidden rounded-lg bg-paper shadow-soft dark:bg-twilight"
+            className="relative flex h-[86vh] max-h-[780px] w-full max-w-5xl flex-col overflow-hidden rounded-lg bg-paper shadow-soft dark:bg-twilight"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -239,15 +241,17 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
                 </button>
               </>
             ) : null}
-            <Image
-              src={withBasePath(activePhoto.src)}
-              alt={activePhoto.alt}
-              width={1100}
-              height={820}
-              className="max-h-[72vh] w-full object-contain"
-            />
-            <div className="flex items-start justify-between gap-4 px-5 py-4 text-sm text-ink/75 dark:text-paper/75">
-              <p>{activePhoto.caption}</p>
+            <div className="relative min-h-0 flex-1 bg-black/5 dark:bg-black/20">
+              <Image
+                src={withBasePath(activePhoto.src)}
+                alt={activePhoto.alt}
+                fill
+                sizes="min(1024px, 100vw)"
+                className="object-contain"
+              />
+            </div>
+            <div className="flex h-20 items-start justify-between gap-4 overflow-hidden px-5 py-4 text-sm text-ink/75 dark:text-paper/75">
+              <p className="line-clamp-2">{activePhoto.caption}</p>
               {hasCarousel ? (
                 <p className="shrink-0 text-ink/50 dark:text-paper/50">
                   {active ? active.index + 1 : 0} / {active ? active.photos.length : 0}
