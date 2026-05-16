@@ -147,13 +147,13 @@ export const englishContent: MemorialContent = {
       'Though he is no longer with us, his love and values continue to guide us. We miss him deeply and will always remember him as a caring, sincere, and humble human being.'
     ],
     values: ['Kindness', 'Integrity', 'Family', 'Service', 'Resilience', 'Faith'],
-    familyMessage: 'We remember him in everyday gestures: a patient word, a thoughtful call, a shared meal, a lesson passed on without ceremony. His love remains part of our home.'
+    familyMessage: 'We remember him in everyday gestures: a patient word, a thoughtful call, a shared meal, and a lesson passed on without ceremony. His love remains forever woven into our home and hearts. With the blessed assurance that we shall see him face to face at the second coming of Jesus Christ, we continue this earthly race with faith and hope…'
   },
   timeline: [
     {
       year: '1955',
       title: 'A Life Begins',
-      description: 'Born into a loving family to Mr. John Palanimuthu and Mrs. Annal, alongside his beloved siblings Mrs. Jansi, Mr. Johnson Chandrasekar and Mr. Immunuel Jeyaprakash, he grew up rooted in Christ, nurtured in faith, and surrounded by stories, warmth, and the loving care that shaped his earliest years.',
+      description: 'Born into a loving family to Mr. John Palanimuthu and Mrs. Annal, alongside his beloved siblings Mrs. Kamala Jansi Rani, Mr. Johnson Chandrasekar and Mr. Immunuel Jeyaprakash, he grew up rooted in Christ, nurtured in faith, and surrounded by stories, warmth, and the loving care that shaped his earliest years.',
       icon: Sparkles
     },
     {
@@ -177,7 +177,7 @@ export const englishContent: MemorialContent = {
     {
       year: '2018',
       title: 'Leading Others',
-      description: 'Became a mentor and trusted voice for relatives, colleagues, neighbors, and younger generations.',
+      description: 'As the Registrar of the C.S.I. Madurai–Ramanad Diocese (2018-2021), he faithfully carried out his ministry in a way that proclaimed the glory of the Lord. During his time as Registrar and even afterward, he helped many people in need through the Diocese by providing financial assistance and support. During the time of the COVID pandemic, he spent from his own resources to provide rice and groceries to people in villages. Through the Diocese, he identified those in need and continued to extend whatever help he could. Whoever called him on the phone would always receive a proper response from him. He was a man who would guide and support people until their needs were fulfilled.',
       icon: Users
     },
     {
@@ -249,6 +249,12 @@ export const englishContent: MemorialContent = {
     },
      {
       src: '/images/memories/memories-10.jpg',
+      alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
+      album: 'Memories',
+      caption: ''
+    },
+      {
+      src: '/images/memories/memories-11.jpg',
       alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
       album: 'Memories',
       caption: ''
