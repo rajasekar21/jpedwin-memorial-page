@@ -1,8 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowDown, CalendarDays, Feather, Heart, Mail, MapPin, QrCode, ShieldCheck } from 'lucide-react';
-import { RsvpForm } from '@/components/rsvp-form';
+import { ArrowDown, Feather, Heart, Mail, QrCode, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { defaultLanguage, memorialContent, type Language } from '@/data/memorial';
 import { GallerySupabase } from '@/components/gallery-supabase';
@@ -192,30 +191,6 @@ export function HomePage({ jsonLd }: HomePageProps) {
       <Section id="family" eyebrow={content.sections.family.eyebrow} title={content.sections.family.title}>
         <div className="rounded-lg border border-ink/10 bg-white/65 p-8 shadow-soft dark:border-white/10 dark:bg-white/5">
           <p className="font-serif text-2xl leading-10 text-ink/80 dark:text-paper/80">{memorialProfile.familyMessage}</p>
-        </div>
-      </Section>
-
-      <Section id="events" eyebrow={content.sections.events.eyebrow} title={content.sections.events.title} className="lavender-floral-bg dark:bg-white/[0.03]">
-        <div className="grid gap-5 md:grid-cols-2">
-          {content.events.map((event) => (
-            <article key={event.title} className="rounded-lg border border-ink/10 bg-paper p-6 shadow-soft dark:border-white/10 dark:bg-twilight">
-              <CalendarDays aria-hidden className="mb-4 h-6 w-6 text-clay dark:text-gold" />
-              <h3 className="font-serif text-xl">{event.title}</h3>
-              <p className="mt-3 flex items-center gap-2 text-sm text-ink/65 dark:text-paper/65">
-                <MapPin aria-hidden className="h-4 w-4" />
-                {event.location}
-              </p>
-              <p className="mt-1 text-sm text-ink/65 dark:text-paper/65">{event.date}</p>
-              <p className="mt-4 leading-7 text-ink/70 dark:text-paper/70">{event.details}</p>
-              {event.location !== 'Online' && event.location !== 'ஆன்லைன்' && (
-                <RsvpForm
-                  eventTitle={event.title}
-                  labels={content.rsvp}
-                  contactEmail={process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'sweetlinepriya.edwin@gmail.com'}
-                />
-              )}
-            </article>
-          ))}
         </div>
       </Section>
 

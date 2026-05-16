@@ -16,8 +16,7 @@ export const englishContent: MemorialContent = {
       { label: 'Timeline', href: '#timeline' },
       { label: 'Gallery', href: '#gallery' },
       { label: 'Tributes', href: '#tributes' },
-      { label: 'Family', href: '#family' },
-      { label: 'Events', href: '#events' }
+      { label: 'Family', href: '#family' }
     ]
   },
   hero: {
@@ -141,7 +140,7 @@ export const englishContent: MemorialContent = {
     ],
     shortDedication: 'Dedicated by family and friends to preserve his kindness, wisdom, and enduring presence.',
     biography: [
-      'My father Mr. J. P. Edwin Chelliah was born in the year 1955. He was the heart of our family, a man whose presence brought comfort and strength to all of us. He was deeply caring and always placed the needs of his loved ones before his own. His love was expressed through patience, understanding, and constant support in every stage of our lives.',
+      'My father Mr. J. P. Edwin Chelliah was born in the year 1955. He was a man of unwavering faith, who trusted God in every season of life and reflected Christ’s love through his humility, prayer, and kindness. He was the heart of our family, a man whose presence brought comfort and strength to all of us. He was deeply caring and always placed the needs of his loved ones before his own. His love was expressed through patience, understanding, and constant support in every stage of our lives.',
       'One of his most remarkable qualities was his simplicity. He lived a humble and contented life, never seeking attention or material wealth. He believed in simple living and meaningful values, and his actions reflected this every day.',
       'He was also sincere and dedicated in his work. Being an officer in Canara Bank, he carried out his responsibilities with honesty and a strong sense of duty, earning the respect of everyone around him. For him, true success meant doing one\'s work with integrity.',
       'Beyond family and work, he was always ready to help others. His kindness, generosity, and willingness to support those in need touched many lives. Anyone in need did not hesitate to approach him at any time for their needs.',
@@ -204,7 +203,7 @@ export const englishContent: MemorialContent = {
       src: '/images/memories/memories-2.jpg',
       alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
       album: 'Memories',
-      caption: 'Memories and the comfort of being together'
+      caption: ''
     },
      {
       src: '/images/memories/memories-3.jpg',
@@ -216,7 +215,7 @@ export const englishContent: MemorialContent = {
       src: '/images/memories/memories-4.jpg',
       alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
       album: 'Memories',
-      caption: 'Memories and the comfort of being together'
+      caption: ''
     },
      {
       src: '/images/memories/memories-5.jpg',
@@ -228,7 +227,7 @@ export const englishContent: MemorialContent = {
       src: '/images/memories/memories-6.jpg',
       alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
       album: 'Memories',
-      caption: 'Memories and the comfort of being together'
+      caption: ''
     },
      {
       src: '/images/memories/memories-7.jpg',
@@ -240,7 +239,7 @@ export const englishContent: MemorialContent = {
       src: '/images/memories/memories-8.jpg',
       alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
       album: 'Memories',
-      caption: 'Memories and the comfort of being together'
+      caption: ''
     },
      {
       src: '/images/memories/memories-9.jpg',
@@ -252,133 +251,133 @@ export const englishContent: MemorialContent = {
       src: '/images/memories/memories-10.jpg',
       alt: 'J.P. Edwin Chelliah remembered through meaningful life moments',
       album: 'Memories',
-      caption: 'Memories and the comfort of being together'
+      caption: ''
     },
     {
       src: '/images/recent/recent-1.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-2.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-3.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
     {
       src: '/images/recent/recent-4.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-5.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-6.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
     {
       src: '/images/recent/recent-7.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-8.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-9.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
     {
       src: '/images/recent/recent-10.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-11.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-12.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
     {
       src: '/images/recent/recent-13.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-14.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
      {
       src: '/images/recent/recent-15.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
     {
       src: '/images/recent/recent-16.jpg',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
-      caption: 'Recent photographs and remembrance moments'
+      caption: ''
     },
     {
       src: '/images/retirement/retirement-1.jpg',
       alt: 'J.P. Edwin Chelliah during retirement and later years',
       album: 'Retirement',
-      caption: 'Retirement years and cherished later moments'
+      caption: ''
     },
      {
       src: '/images/retirement/retirement-2.jpg',
       alt: 'J.P. Edwin Chelliah during retirement and later years',
       album: 'Retirement',
-      caption: 'Retirement years and cherished later moments'
+      caption: ''
     },
      {
       src: '/images/retirement/retirement-3.jpg',
       alt: 'J.P. Edwin Chelliah during retirement and later years',
       album: 'Retirement',
-      caption: 'Retirement years and cherished later moments'
+      caption: ''
     },
     {
       src: '/images/mentor/mentor-1.jpg',
       alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
       album: 'Mentor',
-      caption: 'Guidance, encouragement, and the lives he shaped'
+      caption: ''
     },
        {
       src: '/images/mentor/mentor-2.jpg',
       alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
       album: 'Mentor',
-      caption: 'Guidance, encouragement, and the lives he shaped'
+      caption: ''
     }
   ],
   tributes: [
