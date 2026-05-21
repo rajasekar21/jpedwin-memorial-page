@@ -104,6 +104,29 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
     return () => { document.body.style.overflow = ''; };
   }, [active]);
 
+  // Warm the browser cache for adjacent lightbox photos so arrow navigation feels instant.
+  useEffect(() => {
+    if (!active || active.photos.length <= 1) return;
+
+    const adjacentPhotos = [
+      active.photos[active.index === 0 ? active.photos.length - 1 : active.index - 1],
+      active.photos[active.index === active.photos.length - 1 ? 0 : active.index + 1]
+    ];
+
+    const preloads = adjacentPhotos.map((photo) => {
+      const image = new window.Image();
+      image.decoding = 'async';
+      image.src = withBasePath(photo.src);
+      return image;
+    });
+
+    return () => {
+      preloads.forEach((image) => {
+        image.src = '';
+      });
+    };
+  }, [active]);
+
   // Trap Tab/Shift+Tab within modal; close on Escape
   function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
     if (e.key === 'Escape') {
