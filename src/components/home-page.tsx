@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { ArrowDown, Feather, Heart, Mail, QrCode, ShieldCheck } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { defaultLanguage, memorialContent, type Language } from '@/data/memorial';
 import { GallerySupabase } from '@/components/gallery-supabase';
 import { MemoryForm } from '@/components/memory-form';
@@ -17,10 +17,67 @@ type HomePageProps = {
   jsonLd: object[];
 };
 
+type TimelineDescriptionProps = {
+  children: string;
+  readMoreLabel: string;
+  showLessLabel: string;
+};
+
+function TimelineDescription({ children, readMoreLabel, showLessLabel }: TimelineDescriptionProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [canExpand, setCanExpand] = useState(false);
+  const contentRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const element = contentRef.current;
+    if (!element) return;
+
+    const updateOverflow = () => {
+      setCanExpand(element.scrollHeight > 128 + 1);
+    };
+
+    updateOverflow();
+
+    const observer = new ResizeObserver(updateOverflow);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [children, isExpanded]);
+
+  return (
+    <div className="mt-3">
+      <div className="relative">
+        <p
+          ref={contentRef}
+          className={`text-sm leading-6 text-ink/65 dark:text-paper/65 ${
+            isExpanded ? '' : 'max-h-32 overflow-hidden'
+          }`}
+        >
+          {children}
+        </p>
+        {canExpand && !isExpanded ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-paper to-paper/0 dark:from-twilight dark:to-twilight/0" />
+        ) : null}
+      </div>
+      {canExpand ? (
+        <button
+          type="button"
+          className="mt-3 text-sm font-semibold text-clay underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 dark:text-gold dark:focus-visible:ring-gold/40"
+          onClick={() => setIsExpanded((current) => !current)}
+        >
+          {isExpanded ? showLessLabel : readMoreLabel}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 export function HomePage({ jsonLd }: HomePageProps) {
   const [language, setLanguage] = useState<Language>(defaultLanguage);
   const content = memorialContent[language];
   const { memorialProfile } = content;
+  const timelineReadMoreLabel = language === 'ta' ? 'மேலும் படிக்க' : 'Read more';
+  const timelineShowLessLabel = language === 'ta' ? 'குறைவாக காட்டு' : 'Show less';
 
   useEffect(() => {
     document.documentElement.lang = language === 'ta' ? 'ta' : 'en';
@@ -155,17 +212,19 @@ export function HomePage({ jsonLd }: HomePageProps) {
             const Icon = event.icon;
             return (
               <FadeIn key={event.title} delay={index * 0.04}>
-                <article className="h-full rounded-lg border border-ink/10 bg-paper p-5 shadow-soft dark:border-white/10 dark:bg-twilight">
-                  <div className="mb-5 flex items-center justify-between gap-4">
-                    <span className="font-serif text-3xl text-clay dark:text-gold">{event.year}</span>
-                    <Icon aria-hidden className="h-6 w-6 text-cedar dark:text-gold" />
-                  </div>
-                  <h3 className="font-serif text-xl">{event.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-ink/65 dark:text-paper/65">{event.description}</p>
-                </article>
-              </FadeIn>
-            );
-          })}
+                  <article className="flex min-h-[22rem] flex-col rounded-lg border border-ink/10 bg-paper p-5 shadow-soft dark:border-white/10 dark:bg-twilight">
+                    <div className="mb-5 flex items-center justify-between gap-4">
+                      <span className="font-serif text-3xl text-clay dark:text-gold">{event.year}</span>
+                      <Icon aria-hidden className="h-6 w-6 text-cedar dark:text-gold" />
+                    </div>
+                    <h3 className="font-serif text-xl">{event.title}</h3>
+                    <TimelineDescription readMoreLabel={timelineReadMoreLabel} showLessLabel={timelineShowLessLabel}>
+                      {event.description}
+                    </TimelineDescription>
+                  </article>
+                </FadeIn>
+              );
+            })}
         </div>
       </Section>
 

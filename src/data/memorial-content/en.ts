@@ -185,8 +185,8 @@ export const englishContent: MemorialContent = {
     },
     {
       year: 'June 2025',
-      title: 'A Continuing Legacy',
-      description: 'He passed on 6 June 2025. His memory continues through stories, photographs, values, and the many lives shaped by his presence.',
+      title: 'Mentoring & Legacy',
+      description: 'He assumed charge as the Correspondent of C.S.I. Higher Secondary School, Batlagundu, in 2018. With great enthusiasm and dedication, he actively participated in all school-related activities. His foremost concern was always the welfare of the staff members and students. During his tenure, he introduced several significant developments to the school, including improving the overall standards of the institution, constructing new buildings, upgrading the high school into a Higher Secondary School, and establishing a new computer laboratory. Because of his hard work and dedicated efforts, the school also received recognition as an examination centre for conducting public examinations. Until his final days, his constant vision and concern were to develop the school into a high-quality educational institution. On 3rd June 2025, after realizing that his health condition was deteriorating, he resigned from his responsibilities. He passed on 6 June 2025. His memory continues through stories, photographs, values, and the many lives shaped by his presence.',
       icon: Heart
     }
   ],
@@ -269,131 +269,198 @@ export const englishContent: MemorialContent = {
       caption: ''
     },
      {
-      src: '/images/recent/recent-2.jpg',
+      src: '/images/recent/recent-2.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-3.jpg',
+      src: '/images/recent/recent-3.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
     {
-      src: '/images/recent/recent-4.jpg',
+      src: '/images/recent/recent-4.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-5.jpg',
+      src: '/images/recent/recent-5.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-6.jpg',
+      src: '/images/recent/recent-6.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
     {
-      src: '/images/recent/recent-7.jpg',
+      src: '/images/recent/recent-7.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-8.jpg',
+      src: '/images/recent/recent-8.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-9.jpg',
+      src: '/images/recent/recent-9.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
     {
-      src: '/images/recent/recent-10.jpg',
+      src: '/images/recent/recent-10.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-11.jpg',
+      src: '/images/recent/recent-11.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-12.jpg',
+      src: '/images/recent/recent-12.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
     {
-      src: '/images/recent/recent-13.jpg',
+      src: '/images/recent/recent-13.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-14.jpg',
+      src: '/images/recent/recent-14.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
      {
-      src: '/images/recent/recent-15.jpg',
+      src: '/images/recent/recent-15.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
     {
-      src: '/images/recent/recent-16.jpg',
+      src: '/images/recent/recent-16.webp',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: ''
+    },
+     {
+      src: '/images/recent/recent-17.webp',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: ''
+    },
+     {
+      src: '/images/recent/recent-18.webp',
+      alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
+      album: 'Recent',
+      caption: ''
+    },
+        {
+      src: '/images/recent/recent-19.webp',
       alt: 'Recent photographs and remembrance moments of J.P. Edwin Chelliah',
       album: 'Recent',
       caption: ''
     },
     {
-      src: '/images/retirement/retirement-1.jpg',
+      src: '/images/retirement/retirement-1.webp',
       alt: 'J.P. Edwin Chelliah during retirement and later years',
       album: 'Retirement',
       caption: ''
     },
      {
-      src: '/images/retirement/retirement-2.jpg',
+      src: '/images/retirement/retirement-2.webp',
       alt: 'J.P. Edwin Chelliah during retirement and later years',
       album: 'Retirement',
       caption: ''
     },
      {
-      src: '/images/retirement/retirement-3.jpg',
+      src: '/images/retirement/retirement-3.webp',
       alt: 'J.P. Edwin Chelliah during retirement and later years',
       album: 'Retirement',
       caption: ''
     },
     {
-      src: '/images/mentor/mentor-1.jpg',
+      src: '/images/mentor/mentor-1.webp',
       alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
       album: 'Mentor',
       caption: ''
     },
        {
-      src: '/images/mentor/mentor-2.jpg',
+      src: '/images/mentor/mentor-2.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+     {
+      src: '/images/mentor/mentor-3.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+     {
+      src: '/images/mentor/mentor-4.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+     {
+      src: '/images/mentor/mentor-5.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+     {
+      src: '/images/mentor/mentor-6.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+     {
+      src: '/images/mentor/mentor-7.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+    {
+      src: '/images/mentor/mentor-8.webp',
       alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
       album: 'Mentor',
       caption: ''
     }
+    
   ],
   tributes: [
     {
       name: 'J.P. Johnson Chandrasekar',
       relationship: 'Elder Brother',
       message: 'எனது தம்பி "செல்லப்பா" என அழைக்கப்படும் திரு.J.P எட்வின் செல்லையா அவர்களைப் பற்றி அவரது மூத்த சகோதரன் ஜான்ஸனின் நினைவலைகள். எனக்கும் அவருக்கும் வயது வித்தியாசம் 2.5 ஆண்டுகள், ஆனால் எண்ணங்களிலும் செயல்பாடுகளிலும் வித்தியாசம் 2.5% -க்கும் குறைவே!     முதலாவது அவரிடம் காணப்பட்ட பண்பு இறை பக்தி. சிறுவயதிலேயே ஆலயத்திலும் குடும்ப ஜெபவேளையில் அம்மா, அப்பா, அக்காள்.கமலா ஜான்ஸி ராணி, தம்பி. இம்மானுவேல் ஜெயப்பிரகாஷ் உடன் உரத்த குரலில் பாடி கர்த்தரைத் துதித்தது குறிப்படத்தக்கது. பெற்றோருக்கும், பெரியவர்களுக்கும், அவர் பாராட்டின மரியாதை, அரவணைப்பு, அன்பு அளவிடற்கரியது. கர்த்தருடைய கிருபையால் அவர்களது அறிவுறை, வழிகாட்டுதல்களைப் பெற்றும், தனது விருப்பங்கள், ஆலோசனைகள் தந்தும் வந்தார். சிறு வயது முதல் நண்பர்களிடம் நல் உறவு, விளையாட்டுகளில் ஆர்வம் அதிகம். சிறுவயதில் தூரத்திலிருந்த  நண்பன் "காமனன்" வீட்டு விசேஷத்திற்கு சென்றுவிட்டு  [எல்லோரும் பதறி தேடிக்கொண்டிருந்த போது] தாமதமாக வீட்டிற்கு வந்தது நினைவிற்கு வருகிறது. பின்நாட்களில் படிப்பிலும் கடின உழைப்பிலும் நற்குணங்களில் சிறந்த வாழ்க்கையை தொடர்ந்தார். பிறருக்கும் கர்த்தர் அருளிய தனது திறமை  மற்றும் ஆசீர்வாதங்களை பகிர்ந்து மகிழ்ந்தவர். ஆலய  சமுதாய காரியங்களில் குறிப்பாக சி.எஸ்.ஐ. மதுரை ராம்நாட் பேராயத்தில் பதிவாளராகவும் சி.எஸ்.ஐ. மேல்நிலைப் பள்ளியின் தாளாளராகவும் ஆலய பொருப்பாளர்களில் ஒருவராகவும் அனைவராலும்  பாராட்டும்படியாக செயல்பட்டவர். ஆலய குருமார்கள்,  மூப்பர்கள், மற்றும் குடும்ப மூத்த உறுப்பினர்களைக் கெளரவிப்பதிலும் முன்மாதிரியாக திகழ்ந்தார்.  தனது  விளையாட்டு ஆர்வத்தை பின்னாட்களில் எங்களது ஊர்  நிலக்கோட்டையில் நடைபெறும் தேசிய, மாநில அளவு கால்பந்து போட்டிகள் நடத்துவதில் தன்னை இணைத்துக்கொண்டதும், பிள்ளைகள் ஏஞ்சலின் குணவதி, ஸ்வீட்லின் பிரியா இருவரையும்  விளையாட்டில் ஆர்வம் காட்ட ஊக்கமளித்ததும், படிப்பிலும், நற்குணத்திலும் சிறந்துவிளங்கவும், அவர்களுக்கு நல்ல வாழ்க்கையை தனது துணைவியார் திருமதி .குணசீலி செல்வராணி அவர்களோடு சேர்ந்து   அமைத்துக் கொடுத்ததும் விஷேசமானவைகளாகும். எந்தக் காரியத்தையும் கவனமாக, நிதானத்தோடு செய்வது முடித்தவர்.  கபடமில்லாமல், எதையும் ஒதுக்காமல் சாப்பிடுவது. அம்மா சொல்வார்கள் "செல்லும், செல்லாததும் செட்டியாரிடம் செல்லும்"  என்று. அதாவது செல்லாது என மற்றவர்கள் வாங்க மறுக்கும் ரூபாய் நோட்டு செட்டியாரிடம் [வட்டிக்குக் கடனளிடப்பவர்] செல்லுபடியாகும். அதேபோல "வல்லவனுக்குப் புல்லும் ஆயுதம்" எனக் கூறுவார்கள். அதாவது சிறிய ஸ்லேட்டுக் குச்சியை கொண்டு எழுதி நல்ல மதிப்பெண்கள் பெற்று வருவதை பாராட்டுவார்கள். [சில நேரங்களில் அவரது ஸ்லேட்டுக் குச்சியை இரண்டாக உடைத்து இல்லாத பையனுக்கு அம்மா கொடுப்பார்கள்] . தான் மட்டுமல்ல மற்றவர்ளும் படிக்க கற்றுக்கொடுத்து  ஊக்கப்படுத்துவது, பணி செய்யும் போது அர்ப்பணிப்போடு,  உண்மையாகவும், வேலைகளை நிறைவேற்றி, சக பணியாளர்களுக்கும் தகுந்த ஆலோசனைகளை கொடுப்பது , [ அதனால் தானோ அவருக்கு படுத்தவுடன் கண்ணயர்ந்து தூக்கம் வந்ததோ!] பணி மூப்பிற்குப் பிறகும் தொய்வில்லாமல் கர்த்தருடைய கிருபையால் நிறைவாக பணிகளை சிறப்பாக செய்து இப்போது  நித்திய இளைப்பாறுதலுக்குள் உள்ளார் என்பதால் கர்த்தரை ஸ்தோத்திரிக்கிறேன். அவரது உலகப்பிரகாரமான பிரிவு குடும்பத்தார், உறவினர், மற்றும் பழகிய அனைத்து தரப்பட்டவர்களுக்கும் பேரிழப்பாகும். அவரது உலக பரிபூரண வாழ்க்கைக்காக கர்த்தருக்கு ஸ்தோத்திரம். அவர் விட்டுச் சென்றவர்கள் அவரது பணிகளை  தொடர்ந்து செய்ய பிரார்த்திக்கிறேன்.',
+      date: 'May 2026'
+    },
+     {
+      name: 'Dr. S. Jeyakumar',
+      relationship: 'Brother-in-law',
+      message: ['We remember Edwin, a humble and God fearing soul who lived a life of simplicity, kindness and quiet sacrifice. In a world full of noise, his quiet strength shines like a gentle light. He helped many people generously without seeking any praise or return, always lending a helping hand with a warm heart. Though he carried his own sufferings silently, he never allowed his pain to stop him from caring for others. He reflected the love and compassion of God through simple acts of goodness, humility and prayers. He walked in faith, remained calm even in difficult times and touched many hearts without making his deeds known.',
+      'The Bible says:',
+      '"When you give to the needy, do not let your left hand know what your right hand is doing." (Mathew 25:23)',
+      '"The righteous will be remembered for ever." (Psalm 112:6)',
+      '"Well done, good and faithful servant enter into the joy of your Lord." (Mathew 6:3)',
+      'We pray that Lord grants him eternal rest and welcomes him into His heavenly kingdom where there is no pain, sorrow or suffering. May his soul rest in peace in the loving presence of God. We thank God for his beautiful example of faith and kindness, he left behind.',
+      ],
       date: 'May 2026'
     },
     {
