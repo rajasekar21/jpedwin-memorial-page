@@ -457,6 +457,12 @@ export const tamilContent: MemorialContent = {
             alt: "வழிகாட்டியாகவும் ஆசானாகவும் நினைவுகூரப்படும் ஜா. ப. எட்வின் செல்லையா",
             album: 'Mentor',
             caption: ''
+        },
+        {
+            src: '/images/mentor/mentor-9.webp',
+            alt: "வழிகாட்டியாகவும் ஆசானாகவும் நினைவுகூரப்படும் ஜா. ப. எட்வின் செல்லையா",
+            album: 'Mentor',
+            caption: ''
         }
     ],
     tributes: [
