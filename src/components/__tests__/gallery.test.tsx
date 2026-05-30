@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { Gallery } from '../gallery';
+import { defaultContent } from '@/data/memorial';
 
 // next/image stub
 jest.mock('next/image', () => ({
@@ -93,5 +94,26 @@ describe('Gallery', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /Previous photo/i }));
     expect(within(screen.getByRole('dialog')).getByAltText('First family photo')).toBeInTheDocument();
+  });
+
+  it('uses localized album names and photo counts', () => {
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'First photo', album: 'Memories', caption: '' },
+          { src: '/two.jpg', alt: 'Second photo', album: 'Memories', caption: '' },
+        ]}
+        labels={{
+          ...defaultContent.gallery,
+          all: 'அனைத்தும்',
+          viewPhoto: 'புகைப்படத்தை பார்க்க',
+          photoCount: 'புகைப்படங்கள்',
+          albumNames: { Memories: 'நினைவுகள்' },
+        }}
+      />
+    );
+
+    expect(screen.getByRole('button', { name: 'புகைப்படத்தை பார்க்க: நினைவுகள்' })).toHaveTextContent('நினைவுகள்');
+    expect(screen.getByText('2 புகைப்படங்கள்')).toBeInTheDocument();
   });
 });
