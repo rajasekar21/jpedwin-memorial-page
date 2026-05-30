@@ -57,6 +57,8 @@ export type MemorialContent = {
     viewPhoto: string;
     dialogLabel: string;
     closePreview: string;
+    photoCount: string;
+    albumNames?: Record<string, string>;
     previousPhoto?: string;
     nextPhoto?: string;
   };

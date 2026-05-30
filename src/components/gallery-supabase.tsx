@@ -21,11 +21,12 @@ type DbPhoto = {
 
 /** Fetches approved gallery photos from Supabase and falls back to static content. */
 export function GallerySupabase({ fallbackPhotos, labels }: Props) {
-  const [photos, setPhotos] = useState<GalleryPhoto[]>(fallbackPhotos);
+  const [photos, setPhotos] = useState<GalleryPhoto[] | null>(null);
 
   useEffect(() => {
     if (!isSupabaseConfigured || !supabase) return;
     const client = supabase;
+    let cancelled = false;
 
     client
       .from('gallery_photos')
@@ -51,9 +52,13 @@ export function GallerySupabase({ fallbackPhotos, labels }: Props) {
         );
 
         const valid = withUrls.filter((p): p is GalleryPhoto => p !== null);
-        if (valid.length > 0) setPhotos(valid);
+        if (!cancelled && valid.length > 0) setPhotos(valid);
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  return <Gallery photos={photos} labels={labels} />;
+  return <Gallery photos={photos ?? fallbackPhotos} labels={labels} />;
 }

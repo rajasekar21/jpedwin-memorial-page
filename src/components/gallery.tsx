@@ -34,6 +34,7 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
   const hasCarousel = active ? active.photos.length > 1 : false;
   const previousPhotoLabel = labels.previousPhoto ?? 'Previous photo';
   const nextPhotoLabel = labels.nextPhoto ?? 'Next photo';
+  const displayAlbumName = (name: string) => labels.albumNames?.[name] ?? name;
 
   // Refs for focus management
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -187,7 +188,7 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
                 : 'border-ink/10 bg-white/50 text-ink hover:border-clay dark:border-white/10 dark:bg-white/5 dark:text-paper'
             }`}
           >
-            {item}
+            {item === labels.all ? item : displayAlbumName(item)}
           </button>
         ))}
       </div>
@@ -199,7 +200,7 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
             key={group.name}
             type="button"
             onClick={(e) => openModal(group, e.currentTarget)}
-            aria-label={`${labels.viewPhoto}: ${group.name}`}
+            aria-label={`${labels.viewPhoto}: ${displayAlbumName(group.name)}`}
             className="flex h-full w-full flex-col overflow-hidden rounded-lg border border-ink/10 bg-white text-left shadow-soft transition hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gold dark:border-white/10 dark:bg-white/5"
           >
             <span className="relative block aspect-[4/3] w-full overflow-hidden bg-linen dark:bg-white/10">
@@ -213,8 +214,8 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
               />
             </span>
             <span className="block h-20 px-4 py-4 text-sm text-ink/75 dark:text-paper/75">
-              <span className="block font-medium text-ink dark:text-paper">{group.name}</span>
-              <span className="line-clamp-2 block">{group.photos.length === 1 ? group.cover.caption : `${group.photos.length} photos`}</span>
+              <span className="block font-medium text-ink dark:text-paper">{displayAlbumName(group.name)}</span>
+              <span className="line-clamp-2 block">{group.photos.length === 1 ? group.cover.caption : `${group.photos.length} ${labels.photoCount}`}</span>
             </span>
           </button>
         ))}

@@ -44,7 +44,10 @@ export const englishContent: MemorialContent = {
     ariaLabel: 'Photo albums',
     viewPhoto: 'View photo',
     dialogLabel: 'Photo',
-    closePreview: 'Close photo preview'
+    closePreview: 'Close photo preview',
+    photoCount: 'photos',
+    previousPhoto: 'Previous photo',
+    nextPhoto: 'Next photo'
   },
   form: {
     honeypotSuccess: 'Your memory has been received. Thank you.',
