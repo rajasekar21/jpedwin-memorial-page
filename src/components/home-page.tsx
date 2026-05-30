@@ -86,7 +86,7 @@ function BiographyDescription({ paragraphs, readMoreLabel, showLessLabel }: Biog
       <div className="relative rounded-lg border border-ink/10 bg-white/45 p-5 shadow-soft dark:border-white/10 dark:bg-white/5">
         <div
           className={`space-y-5 text-lg leading-8 text-ink/75 dark:text-paper/75 ${
-            isExpanded ? 'max-h-[36rem] overflow-y-auto pr-3' : 'max-h-96 overflow-hidden'
+            isExpanded ? '' : 'max-h-96 overflow-hidden'
           }`}
         >
           {paragraphs.map((paragraph) => (
