@@ -150,6 +150,12 @@ export const englishContent: MemorialContent = {
       'He was a dedicated and an active member of C.S.I. Christ Church, Visuvasapuri, Madurai, known for his commitment, punctuality, and warm fellowship with everyone in the congregation. He faithfully participated in church activities and maintained cordial relationships with all members of the church community.',
        'He was also generous in supporting causes related to God’s ministry and the church. In particular, he contributed wholeheartedly toward church construction projects and initiatives aimed at helping the poor and the needy through the church. His spirit of service, generosity, and compassion left a lasting impact on many lives.',
       'Beyond family, work, and church, he was always ready to help anyone in need. His kindness, generosity, and willingness to support those in need touched many lives. He was always approachable to those who sought help, guidance, or encouragement.',
+      'The Bible says',
+      '"Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done." — Proverbs 19:17',
+      '"Show proper respect to everyone, love the family of believers, fear God, honor the emperor." — 1 Peter 2:17',
+      '"Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know that you will receive an inheritance from the Lord as a reward." — Colossians 3:23–24',
+      '"Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you." — Ephesians 4:32',
+      'My father was a man who lived according to the Scriptures, showing kindness, compassion, and grace to everyone he met."',  
       'Though he is no longer with us, his love and values continue to guide us. We miss him deeply and will always remember him as a caring, sincere, and humble human being.'
     ],
     values: ['Kindness', 'Integrity', 'Family', 'Service', 'Resilience', 'Faith'],
@@ -441,6 +447,12 @@ export const englishContent: MemorialContent = {
     },
     {
       src: '/images/mentor/mentor-8.webp',
+      alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
+      album: 'Mentor',
+      caption: ''
+    },
+    {
+      src: '/images/mentor/mentor-9.webp',
       alt: 'J.P. Edwin Chelliah remembered as a mentor and guide',
       album: 'Mentor',
       caption: ''
