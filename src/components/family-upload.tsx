@@ -62,13 +62,15 @@ export function FamilyUpload({ language = 'en' }: Props) {
       const id = setTimeout(() => { setIsFamilyMember(false); setMemberCheckDone(true); }, 0);
       return () => clearTimeout(id);
     }
-    setMemberCheckDone(false);
+    const resetId = setTimeout(() => setMemberCheckDone(false), 0);
+    let cancelled = false;
     supabase
       .from('family_members')
       .select('user_id')
       .eq('user_id', user.id)
       .maybeSingle()
       .then(({ data, error }) => {
+        if (cancelled) return;
         if (error) {
           // Table missing or RLS error — surface setup problem rather than "not authorised"
           setSetupError(true);
@@ -79,6 +81,7 @@ export function FamilyUpload({ language = 'en' }: Props) {
         }
         setMemberCheckDone(true);
       });
+    return () => { cancelled = true; clearTimeout(resetId); };
   }, [user]);
 
   // Load this user's own submissions with signed URLs

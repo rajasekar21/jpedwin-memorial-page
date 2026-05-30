@@ -124,6 +124,8 @@ export type MemorialContent = {
   tributeLabels: {
     photoOf: string;
     dateLocale: string;
+    readMore: string;
+    showLess: string;
   };
   rsvp: {
     formTitle: string;
