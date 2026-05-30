@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { defaultContent, type GalleryPhoto, type MemorialContent } from '@/data/memorial';
 import { withBasePath } from '@/lib/site';
 
 const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+const SLIDESHOW_INTERVAL_MS = 5000;
 
 type GalleryProps = {
   photos?: GalleryPhoto[];
@@ -29,11 +30,14 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
   const albums = useMemo(() => [labels.all, ...Array.from(new Set(contentPhotos.map((p) => p.album)))], [labels.all, contentPhotos]);
   const [album, setAlbum] = useState(labels.all);
   const [active, setActive] = useState<ActiveAlbum | null>(null);
+  const [isSlideshowPlaying, setIsSlideshowPlaying] = useState(true);
   const activeAlbum = albums.includes(album) ? album : labels.all;
   const activePhoto = active ? active.photos[active.index] : null;
   const hasCarousel = active ? active.photos.length > 1 : false;
   const previousPhotoLabel = labels.previousPhoto ?? 'Previous photo';
   const nextPhotoLabel = labels.nextPhoto ?? 'Next photo';
+  const pauseSlideshowLabel = labels.pauseSlideshow ?? 'Pause slideshow';
+  const playSlideshowLabel = labels.playSlideshow ?? 'Play slideshow';
   const displayAlbumName = (name: string) => labels.albumNames?.[name] ?? name;
 
   // Refs for focus management
@@ -64,6 +68,7 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
 
   function openModal(group: GalleryAlbum, trigger: HTMLButtonElement) {
     triggerRef.current = trigger;
+    setIsSlideshowPlaying(true);
     setActive({ photos: group.photos, index: 0 });
   }
 
@@ -93,6 +98,13 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
       };
     });
   }
+
+  useEffect(() => {
+    if (!active || active.photos.length <= 1 || !isSlideshowPlaying) return;
+
+    const interval = window.setInterval(showNextPhoto, SLIDESHOW_INTERVAL_MS);
+    return () => window.clearInterval(interval);
+  }, [active, isSlideshowPlaying]);
 
   // Focus close button when modal opens; lock body scroll
   useEffect(() => {
@@ -277,9 +289,19 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
             <div className="flex h-20 items-start justify-between gap-4 overflow-hidden px-5 py-4 text-sm text-ink/75 dark:text-paper/75">
               <p className="line-clamp-2">{activePhoto.caption}</p>
               {hasCarousel ? (
-                <p className="shrink-0 text-ink/50 dark:text-paper/50">
-                  {active ? active.index + 1 : 0} / {active ? active.photos.length : 0}
-                </p>
+                <div className="flex shrink-0 items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setIsSlideshowPlaying((playing) => !playing)}
+                    aria-label={isSlideshowPlaying ? pauseSlideshowLabel : playSlideshowLabel}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-ink/15 text-ink/70 transition hover:border-clay focus:outline-none focus:ring-2 focus:ring-gold dark:border-white/20 dark:text-paper/70"
+                  >
+                    {isSlideshowPlaying ? <Pause aria-hidden className="h-4 w-4" /> : <Play aria-hidden className="h-4 w-4" />}
+                  </button>
+                  <p className="text-ink/50 dark:text-paper/50">
+                    {active ? active.index + 1 : 0} / {active ? active.photos.length : 0}
+                  </p>
+                </div>
               ) : null}
             </div>
           </div>

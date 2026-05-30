@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { act, render, screen, fireEvent, within } from '@testing-library/react';
 import { Gallery } from '../gallery';
 import { defaultContent } from '@/data/memorial';
 
@@ -94,6 +94,30 @@ describe('Gallery', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /Previous photo/i }));
     expect(within(screen.getByRole('dialog')).getByAltText('First family photo')).toBeInTheDocument();
+  });
+
+  it('automatically advances the slideshow and can be paused', () => {
+    jest.useFakeTimers();
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'First family photo', album: 'Memories', caption: 'First family photo' },
+          { src: '/two.jpg', alt: 'Second family photo', album: 'Memories', caption: 'Second family photo' },
+        ]}
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /View photo: Memories/i }));
+    expect(within(screen.getByRole('dialog')).getByAltText('First family photo')).toBeInTheDocument();
+
+    act(() => jest.advanceTimersByTime(5000));
+    expect(within(screen.getByRole('dialog')).getByAltText('Second family photo')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Pause slideshow/i }));
+    act(() => jest.advanceTimersByTime(5000));
+    expect(within(screen.getByRole('dialog')).getByAltText('Second family photo')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Play slideshow/i })).toBeInTheDocument();
+    jest.useRealTimers();
   });
 
   it('uses localized album names and photo counts', () => {
