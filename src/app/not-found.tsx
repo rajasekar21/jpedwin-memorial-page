@@ -6,7 +6,7 @@ export default function NotFound() {
       <div>
         <p className="mb-3 text-sm uppercase tracking-[0.2em] text-clay dark:text-gold">Page not found</p>
         <h1 className="font-serif text-4xl">This memory page is not available.</h1>
-        <Link href="/" className="mt-8 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper dark:bg-paper dark:text-ink">
+        <Link href="/" className="mt-8 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper focus:outline-none focus:ring-2 focus:ring-gold dark:bg-paper dark:text-ink">
           Return home
         </Link>
       </div>

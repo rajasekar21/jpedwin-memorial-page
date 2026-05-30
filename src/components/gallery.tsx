@@ -236,16 +236,17 @@ export function Gallery({ photos: contentPhotos = defaultContent.galleryPhotos, 
       {/* Lightbox modal */}
       {activePhoto && (
         <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${labels.dialogLabel}: ${activePhoto.caption}`}
           className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-4 backdrop-blur-sm"
           onClick={closeModal}
           onKeyDown={handleKeyDown}
         >
           <div
             ref={modalRef}
-            className="relative flex h-[86vh] max-h-[780px] w-full max-w-5xl flex-col overflow-hidden rounded-lg bg-paper shadow-soft dark:bg-twilight"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${labels.dialogLabel}: ${activePhoto.caption}`}
+            tabIndex={-1}
+            className="relative flex h-[86vh] max-h-[780px] w-full max-w-5xl flex-col overflow-hidden rounded-lg bg-paper shadow-soft focus:outline-none dark:bg-twilight"
             onClick={(e) => e.stopPropagation()}
           >
             <button
