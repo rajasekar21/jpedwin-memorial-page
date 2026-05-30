@@ -72,6 +72,43 @@ function TimelineDescription({ children, readMoreLabel, showLessLabel }: Timelin
   );
 }
 
+type BiographyDescriptionProps = {
+  paragraphs: string[];
+  readMoreLabel: string;
+  showLessLabel: string;
+};
+
+function BiographyDescription({ paragraphs, readMoreLabel, showLessLabel }: BiographyDescriptionProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div>
+      <div className="relative rounded-lg border border-ink/10 bg-white/45 p-5 shadow-soft dark:border-white/10 dark:bg-white/5">
+        <div
+          className={`space-y-5 text-lg leading-8 text-ink/75 dark:text-paper/75 ${
+            isExpanded ? 'max-h-[36rem] overflow-y-auto pr-3' : 'max-h-96 overflow-hidden'
+          }`}
+        >
+          {paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        {!isExpanded ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-lg bg-gradient-to-t from-paper via-paper/90 to-paper/0 dark:from-twilight dark:via-twilight/90 dark:to-twilight/0" />
+        ) : null}
+      </div>
+      <button
+        type="button"
+        className="mt-3 text-sm font-semibold text-clay underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 dark:text-gold dark:focus-visible:ring-gold/40"
+        onClick={() => setIsExpanded((current) => !current)}
+        aria-expanded={isExpanded}
+      >
+        {isExpanded ? showLessLabel : readMoreLabel}
+      </button>
+    </div>
+  );
+}
+
 export function HomePage({ jsonLd }: HomePageProps) {
   const [language, setLanguage] = useState<Language>(defaultLanguage);
   const content = memorialContent[language];
@@ -176,11 +213,11 @@ export function HomePage({ jsonLd }: HomePageProps) {
       <Section id="about" eyebrow={content.sections.about.eyebrow} title={content.sections.about.title}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <FadeIn>
-            <div className="space-y-5 text-lg leading-8 text-ink/75 dark:text-paper/75">
-              {memorialProfile.biography.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+            <BiographyDescription
+              paragraphs={memorialProfile.biography}
+              readMoreLabel={timelineReadMoreLabel}
+              showLessLabel={timelineShowLessLabel}
+            />
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="grid gap-4">
