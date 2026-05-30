@@ -61,6 +61,8 @@ export type MemorialContent = {
     albumNames?: Record<string, string>;
     previousPhoto?: string;
     nextPhoto?: string;
+    pauseSlideshow?: string;
+    playSlideshow?: string;
   };
   upload: {
     pageTitle: string;

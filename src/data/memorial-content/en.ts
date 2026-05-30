@@ -47,7 +47,9 @@ export const englishContent: MemorialContent = {
     closePreview: 'Close photo preview',
     photoCount: 'photos',
     previousPhoto: 'Previous photo',
-    nextPhoto: 'Next photo'
+    nextPhoto: 'Next photo',
+    pauseSlideshow: 'Pause slideshow',
+    playSlideshow: 'Play slideshow'
   },
   form: {
     honeypotSuccess: 'Your memory has been received. Thank you.',
