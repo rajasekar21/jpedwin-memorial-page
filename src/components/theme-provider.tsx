@@ -124,8 +124,15 @@ export function SiteHeader({ content, language, onLanguageChange }: SiteHeaderPr
     function onScroll() {
       if (isMenuOpen) setIsMenuOpen(false);
     }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape' && isMenuOpen) setIsMenuOpen(false);
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('keydown', onKeyDown);
+    };
   }, [isMenuOpen]);
 
   function closeMenu() {

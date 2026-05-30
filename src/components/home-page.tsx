@@ -121,12 +121,7 @@ export function HomePage({ jsonLd }: HomePageProps) {
   }, [language]);
 
   return (
-    <main
-      id="main-content"
-      className={`lavender-floral-bg overflow-hidden text-ink dark:bg-twilight dark:text-paper ${
-        language === 'ta' ? 'tamil-content' : ''
-      }`}
-    >
+    <>
       <a
         href="#main-content"
         className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-md bg-gold px-4 py-2 text-sm font-medium text-ink shadow-soft transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ink"
@@ -138,6 +133,13 @@ export function HomePage({ jsonLd }: HomePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <SiteHeader content={content} language={language} onLanguageChange={setLanguage} />
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`lavender-floral-bg overflow-hidden text-ink focus:outline-none dark:bg-twilight dark:text-paper ${
+          language === 'ta' ? 'tamil-content' : ''
+        }`}
+      >
 
       <section id="home" className="relative flex min-h-dvh items-center px-5 pb-14 pt-32 sm:px-8 lg:px-12">
         <div className="lavender-floral-bg absolute inset-0 -z-10 dark:bg-[radial-gradient(circle_at_25%_20%,rgba(185,134,232,0.18),transparent_32%),linear-gradient(135deg,#171225_0%,#231a38_55%,#2b315c_100%)]" />
@@ -311,5 +313,6 @@ export function HomePage({ jsonLd }: HomePageProps) {
         </div>
       </footer>
     </main>
-  );
+  </>
+);
 }

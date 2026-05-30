@@ -142,7 +142,7 @@ export function RsvpForm({ eventTitle, labels, contactEmail }: Props) {
       </div>
 
       {state === 'error' && (
-        <p className="text-sm text-clay dark:text-gold">{labels.errorMessage}</p>
+        <p className="text-sm text-red-700 dark:text-red-300">{labels.errorMessage}</p>
       )}
 
       <button
