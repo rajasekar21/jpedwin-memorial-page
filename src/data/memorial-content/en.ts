@@ -73,7 +73,9 @@ export const englishContent: MemorialContent = {
   },
   tributeLabels: {
     photoOf: 'Photo of',
-    dateLocale: 'en'
+    dateLocale: 'en',
+    readMore: 'Read more',
+    showLess: 'Show less'
   },
   upload: {
     pageTitle: 'Family Photo Upload',

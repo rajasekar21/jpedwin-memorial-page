@@ -29,6 +29,8 @@ type MemoryTributesProps = {
 
 type TributeMessageBodyProps = {
   message: TributeMessage;
+  readMoreLabel: string;
+  showLessLabel: string;
 };
 
 const memoryPhotoBucket = 'memories';
@@ -50,7 +52,7 @@ function formatDate(value: string, locale: string) {
   });
 }
 
-function TributeMessageBody({ message }: TributeMessageBodyProps) {
+function TributeMessageBody({ message, readMoreLabel, showLessLabel }: TributeMessageBodyProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [canExpand, setCanExpand] = useState(false);
@@ -101,7 +103,7 @@ function TributeMessageBody({ message }: TributeMessageBodyProps) {
           className="mt-4 text-sm font-semibold text-clay underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 dark:text-gold dark:focus-visible:ring-gold/40"
           onClick={() => setIsExpanded((current) => !current)}
         >
-          {isExpanded ? 'Show less' : 'Read more'}
+          {isExpanded ? showLessLabel : readMoreLabel}
         </button>
       ) : null}
     </div>
@@ -168,7 +170,7 @@ export function MemoryTributes({ fallbackTributes, labels = defaultContent.tribu
     <div className="grid gap-5 lg:grid-cols-3">
       {tributes.map((tribute) => (
         <article key={tribute.id} className="h-full rounded-lg border border-ink/10 bg-paper p-6 shadow-soft dark:border-white/10 dark:bg-twilight">
-          <TributeMessageBody message={tribute.message} />
+          <TributeMessageBody message={tribute.message} readMoreLabel={labels.readMore} showLessLabel={labels.showLess} />
           <div className="mt-6 flex items-center gap-3 border-t border-ink/10 pt-4 text-sm text-ink/60 dark:border-white/10 dark:text-paper/60">
             {tribute.photoUrl ? (
               <span

@@ -62,7 +62,7 @@ export function AdminPanel() {
 
   // Verify user is in admin_users table
   useEffect(() => {
-    if (!supabase || !user) { setAdminCheck('pending'); return; }
+    if (!supabase || !user) { return; }
     supabase
       .from('admin_users')
       .select('user_id')
@@ -79,11 +79,13 @@ export function AdminPanel() {
   useEffect(() => {
     if (!supabase || !user || adminCheck !== 'authorised') return;
     const client = supabase;
+    let cancelled = false;
     client
       .from('memory_posts')
       .select('id,name,relationship,message,photo_path,status,created_at')
       .order('created_at', { ascending: false })
       .then(async ({ data }) => {
+        if (cancelled) return;
         const rows = (data as MemoryPost[]) ?? [];
         const withPhotos = await Promise.all(
           rows.map(async (post) => {
@@ -94,29 +96,34 @@ export function AdminPanel() {
             return { ...post, photoUrl: signed?.signedUrl };
           })
         );
-        setPosts(withPhotos);
+        if (!cancelled) setPosts(withPhotos);
       });
-  }, [user]);
+    return () => { cancelled = true; };
+  }, [user, adminCheck]);
 
   // Load RSVPs when signed in
   useEffect(() => {
     if (!supabase || !user || adminCheck !== 'authorised') return;
+    let cancelled = false;
     supabase
       .from('rsvp_attendance')
       .select('id,event_title,name,email,guest_count,message,created_at')
       .order('created_at', { ascending: false })
-      .then(({ data }) => setRsvps((data as RsvpRow[]) ?? []));
-  }, [user]);
+      .then(({ data }) => { if (!cancelled) setRsvps((data as RsvpRow[]) ?? []); });
+    return () => { cancelled = true; };
+  }, [user, adminCheck]);
 
   // Load gallery photos when signed in
   useEffect(() => {
     if (!supabase || !user || adminCheck !== 'authorised') return;
     const client = supabase;
+    let cancelled = false;
     client
       .from('gallery_photos')
       .select('id,title,caption,album,storage_path,status,created_at')
       .order('created_at', { ascending: false })
       .then(async ({ data }) => {
+        if (cancelled) return;
         const rows = (data as GalleryPhoto[]) ?? [];
         const withUrls = await Promise.all(
           rows.map(async (photo) => {
@@ -126,9 +133,10 @@ export function AdminPanel() {
             return { ...photo, signedUrl: signed?.signedUrl };
           })
         );
-        setGalleryPhotos(withUrls);
+        if (!cancelled) setGalleryPhotos(withUrls);
       });
-  }, [user]);
+    return () => { cancelled = true; };
+  }, [user, adminCheck]);
 
   async function login(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

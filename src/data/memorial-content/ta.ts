@@ -76,7 +76,9 @@ export const tamilContent: MemorialContent = {
     },
     tributeLabels: {
         photoOf: "புகைப்படம்:",
-        dateLocale: "ta-IN"
+        dateLocale: "ta-IN",
+        readMore: "மேலும் படிக்க",
+        showLess: "குறைவாக காட்டு"
     },
     upload: {
         pageTitle: "குடும்பப் புகைப்பட பதிவேற்றம்",

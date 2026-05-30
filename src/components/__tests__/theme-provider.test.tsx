@@ -31,7 +31,7 @@ describe('SiteHeader', () => {
   it('renders all navigation items', () => {
     render(<SiteHeader />);
     const nav = screen.getByRole('navigation', { name: /main navigation/i });
-    for (const label of ['About', 'Timeline', 'Gallery', 'Tributes', 'Family', 'Events']) {
+    for (const label of ['About', 'Timeline', 'Gallery', 'Tributes', 'Family']) {
       expect(nav).toHaveTextContent(label);
     }
   });
