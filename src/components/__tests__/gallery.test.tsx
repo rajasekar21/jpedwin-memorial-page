@@ -120,6 +120,72 @@ describe('Gallery', () => {
     jest.useRealTimers();
   });
 
+  it('closes lightbox when clicking the backdrop (outside the dialog)', () => {
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'A photo', album: 'Memories', caption: 'A photo' },
+        ]}
+      />
+    );
+    fireEvent.click(screen.getByRole('button', { name: /View photo: Memories/i }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    const backdrop = screen.getByRole('dialog').parentElement!;
+    fireEvent.click(backdrop);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('navigates to the previous photo with the ArrowLeft key', () => {
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'First photo', album: 'Memories', caption: 'First photo' },
+          { src: '/two.jpg', alt: 'Second photo', album: 'Memories', caption: 'Second photo' },
+        ]}
+      />
+    );
+    fireEvent.click(screen.getByRole('button', { name: /View photo: Memories/i }));
+    // advance to second photo first
+    fireEvent.click(screen.getByRole('button', { name: /Next photo/i }));
+
+    const dialog = screen.getByRole('dialog');
+    fireEvent.keyDown(dialog, { key: 'ArrowLeft' });
+    expect(within(dialog).getByAltText('First photo')).toBeInTheDocument();
+  });
+
+  it('navigates to the next photo with the ArrowRight key', () => {
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'First photo', album: 'Memories', caption: 'First photo' },
+          { src: '/two.jpg', alt: 'Second photo', album: 'Memories', caption: 'Second photo' },
+        ]}
+      />
+    );
+    fireEvent.click(screen.getByRole('button', { name: /View photo: Memories/i }));
+
+    const dialog = screen.getByRole('dialog');
+    fireEvent.keyDown(dialog, { key: 'ArrowRight' });
+    expect(within(dialog).getByAltText('Second photo')).toBeInTheDocument();
+  });
+
+  it('does not navigate with arrow keys when only one photo is in the album', () => {
+    render(
+      <Gallery
+        photos={[
+          { src: '/one.jpg', alt: 'Solo photo', album: 'Memories', caption: 'Solo photo' },
+        ]}
+      />
+    );
+    fireEvent.click(screen.getByRole('button', { name: /View photo: Memories/i }));
+    const dialog = screen.getByRole('dialog');
+    fireEvent.keyDown(dialog, { key: 'ArrowRight' });
+
+    expect(within(dialog).getByAltText('Solo photo')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Next photo/i })).not.toBeInTheDocument();
+  });
+
   it('uses localized album names and photo counts', () => {
     render(
       <Gallery

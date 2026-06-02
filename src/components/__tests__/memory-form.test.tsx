@@ -60,6 +60,37 @@ describe('MemoryForm', () => {
     });
   });
 
+  it('photo file input accepts only image types', () => {
+    render(<MemoryForm />);
+    const input = document.querySelector('input[name="photo"]') as HTMLInputElement;
+    expect(input).toHaveAttribute('accept', 'image/jpeg,image/png,image/webp');
+    expect(input).toHaveAttribute('type', 'file');
+  });
+
+  it('photo remove button is not present before a file is selected', () => {
+    render(<MemoryForm />);
+    expect(screen.queryByRole('button', { name: /remove photo/i })).not.toBeInTheDocument();
+  });
+
+  it('shows a success message silently when the honeypot field is filled', async () => {
+    render(<MemoryForm />);
+    const honeypot = document.querySelector('input[name="website"]') as HTMLInputElement;
+    fireEvent.change(honeypot, { target: { value: 'http://spam.com' } });
+
+    fireEvent.change(screen.getByLabelText(/your name/i), { target: { value: 'Jane Doe' } });
+    fireEvent.change(screen.getByLabelText(/relationship/i), { target: { value: 'Friend' } });
+    fireEvent.change(screen.getByLabelText(/memory or tribute/i), {
+      target: { value: 'He was a wonderful person who always made time for others.' }
+    });
+    fireEvent.submit(screen.getByRole('button', { name: /submit memory/i }).closest('form')!);
+
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toBeInTheDocument();
+    });
+    // Should appear to succeed (not reveal the honeypot mechanism)
+    expect(screen.queryByRole('alert')?.className).not.toMatch(/red/);
+  });
+
   it('blocks submissions after rate limit is exceeded', async () => {
     const timestamps = Array.from({ length: 3 }, () => Date.now());
     localStorage.setItem('memory_submissions', JSON.stringify(timestamps));

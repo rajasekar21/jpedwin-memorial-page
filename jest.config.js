@@ -19,5 +19,13 @@ module.exports = createJestConfig({
     '!src/app/layout.tsx',
     '!src/app/robots.ts',
     '!src/app/sitemap.ts'
-  ]
+  ],
+  coverageThreshold: {
+    global: {
+      statements: 48,
+      branches: 40,
+      functions: 50,
+      lines: 50
+    }
+  }
 });
