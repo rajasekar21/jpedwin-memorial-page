@@ -12,5 +12,5 @@ export const siteConfig = {
 export function withBasePath(path: string) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   if (path.startsWith('https://') || path.startsWith('http://')) return path;
-  return `${basePath}${path}`;
+  return `${basePath}${path.startsWith('/') ? path : '/' + path}`;
 }

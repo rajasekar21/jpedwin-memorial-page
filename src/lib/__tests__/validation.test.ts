@@ -1,4 +1,4 @@
-import { memorySubmissionSchema } from '../validation';
+import { memorySubmissionSchema, memoryPhotoSchema } from '../validation';
 
 describe('memorySubmissionSchema', () => {
   const valid = {
@@ -77,5 +77,53 @@ describe('memorySubmissionSchema', () => {
   it('rejects missing fields', () => {
     expect(memorySubmissionSchema.safeParse({}).success).toBe(false);
     expect(memorySubmissionSchema.safeParse({ name: 'Jane' }).success).toBe(false);
+  });
+});
+
+describe('memoryPhotoSchema', () => {
+  it('accepts undefined (photo is optional)', () => {
+    expect(memoryPhotoSchema.safeParse(undefined).success).toBe(true);
+  });
+
+  it('accepts a valid JPEG file under 5 MB', () => {
+    const file = new File(['photo'], 'photo.jpg', { type: 'image/jpeg' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(true);
+  });
+
+  it('accepts a valid PNG file', () => {
+    const file = new File(['photo'], 'photo.png', { type: 'image/png' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(true);
+  });
+
+  it('accepts a valid WebP file', () => {
+    const file = new File(['photo'], 'photo.webp', { type: 'image/webp' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(true);
+  });
+
+  it('rejects a file larger than 5 MB', () => {
+    const largeContent = new Uint8Array(5 * 1024 * 1024 + 1);
+    const file = new File([largeContent], 'large.jpg', { type: 'image/jpeg' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(false);
+  });
+
+  it('rejects a file at exactly 5 MB boundary (allowed)', () => {
+    const content = new Uint8Array(5 * 1024 * 1024);
+    const file = new File([content], 'exact.jpg', { type: 'image/jpeg' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(true);
+  });
+
+  it('rejects an unsupported MIME type (PDF)', () => {
+    const file = new File(['data'], 'doc.pdf', { type: 'application/pdf' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(false);
+  });
+
+  it('rejects a GIF file', () => {
+    const file = new File(['data'], 'anim.gif', { type: 'image/gif' });
+    expect(memoryPhotoSchema.safeParse(file).success).toBe(false);
+  });
+
+  it('rejects a non-File value', () => {
+    expect(memoryPhotoSchema.safeParse('not-a-file').success).toBe(false);
+    expect(memoryPhotoSchema.safeParse(42).success).toBe(false);
   });
 });
