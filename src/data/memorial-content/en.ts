@@ -142,8 +142,8 @@ export const englishContent: MemorialContent = {
     dates: '1955 to 2025',
     portrait: '/images/edwinchelliah.jpg',
     quote: [
-      'A man of Unwavering Faith, Honesty and Simplicity. Known for his sincerity, and concern for others.',
-      'A blessing to everyone around him.',
+      'A man of unwavering faith, a blessing to everyone around him.',
+      'Known for his simplicity,sincerity, honesty and concern for others.',
       'His compassion and helping nature will forever be remembered and loved with gratitude.'
     ],
     shortDedication: 'Dedicated by family and friends to preserve his kindness, wisdom, and enduring presence.',
