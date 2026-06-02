@@ -24,7 +24,7 @@ describe('withBasePath', () => {
 
   it('handles paths without leading slash', () => {
     process.env.NEXT_PUBLIC_BASE_PATH = '/repo';
-    expect(withBasePath('images/portrait.jpg')).toBe('/repoimages/portrait.jpg');
+    expect(withBasePath('images/portrait.jpg')).toBe('/repo/images/portrait.jpg');
   });
 });
 

@@ -111,7 +111,7 @@ export function MemoryForm({ labels = defaultContent.form }: MemoryFormProps) {
 
     if (!parsed.success || !parsedPhoto.success) {
       setState('error');
-      setMessage(parsedPhoto.success ? labels.validationError : labels.invalidPhotoFallback);
+      setMessage(!parsed.success ? labels.validationError : labels.invalidPhotoFallback);
       return;
     }
 

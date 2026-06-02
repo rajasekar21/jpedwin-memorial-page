@@ -51,7 +51,7 @@ export function QrCard({ url, fullName, birthYear, deathDate, labels }: Props) {
       URL.revokeObjectURL(blobUrl);
 
       const link = document.createElement('a');
-      link.download = 'edwinchelliah-qr.png';
+      link.download = `${fullName.toLowerCase().replace(/\s+/g, '-')}-qr.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     };
